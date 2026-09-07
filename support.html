@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nanbit — Support</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --ink: #1B1B1A;
+    --muted: #5C5A55;
+    --rule: #E2DFD8;
+    --bg: #FBFAF7;
+    --accent: #D85A30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #F2F0EB;
+      --muted: #A8A49C;
+      --rule: #322F2B;
+      --bg: #1B1B1A;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 20px 96px;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.5rem 0 0.6rem; }
+  h3 { font-size: 1.05rem; margin: 1.8rem 0 0.4rem; }
+  p, li { margin: 0 0 1rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 0.6rem; }
+  a { color: var(--accent); }
+  strong { font-weight: 600; }
+  .dateline { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+  .lede { font-size: 1.1rem; }
+  .contact {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 2rem 0;
+  }
+  .contact p:last-child { margin-bottom: 0; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+  footer { color: var(--muted); font-size: 0.9rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Nanbit Support</h1>
+<p class="dateline">Nanbit is made by Denver Delorino.</p>
+
+<p class="lede">Nanbit is a habit tracker for iPhone. You add a few habits, pick
+which days each one is due, and tick them off. It keeps your streaks, shows a
+calendar of what you have done, and reminds you if you ask it to. Everything
+stays on your phone.</p>
+
+<div class="contact">
+  <p><strong>Need help?</strong> Write to
+  <a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a>.</p>
+  <p>It reaches one person, so a reply normally takes a few days. It helps to
+  include your iPhone model, your iOS version, and the version and commit shown
+  under <strong>You → About Nanbit</strong> — that last one identifies exactly
+  which build you are running, which two identical-looking version numbers
+  cannot.</p>
+</div>
+
+<h2>Questions people ask first</h2>
+
+<h3>Where is my data, and what happens if I lose my phone?</h3>
+<p>On the phone, and only there. Nanbit has no account and no server, which
+means there is nothing to sign into and nothing to restore from. If you want a
+copy, use <strong>You → Export data</strong> — it writes a JSON or CSV file and
+hands it to the share sheet, so you can put it wherever you keep things. That
+export is free whether or not you subscribe.</p>
+<p>If a device is lost without an export, the habits on it are gone. That is the
+honest cost of an app that keeps nothing about you.</p>
+
+<h3>Can I move my habits to a new phone?</h3>
+<p>Export from the old phone, then use <strong>You → Export data → Import</strong>
+on the new one. A restored iPhone backup carries Nanbit's database across as
+well.</p>
+
+<h3>I subscribed, but Nanbit says I am on the free tier.</h3>
+<p>Open <strong>You → Nanbit Pro → Restore purchases</strong>. Subscriptions
+attach to the Apple Account that bought them, so a restore is all that is needed
+on a reinstall or a new device — no sign-in, because there is nothing to sign
+into. If that does not fix it, check you are signed into the same Apple Account
+that made the purchase.</p>
+
+<h3>What does Pro actually unlock?</h3>
+<p>Unlimited habits instead of five, every range on the Stats tab instead of the
+week, and the whole of History — opening any past day, and paging back through
+earlier months. Everything you have already tracked stays visible and editable
+whether or not you subscribe, and nothing you made is ever taken away if a
+subscription lapses.</p>
+
+<h3>My reminders are not arriving.</h3>
+<p>Three things to check, in order:</p>
+<ul>
+  <li>iOS <strong>Settings → Notifications → Nanbit</strong> — notifications have
+    to be allowed there, and a Focus mode or Scheduled Summary can hold them
+    back.</li>
+  <li><strong>You → Reminders</strong> in Nanbit — the daily reminder has its own
+    switch, and each habit has one of its own underneath.</li>
+  <li>A reminder for a habit you have already ticked is skipped on purpose. That
+    is the intended behaviour, not a fault.</li>
+</ul>
+
+<h3>Why does a habit's name appear on my lock screen?</h3>
+<p>Because a reminder names the habit it is for. That is your phone displaying a
+notification it scheduled itself — nothing is sent anywhere. To keep names off
+the lock screen, use iOS <strong>Settings → Notifications → Show Previews</strong>.</p>
+
+<h3>I archived a habit. Why does it still count toward the free limit?</h3>
+<p>The free limit is five habits held, archived ones included — archiving keeps
+a habit's history rather than removing it. <strong>You → Archived habits</strong>
+lets you restore one or delete it outright, and deleting frees the slot.</p>
+
+<h3>Can I edit a day I forgot to tick?</h3>
+<p>Yes, for the last week. Open the day on the History tab and tick the habits
+there. Days older than a week are shown but cannot be changed, so a streak
+cannot be quietly rewritten months later.</p>
+
+<h3>How do I delete everything?</h3>
+<p><strong>You → About Nanbit → Reset all data</strong> returns the app to a
+fresh install and erases the database, including records you had already
+deleted. Removing the app does the same thing.</p>
+
+<h3>How do I cancel a subscription?</h3>
+<p>In iOS <strong>Settings → your name → Subscriptions</strong>, which is where
+Apple keeps every subscription. Cancelling never deletes anything you have
+tracked.</p>
+
+<h2>Reporting a bug</h2>
+<p>Write to <a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a> with what you did,
+what you expected, and what happened instead. The commit shown under
+<strong>You → About Nanbit</strong> is the single most useful line to include:
+two different builds can carry the same version number, and the commit tells
+them apart.</p>
+
+<h2>Privacy</h2>
+<p>Nanbit stores your habits on your device, has no accounts, and runs no
+analytics about how you use the app. The full account of what is stored and the
+few things that leave the phone is in the
+<a href="privacy.html">privacy policy</a>.</p>
+
+<hr>
+<footer>
+  <p>Nanbit — Support · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+</main>
+</body>
+</html>
