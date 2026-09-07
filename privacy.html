@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nanbit — Privacy Policy</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --ink: #1B1B1A;
+    --muted: #5C5A55;
+    --rule: #E2DFD8;
+    --bg: #FBFAF7;
+    --accent: #D85A30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #F2F0EB;
+      --muted: #A8A49C;
+      --rule: #322F2B;
+      --bg: #1B1B1A;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 20px 96px;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.5rem 0 0.6rem; }
+  h3 { font-size: 1.05rem; margin: 1.8rem 0 0.4rem; }
+  p, li { margin: 0 0 1rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 0.6rem; }
+  a { color: var(--accent); }
+  strong { font-weight: 600; }
+  .dateline { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+  .lede { font-size: 1.1rem; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+  footer { color: var(--muted); font-size: 0.9rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Nanbit Privacy Policy</h1>
+<p class="dateline">Effective 7 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
+
+<p class="lede">Nanbit is a habit tracker. It is built so that the things you
+track stay on your phone. This policy explains exactly what is stored, the few
+things that leave the device, and what would change if optional accounts arrive
+later.</p>
+
+<h2>The short version</h2>
+<ul>
+  <li>Your habits, your completions and your settings are stored <strong>on your
+    device only</strong>. They are not uploaded anywhere, and there is no server
+    that holds them.</li>
+  <li>Nanbit has <strong>no analytics about how you use the app</strong>, no
+    advertising, no tracking, and no crash-reporting service.</li>
+  <li>Nanbit uses a service called <strong>RevenueCat</strong> to manage
+    subscriptions. Its software runs whenever the app is open, so a small
+    request goes to RevenueCat when Nanbit starts, whether or not you ever
+    subscribe. It carries a random identifier for the installation and nothing
+    about your habits.</li>
+  <li>If you buy a Nanbit subscription, <strong>Apple processes the
+    payment</strong>.</li>
+  <li>If the app crashes, the next launch may ask Expo's update service for a
+    corrected version of its own code, and that request includes the text of the
+    error. It does not check at any other time.</li>
+  <li>Nanbit does not sell or share your data.</li>
+</ul>
+
+<h2>What Nanbit stores on your device</h2>
+<p>All of this lives in a database inside the app's own storage, which only
+Nanbit can read:</p>
+<ul>
+  <li><strong>Habits</strong> — the name, icon, colour, schedule, daily goal and
+    reminder time you set.</li>
+  <li><strong>Completions</strong> — which habit you marked done, on which day,
+    and how many times.</li>
+  <li><strong>Settings</strong> — your display name, appearance choice, which day
+    your week starts on, the streak grace-day switch, your reminder preferences,
+    and some bookkeeping such as whether you have finished the introduction. Two
+    fields exist for the optional accounts described at the end of this policy
+    and are empty in this version. The display name is whatever you type; Nanbit
+    never asks for your real name.</li>
+  <li><strong>A summary cache</strong> — daily totals worked out from the above,
+    kept so the charts are fast. It contains nothing new.</li>
+  <li><strong>Records you have deleted.</strong> When you delete a habit or clear
+    a day, Nanbit marks the record as deleted and hides it everywhere in the app,
+    but the row stays in the database file. This is groundwork for the optional
+    sync described below: a device has to be able to learn that something was
+    deleted. It is never transmitted, and <strong>Reset all data</strong> removes
+    it along with everything else.</li>
+  <li><strong>Export and import files, briefly.</strong> Exporting writes the file
+    into the app's own temporary storage before handing it to the share sheet,
+    and importing copies the file you choose into the same place. Both are
+    deleted as soon as the operation is over — whether you went through with it
+    or not — so neither is left sitting on the device.</li>
+</ul>
+<p>None of this is transmitted anywhere. Deleting the app removes all of it.</p>
+
+<h2>What leaves your device</h2>
+<p>Four things, and nothing else.</p>
+
+<h3>1. Subscriptions, and the app knowing whether you have one</h3>
+<p>Nanbit uses <strong>RevenueCat</strong> to tell whether a subscription is
+active.</p>
+<ul>
+  <li><strong>Every time you open Nanbit, and every time you return to it</strong>,
+    the app asks RevenueCat what this installation is entitled to. This happens
+    whether or not you have ever subscribed, and whether or not you have ever
+    opened the subscription screen. What is sent is a <strong>random identifier
+    RevenueCat generates for this installation of the app</strong>, along with
+    ordinary technical details such as the app and operating-system version, and
+    — as with any internet request — your device's IP address.
+    <strong>Nothing about your habits is ever included.</strong> It cannot be:
+    the app never gives RevenueCat any of your data.</li>
+  <li><strong>If you subscribe</strong>, Apple handles the purchase and the
+    payment. Nanbit never sees your card details, your Apple Account, your name
+    or your email address. Apple's handling of your data is covered by
+    <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
+  <li><strong>RevenueCat</strong>, acting on our behalf, validates the receipt
+    with Apple and tells the app whether the subscription is active. What is
+    processed is your <strong>purchase history</strong> — which product was
+    bought, when, and whether it is still active or in a trial — tied to that
+    same random installation identifier. It is not your Apple Account, and it is
+    not linked to your name or email. RevenueCat's handling of it is covered by
+    <a href="https://www.revenuecat.com/privacy">RevenueCat's Privacy Policy</a>.</li>
+</ul>
+<p>This is used for two things: unlocking paid features and restoring your
+purchase on a new device, and aggregate subscription figures such as how many
+people subscribed in a month. It is <strong>not</strong> used for advertising,
+and it is <strong>not</strong> used to track you across other apps or
+websites.</p>
+
+<h3>2. Recovering from a crash</h3>
+<p>If Nanbit stops unexpectedly, the next launch can repair the app by fetching
+a corrected version of its own code from Expo's update service. It does
+<strong>not</strong> check at any other time — not on a normal launch, and not
+while the app is running.</p>
+<p>That request carries the platform, the app version, a random identifier for
+this installation, and <strong>the text of the error that caused the
+crash</strong>: the error message and the programmer-facing trace of where in
+Nanbit's own code it happened, cut off after about a thousand characters. This
+is what makes it possible to tell whether a fix exists for the problem you
+actually hit. It is not a report about you or your habits, and there is no
+crash-reporting service or dashboard behind it — but it is error text leaving
+the device, and we would rather say so than describe the request as carrying
+less than it does. Expo's handling of it is covered by
+<a href="https://expo.dev/privacy">Expo's Privacy Policy</a>.</p>
+<p>The random identifier here is generated by the app. It is not your Apple
+Account, not an advertising identifier, and not connected to any account.</p>
+
+<h3>3. Backups you export yourself</h3>
+<p><strong>You → Export data</strong> writes a JSON or CSV copy of your habits
+and completions and hands it to your phone's share sheet. Where it goes from
+there is entirely your choice — a file, a message, another app. Nanbit does not
+upload it, and does not know what you did with it.</p>
+
+<h3>4. Links you tap</h3>
+<p>The support, privacy and terms links open your browser at an ordinary web
+address. Nothing about you or your habits is attached; your browser behaves as
+it always does.</p>
+
+<h2>What Nanbit does not do</h2>
+<ul>
+  <li><strong>No analytics about how you use the app.</strong> Nothing measures
+    which screens you open, which habits you keep, or how often you come back.
+    The only aggregate figures that exist anywhere are RevenueCat's subscription
+    counts, described above.</li>
+  <li>No advertising, and no advertising identifiers.</li>
+  <li>No tracking, as Apple defines it: nothing about you is linked to data from
+    other companies' apps or websites, for any purpose.</li>
+  <li>No crash-reporting service. The one exception is the update request
+    described in section 2, which carries the last error's text.</li>
+  <li>No accounts, and no server holding your habits.</li>
+  <li>No selling, renting or sharing of personal data.</li>
+  <li>No location, contacts, photos, microphone, camera or health data. Nanbit
+    never asks for them because it never uses them.</li>
+</ul>
+
+<h2>Notifications</h2>
+<p>Reminders are scheduled by your phone, locally, from the habits already on
+your device. There is no push server and no push token: nothing about a reminder
+leaves the phone, and Nanbit cannot send you anything you did not schedule
+yourself. Because a reminder names the habit it is for, a habit's name can
+appear on your lock screen — that is your phone displaying it, not Nanbit
+sending it anywhere. You can turn notifications off at any time in the app or in
+your phone's settings.</p>
+
+<h2>Your choices and controls</h2>
+<ul>
+  <li><strong>See everything Nanbit holds</strong> — it is all visible in the
+    app, and <strong>You → Export data</strong> gives you a complete
+    machine-readable copy. Export stays free whether or not you subscribe, so you
+    are never locked away from your own records.</li>
+  <li><strong>Hide individual records</strong> — deleting a habit removes it and
+    its completions from everywhere in the app. As described above, the
+    underlying rows remain in the database file on your device until you reset or
+    remove the app.</li>
+  <li><strong>Delete everything, properly</strong> — <strong>You → About Nanbit →
+    Reset all data</strong> erases the database, deleted records included, and
+    returns the app to a fresh install. Removing the app does the same.</li>
+  <li><strong>Manage or cancel a subscription</strong> — in your Apple Account
+    subscription settings. Cancelling never deletes anything you have
+    tracked.</li>
+  <li><strong>Ask us to delete purchase records</strong> — the subscription
+    records held by RevenueCat are keyed to a random installation identifier. If
+    you want them erased, write to
+    <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a> and we will action it. You
+    may need to tell us roughly when and what you purchased, since we have no
+    other way to find you.</li>
+</ul>
+
+<h2>How to reach us about your data</h2>
+<p>Write to <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>. That address
+reaches Denver Delorino, who makes Nanbit, and it is the only route — there is
+no support desk and no ticketing system behind it.</p>
+<p>Because Nanbit holds no account and no contact details for you, we usually
+cannot look you up. For anything except a purchase record there is nothing for
+us to find: your habits are on your phone and we have never had a copy. For a
+purchase record, tell us roughly what you bought and when. A reply normally
+takes a few days.</p>
+<p>If you are in the UK or the EU, you have rights of access, correction,
+erasure, restriction, objection and portability over personal data. In practice
+those rights bite only on the purchase records described above, since nothing
+else about you exists off your device — and your habits are already portable
+through <strong>Export data</strong>, without asking anyone.</p>
+
+<h2>How long data is kept</h2>
+<p>Data on your device is kept until you delete it or remove the app. Records
+you delete inside the app are hidden immediately and stay in the database file
+until you use <strong>Reset all data</strong> or remove the app. Purchase
+records are kept by Apple and RevenueCat for as long as needed to support
+restores, refunds and financial record-keeping.</p>
+
+<h2>Children</h2>
+<p>Nanbit is not directed at children under 13. It asks for no name, no email,
+no age and no contact details from anyone, and it collects nothing that
+identifies a child. The only information that leaves the device is described
+above: a random per-installation identifier, subscription status, and — after a
+crash — the text of the error.</p>
+
+<h2>What changes if sync arrives</h2>
+<p>Nanbit may later add <strong>optional</strong> accounts so habits can sync
+between your devices. If that happens:</p>
+<ul>
+  <li>It will stay optional. Nothing in Nanbit will be gated behind an account,
+    and buying or restoring a subscription will never require one.</li>
+  <li>If, and only if, you choose to sign in, your habits and completions would
+    be stored on a server so they can reach your other devices, and your purchase
+    history would become linked to that account rather than to a random
+    identifier.</li>
+  <li>This policy will be updated, and the app will say what is happening, before
+    any of that ships. Nothing about the version you have today changes
+    retroactively.</li>
+</ul>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the date at the top changes with it, and material
+changes will be described in the app's release notes.</p>
+
+<h2>Contact</h2>
+<p>Questions, or a request about your data:
+<a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>.</p>
+
+<hr>
+<footer>
+  <p>Nanbit — <a href="support.html">Support</a> · Privacy Policy</p>
+</footer>
+
+</main>
+</body>
+</html>
