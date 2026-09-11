@@ -52,16 +52,17 @@
 <h1>Nanbit Privacy Policy</h1>
 <p class="dateline">Effective 7 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
-<p class="lede">Nanbit is a habit tracker. It is built so that the things you
-track stay on your phone. This policy explains exactly what is stored, the few
+<p class="lede">Nanbit is a habit tracker. It is built to keep the things you
+track on your phone. This policy explains exactly what is stored, the few
 things that leave the device, and what would change if optional accounts arrive
 later.</p>
 
 <h2>The short version</h2>
 <ul>
   <li>Your habits, your completions and your settings are stored <strong>on your
-    device only</strong>. They are not uploaded anywhere, and there is no server
-    that holds them.</li>
+    device</strong>. Nanbit never uploads them, and there is no Nanbit server that
+    holds them. If your phone backs itself up, <strong>that backup can include
+    them</strong> — see section 5 below.</li>
   <li>Nanbit has <strong>no analytics about how you use the app</strong>, no
     advertising, no tracking, and no crash-reporting service.</li>
   <li>Nanbit uses a service called <strong>RevenueCat</strong> to manage
@@ -98,18 +99,21 @@ Nanbit can read:</p>
     a day, Nanbit marks the record as deleted and hides it everywhere in the app,
     but the row stays in the database file. This is groundwork for the optional
     sync described below: a device has to be able to learn that something was
-    deleted. It is never transmitted, and <strong>Reset all data</strong> removes
-    it along with everything else.</li>
+    deleted. Nanbit never sends it anywhere, though a backup your phone makes
+    copies the database whole, deleted records included. <strong>Reset all
+    data</strong> removes it along with everything else.</li>
   <li><strong>Export and import files, briefly.</strong> Exporting writes the file
     into the app's own temporary storage before handing it to the share sheet,
     and importing copies the file you choose into the same place. Both are
     deleted as soon as the operation is over — whether you went through with it
     or not — so neither is left sitting on the device.</li>
 </ul>
-<p>None of this is transmitted anywhere. Deleting the app removes all of it.</p>
+<p>Nanbit sends none of this anywhere. Deleting the app removes it from the
+phone, but not from a backup the phone has already made — see section 5.</p>
 
 <h2>What leaves your device</h2>
-<p>Four things, and nothing else.</p>
+<p>Four things that Nanbit sends, and nothing else. A fifth is sent by your
+phone rather than by Nanbit: its own backup, described last.</p>
 
 <h3>1. Subscriptions, and the app knowing whether you have one</h3>
 <!--
@@ -193,6 +197,33 @@ upload it, and does not know what you did with it.</p>
 address. Nothing about you or your habits is attached; your browser behaves as
 it always does.</p>
 
+<h3>5. Your phone's own backup, which Nanbit does not send</h3>
+<!--
+  Scoped to what is established on each platform, and to be tightened when the
+  Android half has been observed: ROADMAP's entry "Does an Android backup carry
+  Nanbit's habits to a new phone?" has the chain and the adb bmgr test that
+  settles it, and src/platform/pages.test.ts pins the scoping so that changing
+  it is deliberate. iPhone is stated from documentation and source, not from an
+  observed restore: Apple's "What does iCloud back up?" (published 1 May 2025,
+  read 11 September 2026) says iCloud Backup "includes app data for the apps
+  that you've downloaded", and expo-sqlite keeps the database under the app's
+  Documents directory (SQLiteModule.swift, defaultDatabaseDirectory).
+-->
+<p>If your phone backs itself up — <strong>iCloud Backup</strong> on iPhone,
+<strong>Google's backup</strong> on Android — that backup can contain Nanbit's
+database: your habits, completions and settings, and the deleted records
+described above. Nanbit does not send it and cannot read it. It goes to your own
+Apple or Google account under your phone's backup settings, and Apple's or
+Google's privacy policy covers it rather than this one.</p>
+<p>What is known differs by platform. <strong>On iPhone</strong>, Apple
+documents that iCloud Backup includes the data of apps you have downloaded, and
+Nanbit keeps its database where that applies. <strong>On Android it is expected
+rather than confirmed</strong>: Nanbit uses Android's standard backup settings,
+which include the app's own storage, but no restore has been tested yet.</p>
+<p>So deleting Nanbit, or using <strong>Reset all data</strong>, clears the
+phone but not a backup the phone has already made. What happens to that backup
+is up to your phone's backup settings, not to Nanbit.</p>
+
 <h2>What Nanbit does not do</h2>
 <ul>
   <li><strong>No analytics about how you use the app.</strong> Nothing measures
@@ -237,10 +268,12 @@ else on your phone.</p>
     remove the app.</li>
   <li><strong>Delete everything, properly</strong> — <strong>You → About Nanbit →
     Reset all data</strong> erases the database, deleted records included, and
-    returns the app to a fresh install. Removing the app does the same.</li>
-  <li><strong>Manage or cancel a subscription</strong> — on iPhone, in your
-    Apple Account subscription settings; on Android, go to subscriptions in
-    Google Play. Cancelling never deletes anything you have tracked.</li>
+    returns the app to a fresh install. Removing the app does the same. Neither
+    reaches a backup your phone has already made (section 5).</li>
+  <li><strong>Manage or cancel a subscription</strong> — on iPhone, open the
+    Settings app, tap your name, then tap Subscriptions; on Android, go to
+    subscriptions in Google Play. Cancelling never deletes anything you have
+    tracked.</li>
   <li><strong>Ask us to delete purchase records</strong> — the subscription
     records held by RevenueCat are keyed to a random installation identifier. If
     you want them erased, write to
@@ -260,12 +293,13 @@ purchase record, tell us roughly what you bought and when. A reply normally
 takes a few days.</p>
 <p>If you are in the UK or the EU, you have rights of access, correction,
 erasure, restriction, objection and portability over personal data. In practice
-those rights bite only on the purchase records described above, since nothing
-else about you exists off your device — and your habits are already portable
+those rights bite only on the purchase records described above, since we hold
+nothing else about you — and your habits are already portable
 through <strong>Export data</strong>, without asking anyone.</p>
 
 <h2>How long data is kept</h2>
-<p>Data on your device is kept until you delete it or remove the app. Records
+<p>Data on your device is kept until you delete it or remove the app; a copy in
+your phone's own backup is kept under your backup settings (section 5). Records
 you delete inside the app are hidden immediately and stay in the database file
 until you use <strong>Reset all data</strong> or remove the app. Purchase
 records are kept by the store you bought through — Apple or Google — and by
@@ -275,9 +309,10 @@ record-keeping.</p>
 <h2>Children</h2>
 <p>Nanbit is not directed at children under 13. It asks for no name, no email,
 no age and no contact details from anyone, and it collects nothing that
-identifies a child. The only information that leaves the device is described
-above: a random per-installation identifier, subscription status, and — after a
-crash — the text of the error.</p>
+identifies a child. The only information Nanbit sends off the device is
+described above: a random per-installation identifier, subscription status, and
+— after a crash — the text of the error. A backup the phone makes on its own is
+described in section 5.</p>
 
 <h2>What changes if sync arrives</h2>
 <p>Nanbit may later add <strong>optional</strong> accounts so habits can sync
