@@ -74,8 +74,8 @@ page.</p>
     free limits. Everything else stays the same.</li>
   <li><strong>Google Play takes the payment</strong>, not us. We never see your
     card details.</li>
-  <li>You <strong>cancel in your Google Play account</strong>, not in the app,
-    and cancelling never deletes anything you have tracked.</li>
+  <li>You <strong>cancel in your Google Play account</strong>, and cancelling
+    never deletes anything you have tracked.</li>
   <li>Your habits and history are <strong>on your phone</strong>. There is no
     account and no server holding them, so keeping a backup is up to you.</li>
   <li>Nanbit is provided <strong>as it is</strong>, by one person.</li>
@@ -130,7 +130,9 @@ is on the screen is what the store will charge.</p>
     confirm the purchase — or, if you started a free trial, when that trial
     ends.</li>
   <li><strong>A subscription renews automatically</strong> at the end of each
-    period unless you turn it off at least 24 hours before that period ends.</li>
+    period unless you cancel before that period ends. Google Play takes the next
+    payment when the new period starts, so cancelling any time before then is
+    enough.</li>
   <li>Your subscription is attached to your Google Play account rather than to
     any Nanbit account, because there is no Nanbit account. That is what lets
     <strong>You → Nanbit Pro → Restore purchases</strong> work on a reinstall or
@@ -145,13 +147,24 @@ straight away. Nanbit only advertises a trial when the store confirms you are
 eligible for it.</p>
 <p>If you do start a trial, it is free for its stated length and then
 <strong>converts into a paid subscription at the normal price unless you cancel
-before it ends</strong>. Cancelling during the trial leaves you on the free
-version with everything you tracked intact.</p>
+before it ends</strong>. Cancelling during the trial means you are not charged
+when it ends: Nanbit Pro stays on until the trial ends, and then you are back on
+the free version with everything you tracked intact.</p>
 
 <h3>Cancelling</h3>
+<!--
+  Deliberately silent about the app's own Manage subscription row. On Android
+  the row cannot appear at all yet: it shows only when the store reports a
+  subscription to manage, and no Android build can sell one while
+  extra.revenueCatApiKeyAndroid is null (README, phase 2). Once sales are on,
+  this page is still live the moment it is pushed while a build reaches people
+  only when it ships, so a sentence naming the row would be true of some builds
+  in circulation and not others. Written this way it is true of all of them.
+  Name the row only once every Android build on a track both sells and has it.
+-->
 <p>Cancel in your <strong>Google Play account's subscription settings</strong>.
-There is no cancellation control inside Nanbit, because the subscription lives
-with the store rather than with us, and we cannot cancel it on your behalf.</p>
+The subscription lives with the store rather than with us, so we cannot cancel
+it on your behalf.</p>
 <p>Cancelling stops the renewal. It does not delete anything: your habits, your
 completions and your history are on your phone and are untouched by the state of
 a subscription.</p>
