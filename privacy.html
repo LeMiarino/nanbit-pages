@@ -65,12 +65,13 @@ later.</p>
   <li>Nanbit has <strong>no analytics about how you use the app</strong>, no
     advertising, no tracking, and no crash-reporting service.</li>
   <li>Nanbit uses a service called <strong>RevenueCat</strong> to manage
-    subscriptions. Its software runs whenever the app is open, so a small
-    request goes to RevenueCat when Nanbit starts, whether or not you ever
-    subscribe. It carries a random identifier for the installation and nothing
-    about your habits.</li>
-  <li>If you buy a Nanbit subscription, <strong>Apple processes the
-    payment</strong>.</li>
+    subscriptions. Wherever Nanbit sells them, its software runs whenever the
+    app is open, so a small request goes to RevenueCat when Nanbit starts,
+    whether or not you ever subscribe. It carries a random identifier for the
+    installation and nothing about your habits.</li>
+  <li>If you buy a Nanbit subscription, <strong>the store you buy it through
+    processes the payment</strong>: Apple on iPhone, Google Play on
+    Android.</li>
   <li>If the app crashes, the next launch may ask Expo's update service for a
     corrected version of its own code, and that request includes the text of the
     error. It does not check at any other time.</li>
@@ -111,8 +112,17 @@ Nanbit can read:</p>
 <p>Four things, and nothing else.</p>
 
 <h3>1. Subscriptions, and the app knowing whether you have one</h3>
+<!--
+  The scoping here is load-bearing. Every Android build so far has no RevenueCat
+  key (extra.revenueCatApiKeyAndroid is null), configure() in
+  src/purchases/revenuecat.ts returns false without one, and every other call
+  waits on it -- so none of those builds contacts RevenueCat at all. Written to
+  be true of every build in circulation, before Android sales start and after.
+-->
 <p>Nanbit uses <strong>RevenueCat</strong> to tell whether a subscription is
-active.</p>
+active. That happens wherever Nanbit sells subscriptions: on iPhone, and on
+Android once Nanbit Pro is on sale there. A version of Nanbit that does not sell
+subscriptions does not contact RevenueCat at all.</p>
 <ul>
   <li><strong>Every time you open Nanbit, and every time you return to it</strong>,
     the app asks RevenueCat what this installation is entitled to. This happens
@@ -123,16 +133,28 @@ active.</p>
     — as with any internet request — your device's IP address.
     <strong>Nothing about your habits is ever included.</strong> It cannot be:
     the app never gives RevenueCat any of your data.</li>
-  <li><strong>If you subscribe</strong>, Apple handles the purchase and the
-    payment. Nanbit never sees your card details, your Apple Account, your name
-    or your email address. Apple's handling of your data is covered by
-    <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
-  <li><strong>RevenueCat</strong>, acting on our behalf, validates the receipt
-    with Apple and tells the app whether the subscription is active. What is
-    processed is your <strong>purchase history</strong> — which product was
-    bought, when, and whether it is still active or in a trial — tied to that
-    same random installation identifier. It is not your Apple Account, and it is
-    not linked to your name or email. RevenueCat's handling of it is covered by
+  <li><strong>If you subscribe</strong>, the store handles the purchase and the
+    payment: Apple on iPhone, Google Play on Android. Nanbit never sees your
+    card details, your Apple Account or Google account, your name or your email
+    address. Each store's handling of your data is covered by its own policy:
+    <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>
+    and <a href="https://policies.google.com/privacy">Google's Privacy
+    Policy</a>.</li>
+  <!--
+    The Google half of "not linked to your name or email" was checked rather
+    than mirrored from Apple's. Play Developer API, SubscriptionPurchase, read
+    11 September 2026: the buyer's email, given name, family name, profile name
+    and profile id are each "Only present for purchases made with 'Subscribe
+    with Google'", which Nanbit's purchases are not.
+  -->
+  <li><strong>RevenueCat</strong>, acting on our behalf, checks the purchase
+    with the store it was made in — Apple or Google Play — and tells the app
+    whether the subscription is active. What is processed is your
+    <strong>purchase history</strong> — which product was bought, when, and
+    whether it is still active or in a trial — tied to that same random
+    installation identifier. It is not your Apple Account or Google account, and
+    it is not linked to your name or email. RevenueCat's handling of it is
+    covered by
     <a href="https://www.revenuecat.com/privacy">RevenueCat's Privacy Policy</a>.</li>
 </ul>
 <p>This is used for two things: unlocking paid features and restoring your
@@ -157,7 +179,8 @@ the device, and we would rather say so than describe the request as carrying
 less than it does. Expo's handling of it is covered by
 <a href="https://expo.dev/privacy">Expo's Privacy Policy</a>.</p>
 <p>The random identifier here is generated by the app. It is not your Apple
-Account, not an advertising identifier, and not connected to any account.</p>
+Account or Google account, not an advertising identifier, and not connected to
+any account.</p>
 
 <h3>3. Backups you export yourself</h3>
 <p><strong>You → Export data</strong> writes a JSON or CSV copy of your habits
@@ -195,6 +218,12 @@ yourself. Because a reminder names the habit it is for, a habit's name can
 appear on your lock screen — that is your phone displaying it, not Nanbit
 sending it anywhere. You can turn notifications off at any time in the app or in
 your phone's settings.</p>
+<p>On Android, reminders rely on two permissions. One lets Nanbit <strong>post
+notifications</strong> (<code>POST_NOTIFICATIONS</code>); Android 13 and later
+ask you for it. The other lets Nanbit <strong>start when the phone does</strong>
+(<code>RECEIVE_BOOT_COMPLETED</code>), so that reminders you have already
+scheduled are set again after a restart. Neither gives Nanbit access to anything
+else on your phone.</p>
 
 <h2>Your choices and controls</h2>
 <ul>
@@ -209,9 +238,9 @@ your phone's settings.</p>
   <li><strong>Delete everything, properly</strong> — <strong>You → About Nanbit →
     Reset all data</strong> erases the database, deleted records included, and
     returns the app to a fresh install. Removing the app does the same.</li>
-  <li><strong>Manage or cancel a subscription</strong> — in your Apple Account
-    subscription settings. Cancelling never deletes anything you have
-    tracked.</li>
+  <li><strong>Manage or cancel a subscription</strong> — on iPhone, in your
+    Apple Account subscription settings; on Android, go to subscriptions in
+    Google Play. Cancelling never deletes anything you have tracked.</li>
   <li><strong>Ask us to delete purchase records</strong> — the subscription
     records held by RevenueCat are keyed to a random installation identifier. If
     you want them erased, write to
@@ -239,8 +268,9 @@ through <strong>Export data</strong>, without asking anyone.</p>
 <p>Data on your device is kept until you delete it or remove the app. Records
 you delete inside the app are hidden immediately and stay in the database file
 until you use <strong>Reset all data</strong> or remove the app. Purchase
-records are kept by Apple and RevenueCat for as long as needed to support
-restores, refunds and financial record-keeping.</p>
+records are kept by the store you bought through — Apple or Google — and by
+RevenueCat, for as long as needed to support restores, refunds and financial
+record-keeping.</p>
 
 <h2>Children</h2>
 <p>Nanbit is not directed at children under 13. It asks for no name, no email,
