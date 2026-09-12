@@ -250,9 +250,10 @@ documents that iCloud Backup includes the data of apps you have downloaded, and
 Nanbit keeps its database where that applies. <strong>On Android it is expected
 rather than confirmed</strong>: Nanbit uses Android's standard backup settings,
 which include the app's own storage, but no restore has been tested yet.</p>
-<p>So deleting Nanbit, or using <strong>Reset all data</strong>, clears the
-phone but not a backup the phone has already made. What happens to that backup
-is up to your phone's backup settings, not to Nanbit.</p>
+<p>So deleting Nanbit clears what it put on the phone, and <strong>Reset all
+data</strong> clears the database inside it — but neither reaches a backup the
+phone has already made. What happens to that backup is up to your phone's backup
+settings, not to Nanbit.</p>
 
 <h2>What Nanbit does not do</h2>
 <ul>
@@ -298,10 +299,24 @@ else on your phone.</p>
     its completions from everywhere in the app. As described above, the
     underlying rows remain in the database file on your device until you reset or
     remove the app.</li>
+  <!--
+    Corrected 13 September 2026, with the same sentence on pages/support.html and
+    the "clears the phone" half of section 5 above. "Returns the app to a fresh
+    install" was false and "Removing the app does the same" was false the other
+    way. resetEverything (src/db/repo.ts) deletes four tables and nothing
+    outside SQLite; crash-log.json and notification-log.json survive in the
+    document directory, and so does the notification permission, which no code
+    in the app can withdraw. Uninstall takes the container whole, so it is a
+    strict superset rather than an equal. The erasure claim itself is true and
+    is kept: the deletes are unfiltered, so tombstoned rows go too.
+  -->
   <li><strong>Delete everything, properly</strong> — <strong>You → About Nanbit →
-    Reset all data</strong> erases the database, deleted records included, and
-    returns the app to a fresh install. Removing the app does the same. Neither
-    reaches a backup your phone has already made (section 5).</li>
+    Reset all data</strong> erases the database, deleted records included. It
+    leaves behind a little of Nanbit's own diagnostic bookkeeping, and it does
+    not withdraw the notification permission you gave your phone, so it stops
+    just short of a fresh install. Removing the app clears more, because it takes
+    everything Nanbit ever wrote. Neither reaches a backup your phone has already
+    made (section 5).</li>
   <li><strong>Manage or cancel a subscription</strong> — on iPhone, open the
     Settings app, tap your name, then tap Subscriptions; on Android, go to
     subscriptions in Google Play. Cancelling never deletes anything you have

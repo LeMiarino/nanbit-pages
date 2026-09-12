@@ -57,6 +57,22 @@
 <main>
 
 <h1>Nanbit Support</h1>
+<!--
+  This page carries no date, and that is a decision rather than an omission.
+  7b6a98b dated terms.html and privacy.html on 12 September 2026 and left this
+  one alone; confirmed on 13 September 2026 when the question was asked
+  directly.
+
+  The dateline rule in README's hosting row exists because terms.html and
+  privacy.html each state that their date is the whole record of a change -- so
+  two versions under one date break those pages' own rule. This page makes no
+  such promise. Adding a date would import an obligation it does not have, and
+  the first future edit that failed to move it would be the page claiming its
+  text is older than it is.
+
+  So: if you are comparing the four pages and this one's missing date looks like
+  a mistake, it is not. Leave it undated.
+-->
 <p class="dateline">Nanbit is made by Denver Delorino.</p>
 
 <p class="lede">Nanbit is a habit tracker. You add a few habits, pick
@@ -90,24 +106,86 @@ habits on it are gone. That is the honest cost of an app that keeps nothing
 about you.</p>
 
 <h3>Can I move my habits to a new phone?</h3>
+<!--
+  Scoped on 13 September 2026, to match how pages/privacy.html section 5 already
+  states this. It used to read "On iPhone, a restored device backup carries
+  Nanbit's database across as well" -- flat, unattributed, and a claim about what
+  a *restore produces*, which the privacy policy deliberately makes on no
+  platform. What is established is what the backup *contains*: Apple's "What does
+  iCloud back up?" (published 1 May 2025, read 11 September 2026) says iCloud
+  Backup "includes app data for the apps that you've downloaded", and expo-sqlite
+  keeps the database under the app's Documents directory (SQLiteModule.swift,
+  defaultDatabaseDirectory). No restore has been observed on any platform --
+  README's device-only table and ROADMAP's backup entry both record that -- so
+  the restore step is named as expected and untested rather than asserted.
+
+  Deliberately silent about Android. README's device-only row says in so many
+  words that this is the answer "pages/support.html still does not give", and
+  the pointer two answers above already sends the reader to the policy, which
+  says what is known on each platform.
+-->
 <p>Export from the old phone, then use <strong>You → Export data → Import</strong>
-on the new one. On iPhone, a restored device backup carries Nanbit's database
-across as well.</p>
+on the new one. That is the route to rely on, because it is the one Nanbit does
+itself. On iPhone your phone's own backup can include Nanbit's database as well —
+Apple documents that iCloud Backup covers the data of apps you have downloaded,
+and Nanbit keeps its database where that applies — so restoring a backup onto the
+new phone would be expected to bring your habits with it. Nobody has tested a
+restore, so if it matters, export.</p>
 
 <h3>I subscribed, but Nanbit says I am on the free tier.</h3>
+<!--
+  Corrected 13 September 2026. The answer used to name Google Play alongside
+  Apple and send an Android reader to check their store account -- describing a
+  purchase no Android build can make. extra.revenueCatApiKeyAndroid is null
+  (app.json), so apiKey() returns null, configure() returns false before the SDK
+  is touched, and restore() short-circuits to { status: 'nothing' } without
+  contacting any store (src/purchases/revenuecat.ts). The harm was in the last
+  clause: the paywall reports "Nothing to restore on this account." for that
+  short-circuit and for a genuine wrong-account failure alike, so the app's own
+  message appeared to confirm the page's wrong diagnosis.
+
+  The Android half is keyed to what the screen says rather than to the build,
+  so it stays true if Android sales are ever switched on -- the timing problem
+  pages/terms.html records in its own comment: this page is live the moment it
+  is pushed, while a build reaches anyone only when it ships.
+-->
 <p>Open <strong>You → Nanbit Pro → Restore purchases</strong>. A subscription
-attaches to the store account that bought it — your Apple Account on iPhone, your
-Google Play account on Android — so a restore is all that is needed on a reinstall
-or a new device. There is no sign-in, because there is nothing to sign into. If
-that does not fix it, check you are signed into the same store account that made
-the purchase.</p>
+attaches to the Apple Account that bought it, so a restore is all that is needed
+on a reinstall or a new device. There is no sign-in, because there is nothing to
+sign into. If that does not fix it, check you are signed into the same Apple
+Account that made the purchase.</p>
+<p><strong>On Android</strong>, open that screen and read it first. While it says
+Nanbit Pro is not on sale yet, nothing can have been bought through Nanbit on
+that phone, so a restore has nothing to find and will tell you so. Everything
+free stays free.</p>
 
 <h3>What does Pro actually unlock?</h3>
+<!--
+  Corrected 13 September 2026. This used to end "Everything you have already
+  tracked stays visible and editable whether or not you subscribe" -- directly
+  after three bullets selling History as the thing Pro buys. The parity claim
+  was false on both verbs for a free account: canSeeHistory(isPro) returns isPro
+  and nothing else, and all three routes to a past day are gated (the day tap,
+  the month chevron, and Today's deep link into /history?date=, all in
+  app/(tabs)/history.tsx). A free account can open and change today and nothing
+  else.
+
+  The lapse half was true and is kept: the limits take a count and answer "can
+  you add another", never "is this one allowed" (src/purchases/limits.ts), so a
+  lapsed subscriber holding eight habits keeps all eight and only a ninth is
+  refused. EDITABLE_DAYS = 7 is deliberately not mentioned -- it is a universal
+  rule rather than something Pro buys, and it can only ever bite a Pro user,
+  since a free account's selected day is always today.
+-->
 <p>Unlimited habits instead of five, every range on the Stats tab instead of the
 week, and the whole of History — opening any past day, and paging back through
-earlier months. Everything you have already tracked stays visible and editable
-whether or not you subscribe, and nothing you made is ever taken away if a
-subscription lapses.</p>
+earlier months. None of that changes what Nanbit keeps: nothing you have tracked
+is deleted or hidden by not subscribing, and it all goes on counting toward your
+streaks and totals. What Pro buys is the view of it. Without Pro you can open and
+change today and see this month's shape, while opening a past day or an earlier
+month is what asks you to subscribe — and <strong>You → Export data</strong> is
+free either way. Nothing you made is taken away if a subscription lapses: every
+habit stays, and only a new one is refused.</p>
 
 <h3>My reminders are not arriving.</h3>
 <p>Three things to check, in order:</p>
@@ -141,10 +219,29 @@ there. Days older than a week are shown but cannot be changed, so a streak
 cannot be quietly rewritten months later.</p>
 
 <h3>How do I delete everything?</h3>
-<p><strong>You → About Nanbit → Reset all data</strong> returns the app to a
-fresh install and erases the database, including records you had already
-deleted. Removing the app does the same thing. Neither reaches a backup your
-phone has already made.</p>
+<!--
+  Corrected 13 September 2026. "Returns the app to a fresh install" was false,
+  and "Removing the app does the same thing" was false in the other direction.
+  resetEverything (src/db/repo.ts) is one unfiltered statement against four
+  tables -- completions, habits, day_summary, settings -- and touches nothing
+  outside SQLite. Two JSON files in the document directory survive it,
+  crash-log.json and notification-log.json, and so does the notification
+  permission the phone holds, which the app cannot revoke from inside itself.
+  Uninstall is a strict superset: it takes the container whole.
+
+  "Erases the database, including records you had already deleted" is TRUE and
+  is deliberately kept -- the deletes carry no `WHERE deleted_at IS NULL`, so
+  tombstoned rows go with everything else. ROADMAP carries the note that the
+  notification grant was never resetEverything's to clear, so this is a copy
+  correction and not a behaviour change.
+-->
+<p><strong>You → About Nanbit → Reset all data</strong> erases Nanbit's database
+— every habit, every completion, your settings, and the records you had already
+deleted. It stops a little short of a fresh install: a couple of small
+diagnostic files Nanbit keeps for itself are left behind, and your phone does not
+forget that you once allowed notifications. <strong>Removing the app</strong>
+clears more than that, because it takes everything Nanbit ever wrote. Neither
+reaches a backup your phone has already made.</p>
 
 <h3>How do I cancel a subscription?</h3>
 <p>In the store that sold it. On iPhone, <strong>open the Settings app, tap your
