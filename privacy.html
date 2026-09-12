@@ -50,7 +50,7 @@
 <main>
 
 <h1>Nanbit Privacy Policy</h1>
-<p class="dateline">Effective 12 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
+<p class="dateline">Effective 13 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
 <p class="lede">Nanbit is a habit tracker. It is built to keep the things you
 track on your phone. This policy explains exactly what is stored, the few
@@ -66,10 +66,12 @@ later.</p>
   <li>Nanbit has <strong>no analytics about how you use the app</strong>, no
     advertising, no tracking, and no crash-reporting service.</li>
   <li>Nanbit uses a service called <strong>RevenueCat</strong> to manage
-    subscriptions. Wherever Nanbit sells them, its software runs whenever the
-    app is open, so a small request goes to RevenueCat when Nanbit starts,
-    whether or not you ever subscribe. It carries a random identifier for the
-    installation and nothing about your habits.</li>
+    subscriptions. In a version of Nanbit <strong>configured to sell</strong>
+    them, its software runs whenever the app is open, so a small request goes to
+    RevenueCat when Nanbit starts, whether or not you ever subscribe. It carries
+    a random identifier for the installation and nothing about your habits. A
+    version that is not configured to sell subscriptions does not contact
+    RevenueCat at all.</li>
   <li>If you buy a Nanbit subscription, <strong>the store you buy it through
     processes the payment</strong>: Apple on iPhone, Google Play on
     Android.</li>
@@ -117,16 +119,27 @@ phone rather than by Nanbit: its own backup, described last.</p>
 
 <h3>1. Subscriptions, and the app knowing whether you have one</h3>
 <!--
-  The scoping here is load-bearing. Every Android build so far has no RevenueCat
-  key (extra.revenueCatApiKeyAndroid is null), configure() in
-  src/purchases/revenuecat.ts returns false without one, and every other call
-  waits on it -- so none of those builds contacts RevenueCat at all. Written to
-  be true of every build in circulation, before Android sales start and after.
+  The scoping here is load-bearing, and it is keyed to the condition the code
+  actually tests. That condition is apiKey() in src/purchases/revenuecat.ts,
+  which reads this build's own key out of the Expo config: configure() returns
+  false without one, and every other call waits on it, so a build with no key
+  for its platform never contacts RevenueCat. Every Android build so far has
+  extra.revenueCatApiKeyAndroid null and has contacted it never.
+
+  Until 13 September 2026 this said the request happens "wherever Nanbit sells
+  subscriptions". That was true, and it was keyed to a condition that exists
+  nowhere in the code -- nothing anywhere branches on whether anything is for
+  sale -- so nothing in the repository could have caught it going wrong. How a
+  version is built is the condition that actually decides it, it is checkable,
+  and it stays true when Android sales start. src/platform/pages.test.ts pins
+  the wording here and on the About screen, which says the same thing in the app.
 -->
 <p>Nanbit uses <strong>RevenueCat</strong> to tell whether a subscription is
-active. That happens wherever Nanbit sells subscriptions: on iPhone, and on
-Android once Nanbit Pro is on sale there. A version of Nanbit that does not sell
-subscriptions does not contact RevenueCat at all.</p>
+active. Whether it contacts RevenueCat at all is settled when a version of the
+app is built: a version <strong>configured to sell subscriptions</strong>
+contacts it, and a version that is not <strong>does not contact it at
+all</strong> — not at launch, not when you open the subscription screen, not at
+any other time.</p>
 <ul>
   <li><strong>Every time you open Nanbit, and every time you return to it</strong>,
     the app asks RevenueCat what this installation is entitled to. This happens
@@ -187,10 +200,27 @@ Account or Google account, not an advertising identifier, and not connected to
 any account.</p>
 
 <h3>3. Backups you export yourself</h3>
-<p><strong>You → Export data</strong> writes a JSON or CSV copy of your habits
-and completions and hands it to your phone's share sheet. Where it goes from
-there is entirely your choice — a file, a message, another app. Nanbit does not
-upload it, and does not know what you did with it.</p>
+<!--
+  Written against what loadEverything actually hands the exporter, on
+  13 September 2026: loadHabits({ includeArchived: true }) and
+  loadAllCompletions both filter deleted_at IS NULL, and loadSettings returns
+  the whole Settings object, displayName included. The page had said "your
+  habits and completions", which omitted the settings, and said elsewhere that
+  the export was a "complete" copy, which the tombstone filter makes false.
+  toCsv takes only habits and completions, so the two formats differ and the
+  page now says how.
+-->
+<p><strong>You → Export data</strong> writes a copy of your records and hands it
+to your phone's share sheet. Where it goes from there is entirely your choice —
+a file, a message, another app. Nanbit does not upload it, and does not know
+what you did with it.</p>
+<p>What the copy holds depends on which you pick. <strong>JSON</strong> carries
+your habits, archived ones included, your completions, and your
+<strong>settings</strong> — which include the display name you typed in.
+<strong>CSV</strong> carries one row per completion: the date, the habit's name,
+the count, the goal, and whether you met it. Neither carries the records you
+have deleted, and neither carries the summary cache, which holds nothing that is
+not worked out from the rest.</p>
 
 <h3>4. Links you tap</h3>
 <p>The support, privacy and terms links open your browser at an ordinary web
@@ -258,10 +288,12 @@ else on your phone.</p>
 
 <h2>Your choices and controls</h2>
 <ul>
-  <li><strong>See everything Nanbit holds</strong> — it is all visible in the
-    app, and <strong>You → Export data</strong> gives you a complete
-    machine-readable copy. Export stays free whether or not you subscribe, so you
-    are never locked away from your own records.</li>
+  <li><strong>See what Nanbit holds</strong> — it is all visible in the app, and
+    <strong>You → Export data</strong> gives you a machine-readable copy of your
+    habits, completions and settings, described in section 3. It does not
+    include the records you have deleted, which the app has already stopped
+    showing you everywhere. Export stays free whether or not you subscribe, so
+    you are never locked away from your own records.</li>
   <li><strong>Hide individual records</strong> — deleting a habit removes it and
     its completions from everywhere in the app. As described above, the
     underlying rows remain in the database file on your device until you reset or
@@ -307,12 +339,24 @@ RevenueCat, for as long as needed to support restores, refunds and financial
 record-keeping.</p>
 
 <h2>Children</h2>
-<p>Nanbit is not directed at children under 13. It asks for no name, no email,
-no age and no contact details from anyone, and it collects nothing that
-identifies a child. The only information Nanbit sends off the device is
-described above: a random per-installation identifier, subscription status, and
-— after a crash — the text of the error. A backup the phone makes on its own is
-described in section 5.</p>
+<!--
+  Narrowed from asking to collecting on 13 September 2026. "It asks for no name"
+  was false on its face against a sheet titled "Your name" (app/sheet/name.tsx,
+  which writes settings.displayName), and this is the section a store reviewer
+  reads most literally. What is true is the collection claim: the name is typed
+  in, stays in the local database, and reaches nobody. Where it can travel --
+  the user's own export and the phone's own backup -- is named rather than
+  left out, since both are elsewhere in this policy already.
+-->
+<p>Nanbit is not directed at children under 13. It <strong>collects</strong> no
+name, no email, no age and no contact details from anyone. You can type a
+display name into the app if you want one — it is whatever you choose, Nanbit
+never asks for a real name, and it is not sent to us or to anybody else. The
+only information Nanbit sends off the device is described above: a random
+per-installation identifier, subscription status, and — after a crash — the text
+of the error. Nothing in that identifies a child. The display name travels only
+in an export you make yourself (section 3) and in a backup your phone makes
+(section 5), both of which are yours.</p>
 
 <h2>What changes if sync arrives</h2>
 <p>Nanbit may later add <strong>optional</strong> accounts so habits can sync
