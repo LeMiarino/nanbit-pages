@@ -107,17 +107,42 @@ about you.</p>
 
 <h3>Can I move my habits to a new phone?</h3>
 <!--
-  Scoped on 13 September 2026, to match how pages/privacy.html section 5 already
-  states this. It used to read "On iPhone, a restored device backup carries
-  Nanbit's database across as well" -- flat, unattributed, and a claim about what
-  a *restore produces*, which the privacy policy deliberately makes on no
-  platform. What is established is what the backup *contains*: Apple's "What does
-  iCloud back up?" (published 1 May 2025, read 11 September 2026) says iCloud
-  Backup "includes app data for the apps that you've downloaded", and expo-sqlite
-  keeps the database under the app's Documents directory (SQLiteModule.swift,
-  defaultDatabaseDirectory). No restore has been observed on any platform --
-  README's device-only table and ROADMAP's backup entry both record that -- so
-  the restore step is named as expected and untested rather than asserted.
+  Scoped on 13 September 2026, and its provenance corrected the same day.
+
+  It used to read "On iPhone, a restored device backup carries Nanbit's database
+  across as well" -- flat, unattributed, and a claim about what a *restore
+  produces*. The replacement rests on a chain of two links. Both are readings,
+  neither is an observation, and the prose says that of both rather than quoting
+  one link and asserting the other:
+
+  - What iCloud Backup includes. Apple, "What does iCloud back up?",
+    https://support.apple.com/en-us/108770, showing "Published Date: May 01,
+    2025". Read for this sentence on 13 September 2026. The operative sentence,
+    verbatim: "iCloud Backup includes app data for the apps that you've
+    downloaded on your device." The one exception on that page that could
+    apply -- "If the app uses iCloud Drive to store data, that information is
+    stored in iCloud instead of your iCloud Backup" -- does not: app.json
+    declares no iCloud entitlement and no usesIcloudStorage.
+
+  - Where the database lives. Re-read from source on 13 September 2026:
+    expo-sqlite 57.0.2, ios/SQLiteModule.swift, whose defaultDatabaseDirectory is
+    the app's documentDirectory plus "SQLite" (cacheDirectory on tvOS only). The
+    LibSQL module, which decides its own, is excluded by ExpoSQLite.podspec unless
+    expo.sqlite.useLibSQL is set, and app.json lists the plugin with no options.
+    The app opens nanbit.db through SQLiteProvider with no directory of its own,
+    and nothing in expo-sqlite sets a backup-exclusion attribute on any file.
+
+  No restore has been observed on any platform -- README's device-only table and
+  ROADMAP's backup entry both record that.
+
+  Until this correction, this comment carried "(published 1 May 2025, read
+  11 September 2026)", copied from pages/privacy.html without Apple's page being
+  read for this sentence, and the prose beside it had drifted into a paraphrase
+  of a paraphrase ("covers the data of apps you have downloaded"). The read that
+  date records was real -- fa443f2 introduced it -- but it was a reading done for
+  a different sentence on a different page, and a read date belongs to a reading,
+  not to a quotation. ROADMAP records it with the other assertions nothing can
+  check.
 
   Deliberately silent about Android. README's device-only row says in so many
   words that this is the answer "pages/support.html still does not give", and
@@ -126,11 +151,12 @@ about you.</p>
 -->
 <p>Export from the old phone, then use <strong>You → Export data → Import</strong>
 on the new one. That is the route to rely on, because it is the one Nanbit does
-itself. On iPhone your phone's own backup can include Nanbit's database as well —
-Apple documents that iCloud Backup covers the data of apps you have downloaded,
-and Nanbit keeps its database where that applies — so restoring a backup onto the
-new phone would be expected to bring your habits with it. Nobody has tested a
-restore, so if it matters, export.</p>
+itself. On iPhone your phone's own backup should carry your habits across as
+well. Apple says iCloud Backup "includes app data for the apps that you've
+downloaded on your device", and Nanbit keeps its database in the app's own
+storage on the phone rather than in iCloud Drive. Both of those come from
+Apple's documentation and from reading the code, not from restoring a phone, and
+Nanbit has not been tested with a restore — so if it matters, export.</p>
 
 <h3>I subscribed, but Nanbit says I am on the free tier.</h3>
 <!--
