@@ -143,13 +143,17 @@ Nanbit can read:</p>
     your week starts on, the streak grace-day switch, your reminder preferences,
     and some bookkeeping such as whether you have finished the introduction. The
     display name is whatever you type when the introduction asks your name, or
-    later on the You tab, which is the one place it is shown. You can skip it.</li>
+    later on the You tab. It is shown in two places, Today's greeting and the
+    You tab. You can skip it.</li>
   <!--
     Corrected 23 September 2026, unpublished: it said "Nanbit never asks for
     your real name". The owner's onboarding redesign that day added a step
-    titled "What's your name?", which asks exactly that. The name is shown only
-    on the You tab (app/(tabs)/you.tsx) and is never sent anywhere
-    (src/platform/no-habit-data-leaves.test.ts).
+    titled "What's your name?", which asks exactly that. The name is shown in
+    Today's greeting (app/(tabs)/index.tsx, greetingLine) and on the You tab
+    (app/(tabs)/you.tsx), and is never sent anywhere
+    (src/platform/no-habit-data-leaves.test.ts). Until the warm theme of the
+    same night it said the You tab was "the one place it is shown", which the
+    greeting made false.
   -->
   <li><strong>A summary cache</strong> — daily totals worked out from the above,
     kept so the charts are fast. It contains nothing new.</li>
@@ -387,8 +391,8 @@ habits on the new phone before you erase the old one.</p>
     other companies' apps or websites, for any purpose.</li>
   <li>No crash-reporting service. The one exception is the update request
     described in section 2, which carries the error's text.</li>
-  <li>No account and no sign-in. Nanbit asks only for a name to show on the You
-    tab, and you can skip it.</li>
+  <li>No account and no sign-in. Nanbit asks only for a name to say hello with,
+    and you can skip it.</li>
   <!-- Until 23 September 2026: "Nothing in Nanbit asks who you are." The Name
        step made that false; see the note above. -->
   <li>No selling, renting or sharing of personal data.</li>
@@ -486,8 +490,8 @@ financial record-keeping.</p>
   so it now says what is asked and where it stays.
 -->
 <p>Nanbit is not directed at children under 13. It never asks for an age. It
-asks for a name to show on the You tab, which can be skipped and never leaves
-the phone, and it asks for no email and no contact details. The only
+asks for a name to say hello with, which can be skipped and never leaves the
+phone, and it asks for no email and no contact details. The only
 information it sends off the phone is the identifiers and subscription status
 described in section 1 and — after a crash while it is starting up — the text of
 the error.</p>
