@@ -56,12 +56,17 @@
   Rewritten on 23 September 2026 for Nanbit 1.1, which adds an optional account
   on iPhone through Sign in with Apple. This page's own rule is that its date is
   the whole record of a change, and the project's rule is that the date names
-  the day a version becomes the live one (README, Rule B). That day is the day
-  a build with sign-in switched on is released, which was not known when this
-  was written. The date moves in the commit that publishes this text, and until
-  then the live page must stay the 13 September 2026 version: every account
-  sentence below is false for a build where sign-in is off, and every export
-  sentence in the old version was true of 1.0 as it shipped.
+  the day a version becomes the live one (README, Rule B). **This version goes
+  live on the day 1.1 is submitted for review**, the owner's decision of the
+  same day: App Review can open this policy from inside the app while testing,
+  so it has to describe 1.1 by then. The date moves to that submission day in
+  the commit that publishes this text.
+
+  *Corrected the same day.* This comment first said the live page must stay the
+  13 September version until 1.1 was released, because "every export sentence
+  in the old version was true of 1.0 as it shipped". 1.0 was never released on
+  iPhone: it was cancelled after review. The Android 1.0.0 on the Play closed
+  track does carry Export; README's 1.1 checklist records that.
 -->
 <p class="dateline">Effective 13 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
@@ -207,9 +212,52 @@ you still allow Nanbit to use Sign in with Apple.</p>
 connection. It is kept by <strong>Supabase</strong> (Supabase Pte. Ltd.), which
 runs Nanbit's server, on servers in <strong>Singapore</strong>. The backup is
 stored as Nanbit writes it. It is not encrypted in a way that stops Supabase or
-Nanbit's developer from reading it. Supabase also keeps its own logs of requests
-to its servers. Its handling of all of this is covered by
-<a href="https://supabase.com/privacy">Supabase's Privacy Policy</a>.</p>
+Nanbit's developer from reading it. Supabase handles all of it for Nanbit under
+its <a href="https://supabase.com/legal/dpa">data processing agreement</a>.</p>
+
+<!--
+  Added 23 September 2026, on the owner's instruction to state the log retention
+  and that what deletion cannot reach goes on its own. Every clause is scoped to
+  what Supabase's own pages say, read that day:
+
+  - supabase.com/pricing, the row "Log retention (API & Database)": Free "1 day",
+    Pro "7 days", Team "28 days", Enterprise "90 days". "Up to 7 days" is true on
+    Free and Pro and stays true if the project moves to Pro. It would be false
+    on Team, at 28 days: change this sentence before any move past Pro.
+  - The figures describe how far back the logs can be read, not a promise to
+    delete; a check of the live project that day found entries older than the
+    Free plan's figure but well inside 7 days (ROADMAP, "Release 1.1 prepared for
+    TestFlight"). So the sentence says what Supabase says rather than asserting
+    it, and "gone within that time" follows from it.
+  - It also holds only while no log drain is set up and no copy of the logs is
+    downloaded: both take logs out of Supabase's retention (README, the 1.1
+    checklist).
+  - What the logs hold is Supabase's log field reference
+    (supabase.com/docs/guides/observability/log-field-reference, read that day):
+    request.headers.cf_connecting_ip, request.headers.x_forwarded_user_agent,
+    request.cf.city, postalCode, latitude and longitude on API requests, and
+    auth_event.traits.user_email on auth events.
+  - supabase.com/legal/dpa, "Version 1 — August 1, 2026": "Supabase takes daily
+    backups of Customer projects by default", and "Traffic flow logs are
+    retained that enable retroactive analysis of all connections to Supabase
+    infrastructure if needed". Neither states a period, so the page says so.
+    The pricing page says Pro stores daily backups for 7 days; nothing published
+    gives Free's period.
+
+  The link used to be Supabase's privacy notice, which says of data processed
+  for a customer like Nanbit: "This Privacy Notice does not apply to such
+  processing". The data processing agreement is the document that does.
+-->
+<p><strong>Supabase's logs.</strong> Supabase keeps logs of the requests Nanbit
+makes to its server. They include your IP address, the rough location it points
+to, such as your city, what kind of device and app made the request, and, when
+you sign in, your email address. Supabase says it keeps these logs for up to 7
+days, so anything in them that deleting your account cannot reach is gone on its
+own within that time.</p>
+<p>Two other things are Supabase's, and it does not say how long it keeps them.
+It makes daily backup copies of Nanbit's database, so a deleted account can stay
+in those copies for a while. And it keeps records of connections to its own
+systems, for security.</p>
 
 <p><strong>One phone at a time.</strong> Your account works on one phone at a
 time. Signing in on another phone signs the first one out, and takes the habits
@@ -223,8 +271,9 @@ brings them back.</p>
 account</strong>. It needs an internet connection. It deletes your account, the
 backup and the sign-in records from Supabase first, and then takes everything off
 the phone. It cannot be undone. If Nanbit cannot reach Supabase, nothing is
-deleted and nothing changes on the phone. Two things it cannot reach: a backup
-your phone made earlier (section 5), and Supabase's own request logs.</p>
+deleted and nothing changes on the phone. It cannot reach a backup your phone
+made earlier (section 5), or Supabase's logs, backup copies and security records,
+described above.</p>
 <p>Deleting your account does not remove Nanbit from the apps that use your
 Apple Account. To do that too, <strong>open the Settings app, tap your name, tap
 Sign in with Apple, choose Nanbit, then tap Delete</strong>. If you skip this and
@@ -453,8 +502,10 @@ Records you delete inside the app are hidden immediately and stay in the databas
 file until you reset, sign out, or remove the app.</p>
 <p>Your account and its backup are kept until you delete the account. Each save
 replaces the last one, so there is only ever one backup, and no older versions.
-The sign-in records go when the account does. Supabase's own request logs are
-kept under Supabase's policy. Purchase records are kept by the store you bought
+The sign-in records go when the account does. Supabase says it keeps its
+request logs for up to 7 days; it does not say how long it keeps its backup
+copies or its security records (section 1). Purchase records are kept by the
+store you bought
 through — Apple or Google — and by RevenueCat, for as long as needed to
 support restores, refunds and financial record-keeping.</p>
 
