@@ -161,11 +161,48 @@ Nanbit can read:</p>
     account, and the identifier Apple gives Nanbit for you. Signing out and
     deleting your account remove both.</li>
 </ul>
+<!--
+  Added 23 September 2026 for the widget's first store build, from the list
+  ROADMAP made on 13 September ("What changes on the pages at the widget's
+  submission"). From the code:
+
+  - What the copy holds is `SmallFace` in src/widget/timeline.ts: a model
+    version, the day, the date as Today writes it, the state, and for a list the
+    two totals, one true/false mark per due habit and a count of marks that did
+    not fit. Today and DAYS_AHEAD (7) days after it, then a face with no date or
+    marks. No ids, names, icons or colours. src/platform/pages.test.ts holds
+    "without their names" to those fields, here and in About.
+  - Where: the App Group's UserDefaults, through expo-widgets'
+    WidgetsStorage.swift, written from src/widgetHost/index.ts whenever the
+    app's data or day changes, whether or not a widget has been added, and only
+    on iOS.
+  - Replaced, not deleted: wipeThisPhone (src/lib/wipe.ts) pushes a habit-free
+    week on sign-out, on being replaced by another phone, on Delete account and
+    on Reset, and one push overwrites the stored week whole. If that push fails,
+    the old week stays (src/widgetHost/index.ts, predicted from source).
+  - Removal with the app: Apple's documentation of
+    containerURL(forSecurityApplicationGroupIdentifier:), read 23 September
+    2026: "when all the apps in a given app group are removed from the device,
+    the system detects this condition and removes the corresponding group
+    directory as well." That the group's UserDefaults sit inside that directory
+    is not stated on the pages read that day (UserDefaults, init(suiteName:)),
+    and has not been observed here, so the page says what Apple says about the
+    storage rather than asserting what happens to the copy.
+-->
+<p><strong>A copy for the widget, on iPhone.</strong> Nanbit also keeps a small
+copy for its home-screen widget, even if you never add the widget. It is outside
+the database, in storage that only Nanbit and its widget can read. It says which
+habits are due and which are done, today and for the next week, as marks and
+totals, without the habits' names. Signing out, deleting your account and
+<strong>Reset all data</strong> each replace it with one that holds no habits. If
+that replacement fails, the widget can go on showing the last week it was given
+until Nanbit next updates it.</p>
 <p>Unless you sign in, Nanbit sends none of this anywhere. Deleting the app
 removes the database from the phone, but not from a backup the phone has already
-made — see section 5. On iPhone, iOS keeps Keychain items after an app is
-removed, so a sign-in can be left there; Nanbit clears it the next time it is
-installed and opened, without contacting the server.</p>
+made — see section 5. Apple says that iOS removes the storage an app shares with
+its widget when the app is removed. On iPhone, iOS keeps Keychain items after an
+app is removed, so a sign-in can be left there; Nanbit clears it the next time it
+is installed and opened, without contacting the server.</p>
 
 <h2>What leaves your device</h2>
 <p>Nanbit itself sends four things, and nothing else. Only the first needs you to
@@ -383,9 +420,11 @@ it always does.</p>
 <p>If your phone backs itself up — <strong>iCloud Backup</strong> on iPhone,
 <strong>Google's backup</strong> on Android — that backup can contain Nanbit's
 database: your habits, completions and settings, and the deleted records
-described above. Nanbit does not send it and cannot read it. It goes to your own
-Apple or Google account under your phone's backup settings, and Apple's or
-Google's privacy policy covers it rather than this one.</p>
+described above. On iPhone it may also contain the widget's copy; whether iCloud
+Backup includes it has not been checked, so this policy assumes it can. Nanbit
+does not send any of it and cannot read it. It goes to your own Apple or Google
+account under your phone's backup settings, and Apple's or Google's privacy
+policy covers it rather than this one.</p>
 <p>What is known differs by platform. <strong>On iPhone</strong>, Apple
 documents that iCloud Backup includes the data of apps you have downloaded, and
 Nanbit keeps its database where that applies. <strong>On Android it is expected
@@ -393,8 +432,8 @@ rather than confirmed</strong>: Nanbit uses Android's standard backup settings,
 which include the app's own storage, but no restore has been tested yet.</p>
 <p>So deleting Nanbit clears its database from the phone, and <strong>Reset all
 data</strong>, signing out and <strong>Delete account</strong> each clear the
-database inside it — but none of them reaches a backup the phone has already
-made. What happens to that backup is up to your phone's backup settings, not to
+database inside it and replace the widget's copy — but none of them reaches a
+backup the phone has already made. What happens to that backup is up to your phone's backup settings, not to
 Nanbit.</p>
 
 <h2>What Nanbit does not do</h2>

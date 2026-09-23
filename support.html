@@ -270,8 +270,8 @@ cannot be quietly rewritten months later.</p>
   Corrected 13 September 2026. "Returns the app to a fresh install" was false,
   and "Removing the app does the same thing" was false in the other direction.
   resetEverything (src/db/repo.ts) is one unfiltered statement against four
-  tables -- completions, habits, day_summary, settings -- and touches nothing
-  outside SQLite. Two JSON files in the document directory survive it,
+  tables -- completions, habits, day_summary, settings. Two JSON files in the
+  document directory survive it,
   crash-log.json and notification-log.json, and so does the notification
   permission the phone holds, which the app cannot revoke from inside itself.
   Uninstall is a strict superset: it takes the container whole.
@@ -281,6 +281,12 @@ cannot be quietly rewritten months later.</p>
   tombstoned rows go with everything else. ROADMAP carries the note that the
   notification grant was never resetEverything's to clear, so this is a copy
   correction and not a behaviour change.
+
+  Since 22 September 2026 Reset goes through wipeThisPhone (src/lib/wipe.ts),
+  which also takes back scheduled and delivered reminders and replaces the
+  widget's copy with a habit-free week. Until 23 September this comment said
+  the reset "touches nothing outside SQLite", which had stopped being true; the
+  widget's copy was added to the paragraph below the same day.
 -->
 <p><strong>If you are signed in</strong>, use <strong>You → Delete
 account</strong>. It deletes your account and its backup from Nanbit's server,
@@ -290,7 +296,8 @@ Account, <strong>open the Settings app, tap your name, tap Sign in with Apple,
 choose Nanbit, then tap Delete</strong>.</p>
 <p><strong>If you are not signed in</strong>, <strong>You → About Nanbit → Reset
 all data</strong> erases Nanbit's database — every habit, every completion, your
-settings, and the records you had already deleted. It stops a little short of a
+settings, and the records you had already deleted — and on iPhone empties the
+copy Nanbit keeps for its widget. It stops a little short of a
 fresh install: a couple of small diagnostic files Nanbit keeps for itself are
 left behind, and your phone does not forget that you once allowed
 notifications.</p>
