@@ -75,10 +75,20 @@
 -->
 <p class="dateline">Nanbit is made by Denver Delorino.</p>
 
+<!--
+  Rewritten on 23 September 2026 for Nanbit 1.1, which adds an optional account
+  on iPhone. This page used to end its lede "Nanbit keeps all of it on your phone
+  and sends none of it anywhere", said Nanbit had "no account and no server", and
+  sent readers to "You → Export data" in three answers, including as "the route
+  to rely on" for moving to a new phone. The export was removed from the app on
+  22 September 2026. Like the privacy policy, this text describes a build with
+  sign-in switched on, and must not go live before that build does.
+-->
 <p class="lede">Nanbit is a habit tracker. You add a few habits, pick
 which days each one is due, and tick them off. It keeps your streaks, shows a
-calendar of what you have done, and reminds you if you ask it to. Nanbit
-keeps all of it on your phone and sends none of it anywhere.</p>
+calendar of what you have done, and reminds you if you ask it to. You can use it
+without an account. On iPhone you can also sign in with Apple, and Nanbit backs
+up your habits to your account.</p>
 
 <div class="contact">
   <p><strong>Need help?</strong> Write to
@@ -94,16 +104,15 @@ keeps all of it on your phone and sends none of it anywhere.</p>
 <h2>Questions people ask first</h2>
 
 <h3>Where is my data, and what happens if I lose my phone?</h3>
-<p>On the phone. Nanbit has no account and no server, which means there is
-nothing to sign into and nothing for Nanbit to restore from. If you want a copy,
-use <strong>You → Export data</strong> — it writes a JSON or CSV file and hands
-it to the share sheet, so you can put it wherever you keep things. That export
-is free whether or not you subscribe.</p>
-<p>Your phone's own backup can hold a copy too; the
+<p>If you have not signed in, your habits are kept on the phone, and Nanbit does
+not send them anywhere. Your phone's own backup can hold a copy; the
 <a href="privacy.html">privacy policy</a> says what is known about that on each
-platform. If a device is lost with no export and no backup of the phone, the
-habits on it are gone. That is the honest cost of an app that keeps nothing
-about you.</p>
+platform. If the phone is lost and there is no backup of it, the habits on it
+are gone.</p>
+<p>If you signed in with Apple on iPhone, your habits are also backed up to your
+account. Sign in on your new iPhone and they come back. The backup is kept by
+Supabase, the company that runs Nanbit's server, in Singapore. The privacy
+policy has the details.</p>
 
 <h3>Can I move my habits to a new phone?</h3>
 <!--
@@ -151,14 +160,23 @@ about you.</p>
   the pointer two answers above already sends the reader to the policy, which
   says what is known on each platform.
 -->
-<p>Export from the old phone, then use <strong>You → Export data → Import</strong>
-on the new one. That is the route to rely on, because it is the one Nanbit does
-itself. On iPhone your phone's own backup should carry your habits across as
-well. Apple says iCloud Backup "includes app data for the apps that you've
-downloaded on your device", and Nanbit keeps its database in the app's own
-storage on the phone rather than in iCloud Drive. Both of those come from
-Apple's documentation and from reading the code, not from restoring a phone, and
-Nanbit has not been tested with a restore — so if it matters, export.</p>
+<!--
+  Rewritten 23 September 2026: the first two sentences sent readers to export on
+  the old phone and import on the new one, "the route to rely on". Both went on
+  22 September. The sign-in route is the one Nanbit now does itself. The iCloud
+  sentence is kept as it was, with the chain above still behind it.
+-->
+<p><strong>On iPhone, sign in with Apple.</strong> Sign in under <strong>You</strong>
+on the old phone, then on the new one, and your habits come back on the new
+phone. Your account works on one phone at a time, so signing in on the new one
+signs the old one out and takes the habits off it. They stay in your
+account.</p>
+<p>Your phone's own backup should carry your habits across as well. Apple says
+iCloud Backup "includes app data for the apps that you've downloaded on your
+device", and Nanbit keeps its database in the app's own storage on the phone
+rather than in iCloud Drive. Both of those come from Apple's documentation and
+from reading the code, not from restoring a phone, and Nanbit has not been
+tested with a restore — so if it matters, sign in.</p>
 
 <h3>I subscribed, but Nanbit says I am on the free tier.</h3>
 <!--
@@ -179,9 +197,10 @@ Nanbit has not been tested with a restore — so if it matters, export.</p>
 -->
 <p>Open <strong>You → Nanbit Pro → Restore purchases</strong>. A subscription
 attaches to the Apple Account that bought it, so a restore is all that is needed
-on a reinstall or a new device. There is no sign-in, because there is nothing to
-sign into. If that does not fix it, check you are signed into the same Apple
-Account that made the purchase.</p>
+on a reinstall or a new device. You do not need to sign in to Nanbit for this: a
+subscription belongs to your Apple Account, not to your Nanbit account. If that
+does not fix it, check you are signed into the same Apple Account that made the
+purchase.</p>
 <p><strong>On Android</strong>, open that screen and read it first. While it says
 Nanbit Pro is not on sale yet, nothing can have been bought through Nanbit on
 that phone, so a restore has nothing to find and will tell you so. Everything
@@ -211,9 +230,9 @@ earlier months. None of that changes what Nanbit keeps: nothing you have tracked
 is deleted or hidden by not subscribing, and it all goes on counting toward your
 streaks and totals. What Pro buys is the view of it. Without Pro you can open and
 change today and see this month's shape, while opening a past day or an earlier
-month is what asks you to subscribe — and <strong>You → Export data</strong> is
-free either way. Nothing you made is taken away if a subscription lapses: every
-habit stays, and only a new one is refused.</p>
+month is what asks you to subscribe. Signing in and the account backup are free
+either way. Nothing you made is taken away if a subscription lapses: every habit
+stays, and only a new one is refused.</p>
 
 <h3>My reminders are not arriving.</h3>
 <p>Three things to check, in order:</p>
@@ -263,13 +282,22 @@ cannot be quietly rewritten months later.</p>
   notification grant was never resetEverything's to clear, so this is a copy
   correction and not a behaviour change.
 -->
-<p><strong>You → About Nanbit → Reset all data</strong> erases Nanbit's database
-— every habit, every completion, your settings, and the records you had already
-deleted. It stops a little short of a fresh install: a couple of small
-diagnostic files Nanbit keeps for itself are left behind, and your phone does not
-forget that you once allowed notifications. <strong>Removing the app</strong>
-clears more than that, because it takes everything Nanbit ever wrote. Neither
-reaches a backup your phone has already made.</p>
+<p><strong>If you are signed in</strong>, use <strong>You → Delete
+account</strong>. It deletes your account and its backup from Nanbit's server,
+then takes everything off the phone. It needs an internet connection, and it
+cannot be undone. To also remove Nanbit from the apps that use your Apple
+Account, <strong>open the Settings app, tap your name, tap Sign in with Apple,
+choose Nanbit, then tap Delete</strong>.</p>
+<p><strong>If you are not signed in</strong>, <strong>You → About Nanbit → Reset
+all data</strong> erases Nanbit's database — every habit, every completion, your
+settings, and the records you had already deleted. It stops a little short of a
+fresh install: a couple of small diagnostic files Nanbit keeps for itself are
+left behind, and your phone does not forget that you once allowed
+notifications.</p>
+<p><strong>Removing the app</strong> clears more than that. It does not delete
+your account, and on iPhone it leaves the sign-in in the phone's Keychain, which
+iOS keeps after an app is removed; Nanbit clears it the next time it is installed
+and opened. None of these reaches a backup your phone has already made.</p>
 
 <h3>How do I cancel a subscription?</h3>
 <p>In the store that sold it. On iPhone, <strong>open the Settings app, tap your
@@ -284,10 +312,10 @@ two different builds can carry the same version number, and the commit tells
 them apart.</p>
 
 <h2>Privacy</h2>
-<p>Nanbit stores your habits on your device, has no accounts, and runs no
-analytics about how you use the app. The full account of what is stored and the
-few things that leave the phone is in the
-<a href="privacy.html">privacy policy</a>.</p>
+<p>Nanbit runs no analytics about how you use the app. Without an account it
+keeps your habits on your device. If you sign in with Apple on iPhone, they are
+backed up to your account. Everything that is stored, and everything that
+leaves the phone, is in the <a href="privacy.html">privacy policy</a>.</p>
 
 <hr>
 <footer>

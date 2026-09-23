@@ -50,19 +50,67 @@
 <main>
 
 <h1>Nanbit Privacy Policy</h1>
+<!--
+  The date below is not moved in the commit that rewrote this page, on purpose.
+
+  Rewritten on 23 September 2026 for Nanbit 1.1, which adds an optional account
+  on iPhone through Sign in with Apple. This page's own rule is that its date is
+  the whole record of a change, and the project's rule is that the date names
+  the day a version becomes the live one (README, Rule B). That day is the day
+  a build with sign-in switched on is released, which was not known when this
+  was written. The date moves in the commit that publishes this text, and until
+  then the live page must stay the 13 September 2026 version: every account
+  sentence below is false for a build where sign-in is off, and every export
+  sentence in the old version was true of 1.0 as it shipped.
+-->
 <p class="dateline">Effective 13 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
-<p class="lede">Nanbit is a habit tracker. It is built to keep the things you
-track on your phone. This policy explains exactly what is stored, the few
-things that leave the device, and what would change if optional accounts arrive
-later.</p>
+<!--
+  What this rewrite replaced, recorded rather than silently deleted.
+
+  Until 23 September 2026 this page said Nanbit had "no accounts, and no server
+  holding your habits", that "Nanbit never uploads them, and there is no Nanbit
+  server that holds them", that "we have never had a copy", and it described a
+  "You → Export data" feature in a section of its own. It ended with "What
+  changes if sync arrives", which described as hypothetical the account this
+  version has. The export was removed from the app on 22 September 2026.
+
+  Every account fact below was established from the code and the live project on
+  23 September 2026, before any of it was written; ROADMAP, "The policy
+  rewritten for 1.1", has the list and where each came from. Two are read from
+  outside the code and dated here:
+
+  - Apple, "What is Sign in with Apple?", support.apple.com/en-us/102609,
+    published 4 May 2026, read 23 September 2026: apps "can ask only for your
+    name and email address to set up an account", and with Hide My Email the app
+    receives "a unique, random email address that forwards to your personal
+    email".
+  - Apple, "Manage your apps with Sign in with Apple",
+    support.apple.com/en-us/102571, published 14 September 2026, read
+    23 September 2026: Settings, your name, Sign in with Apple, the app, Delete.
+
+  The Supabase region is the live project's own answer, read 23 September 2026:
+  ap-southeast-1, which is Singapore.
+-->
+<p class="lede">Nanbit is a habit tracker. You can use it without an account. On
+iPhone you can also sign in with Apple, and then Nanbit backs up your habits to
+your account so you can get them back. This policy explains what is kept on your
+phone, what leaves it, where it goes, and how to delete it.</p>
 
 <h2>The short version</h2>
 <ul>
-  <li>Your habits, your completions and your settings are stored <strong>on your
-    device</strong>. Nanbit never uploads them, and there is no Nanbit server that
-    holds them. If your phone backs itself up, <strong>that backup can include
+  <li><strong>Without an account</strong>, your habits, your completions and your
+    settings are kept <strong>on your device</strong>, and Nanbit does not send
+    them anywhere. If your phone backs itself up, <strong>that backup can include
     them</strong> — see section 5 below.</li>
+  <li><strong>On iPhone you can sign in with Apple.</strong> If you do, Nanbit
+    backs up your habits, your completions and your settings to your account.
+    The backup is kept by <strong>Supabase</strong>, the company that runs
+    Nanbit's server, <strong>in Singapore</strong>. On Android there is no
+    sign-in.</li>
+  <li><strong>Signing out</strong> takes your habits off the phone and leaves
+    them in your account. <strong>Deleting your account</strong> deletes them
+    from the account and from the phone.</li>
   <li>Nanbit has <strong>no analytics about how you use the app</strong>, no
     advertising, no tracking, and no crash-reporting service.</li>
   <li>Nanbit uses a service called <strong>RevenueCat</strong> to manage
@@ -92,32 +140,98 @@ Nanbit can read:</p>
   <li><strong>Settings</strong> — your display name, appearance choice, which day
     your week starts on, the streak grace-day switch, your reminder preferences,
     and some bookkeeping such as whether you have finished the introduction. Two
-    fields exist for the optional accounts described at the end of this policy
-    and are empty in this version. The display name is whatever you type; Nanbit
-    never asks for your real name.</li>
+    more fields were set aside for accounts and are always empty; the account
+    does not use them. The display name is whatever you type, or the name Apple
+    gives Nanbit when you first sign in (section 1).</li>
   <li><strong>A summary cache</strong> — daily totals worked out from the above,
     kept so the charts are fast. It contains nothing new.</li>
   <li><strong>Records you have deleted.</strong> When you delete a habit or clear
     a day, Nanbit marks the record as deleted and hides it everywhere in the app,
-    but the row stays in the database file. This is groundwork for the optional
-    sync described below: a device has to be able to learn that something was
-    deleted. Nanbit never sends it anywhere, though a backup your phone makes
-    copies the database whole, deleted records included. <strong>Reset all
-    data</strong> removes it along with everything else.</li>
-  <li><strong>Export and import files, briefly.</strong> Exporting writes the file
-    into the app's own temporary storage before handing it to the share sheet,
-    and importing copies the file you choose into the same place. Both are
-    deleted as soon as the operation is over — whether you went through with it
-    or not — so neither is left sitting on the device.</li>
+    but the row stays in the database file. It is never sent to your account,
+    though a backup your phone makes copies the database whole, deleted records
+    included. <strong>Reset all data</strong>, signing out and deleting your
+    account each remove it along with everything else.</li>
+  <li><strong>If you sign in</strong>, two more things, kept in the iPhone's
+    Keychain rather than the database: the sign-in that lets Nanbit reach your
+    account, and the identifier Apple gives Nanbit for you. Signing out and
+    deleting your account remove both.</li>
 </ul>
-<p>Nanbit sends none of this anywhere. Deleting the app removes it from the
-phone, but not from a backup the phone has already made — see section 5.</p>
+<p>Unless you sign in, Nanbit sends none of this anywhere. Deleting the app
+removes the database from the phone, but not from a backup the phone has already
+made — see section 5. On iPhone, iOS keeps Keychain items after an app is
+removed, so a sign-in can be left there; Nanbit clears it the next time it is
+installed and opened, without contacting the server.</p>
 
 <h2>What leaves your device</h2>
-<p>Four things that Nanbit sends, and nothing else. A fifth is sent by your
-phone rather than by Nanbit: its own backup, described last.</p>
+<p>Nanbit itself sends four things, and nothing else. Only the first needs you to
+sign in. A fifth is sent by your phone rather than by Nanbit: its own backup,
+described last.</p>
 
-<h3>1. Subscriptions, and the app knowing whether you have one</h3>
+<h3>1. Your account and its backup, if you sign in</h3>
+<p>This happens <strong>only on iPhone, and only if you sign in</strong>. Nothing
+in Nanbit needs an account, and buying or restoring a subscription never needs
+one. If you never sign in, nothing in this section happens.</p>
+
+<p><strong>Signing in.</strong> Nanbit uses Sign in with Apple. Apple asks you
+whether to share your name and your email address. If you choose Hide My Email,
+Apple gives Nanbit a random address that forwards to yours, instead of your own.
+Apple then gives Nanbit a sign-in token, and Nanbit sends that token to Supabase,
+which creates your account.</p>
+
+<p><strong>What your account holds:</strong></p>
+<ul>
+  <li><strong>The email address Apple gave Nanbit</strong> — your own, or the
+    forwarding address if you chose Hide My Email.</li>
+  <li><strong>The identifier Apple gives Nanbit for you.</strong> It is not your
+    Apple Account.</li>
+  <li><strong>The backup</strong>: your habits, archived ones included, your
+    completions, and your settings, including your display name, plus the time
+    it was saved. It does not include the records you have deleted, or the
+    summary cache.</li>
+  <li><strong>A record of each sign-in</strong>: when it happened, the IP address
+    it came from, and what kind of device and app made it.</li>
+</ul>
+<p><strong>Your name is not part of your account.</strong> Apple sends it once,
+the first time you sign in. If you have not chosen a name in Nanbit, Nanbit puts
+it on the You tab. From then on it is one of your settings, and goes into the
+backup with the rest of them.</p>
+
+<p><strong>When it is sent.</strong> While you are signed in, Nanbit saves the
+backup a couple of seconds after you change something, and again when you leave
+the app. If nothing has changed, nothing is sent. When you sign in, Nanbit fetches
+the backup your account already has. And when you open Nanbit, it checks at most
+once a minute that you are still signed in, and your iPhone asks Apple whether
+you still allow Nanbit to use Sign in with Apple.</p>
+
+<p><strong>Where it goes, and how.</strong> Everything travels over an encrypted
+connection. It is kept by <strong>Supabase</strong> (Supabase Pte. Ltd.), which
+runs Nanbit's server, on servers in <strong>Singapore</strong>. The backup is
+stored as Nanbit writes it. It is not encrypted in a way that stops Supabase or
+Nanbit's developer from reading it. Supabase also keeps its own logs of requests
+to its servers. Its handling of all of this is covered by
+<a href="https://supabase.com/privacy">Supabase's Privacy Policy</a>.</p>
+
+<p><strong>One phone at a time.</strong> Your account works on one phone at a
+time. Signing in on another phone signs the first one out, and takes the habits
+off it. They stay in your account.</p>
+
+<p><strong>Signing out</strong> takes your habits off the phone, along with its
+reminders and the widget's copy. They stay in your account, and signing in again
+brings them back.</p>
+
+<p><strong>Deleting your account</strong> is at <strong>You → Delete
+account</strong>. It needs an internet connection. It deletes your account, the
+backup and the sign-in records from Supabase first, and then takes everything off
+the phone. It cannot be undone. If Nanbit cannot reach Supabase, nothing is
+deleted and nothing changes on the phone. Two things it cannot reach: a backup
+your phone made earlier (section 5), and Supabase's own request logs.</p>
+<p>Deleting your account does not remove Nanbit from the apps that use your
+Apple Account. To do that too, <strong>open the Settings app, tap your name, tap
+Sign in with Apple, choose Nanbit, then tap Delete</strong>. If you skip this and
+sign in again later, Apple will not ask to share your name a second time, so
+Nanbit will not get it.</p>
+
+<h3>2. Subscriptions, and the app knowing whether you have one</h3>
 <!--
   The scoping here is load-bearing, and it is keyed to the condition the code
   actually tests. That condition is apiKey() in src/purchases/revenuecat.ts,
@@ -151,9 +265,9 @@ any other time.</p>
     <strong>Nothing about your habits is ever included.</strong> It cannot be:
     the app never gives RevenueCat any of your data.</li>
   <li><strong>If you subscribe</strong>, the store handles the purchase and the
-    payment: Apple on iPhone, Google Play on Android. Nanbit never sees your
-    card details, your Apple Account or Google account, your name or your email
-    address. Each store's handling of your data is covered by its own policy:
+    payment: Apple on iPhone, Google Play on Android. Buying never gives
+    Nanbit your card details, your Apple Account or Google account, your name or
+    your email address. Each store's handling of your data is covered by its own policy:
     <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>
     and <a href="https://policies.google.com/privacy">Google's Privacy
     Policy</a>.</li>
@@ -169,8 +283,9 @@ any other time.</p>
     whether the subscription is active. What is processed is your
     <strong>purchase history</strong> — which product was bought, when, and
     whether it is still active or in a trial — tied to that same random
-    installation identifier. It is not your Apple Account or Google account, and
-    it is not linked to your name or email. RevenueCat's handling of it is
+    installation identifier. It is not your Apple Account or Google account, it
+    is not linked to your name or email, and it is not linked to your Nanbit
+    account if you have one. RevenueCat's handling of it is
     covered by
     <a href="https://www.revenuecat.com/privacy">RevenueCat's Privacy Policy</a>.</li>
 </ul>
@@ -180,7 +295,7 @@ people subscribed in a month. It is <strong>not</strong> used for advertising,
 and it is <strong>not</strong> used to track you across other apps or
 websites.</p>
 
-<h3>2. Recovering from a crash</h3>
+<h3>3. Recovering from a crash</h3>
 <p>If Nanbit stops unexpectedly, the next launch can repair the app by fetching
 a corrected version of its own code from Expo's update service. It does
 <strong>not</strong> check at any other time — not on a normal launch, and not
@@ -198,29 +313,6 @@ less than it does. Expo's handling of it is covered by
 <p>The random identifier here is generated by the app. It is not your Apple
 Account or Google account, not an advertising identifier, and not connected to
 any account.</p>
-
-<h3>3. Backups you export yourself</h3>
-<!--
-  Written against what loadEverything actually hands the exporter, on
-  13 September 2026: loadHabits({ includeArchived: true }) and
-  loadAllCompletions both filter deleted_at IS NULL, and loadSettings returns
-  the whole Settings object, displayName included. The page had said "your
-  habits and completions", which omitted the settings, and said elsewhere that
-  the export was a "complete" copy, which the tombstone filter makes false.
-  toCsv takes only habits and completions, so the two formats differ and the
-  page now says how.
--->
-<p><strong>You → Export data</strong> writes a copy of your records and hands it
-to your phone's share sheet. Where it goes from there is entirely your choice —
-a file, a message, another app. Nanbit does not upload it, and does not know
-what you did with it.</p>
-<p>What the copy holds depends on which you pick. <strong>JSON</strong> carries
-your habits, archived ones included, your completions, and your
-<strong>settings</strong> — which include the display name you typed in.
-<strong>CSV</strong> carries one row per completion: the date, the habit's name,
-the count, the goal, and whether you met it. Neither carries the records you
-have deleted, and neither carries the summary cache, which holds nothing that is
-not worked out from the rest.</p>
 
 <h3>4. Links you tap</h3>
 <p>The support, privacy and terms links open your browser at an ordinary web
@@ -250,10 +342,11 @@ documents that iCloud Backup includes the data of apps you have downloaded, and
 Nanbit keeps its database where that applies. <strong>On Android it is expected
 rather than confirmed</strong>: Nanbit uses Android's standard backup settings,
 which include the app's own storage, but no restore has been tested yet.</p>
-<p>So deleting Nanbit clears what it put on the phone, and <strong>Reset all
-data</strong> clears the database inside it — but neither reaches a backup the
-phone has already made. What happens to that backup is up to your phone's backup
-settings, not to Nanbit.</p>
+<p>So deleting Nanbit clears its database from the phone, and <strong>Reset all
+data</strong>, signing out and <strong>Delete account</strong> each clear the
+database inside it — but none of them reaches a backup the phone has already
+made. What happens to that backup is up to your phone's backup settings, not to
+Nanbit.</p>
 
 <h2>What Nanbit does not do</h2>
 <ul>
@@ -265,8 +358,9 @@ settings, not to Nanbit.</p>
   <li>No tracking, as Apple defines it: nothing about you is linked to data from
     other companies' apps or websites, for any purpose.</li>
   <li>No crash-reporting service. The one exception is the update request
-    described in section 2, which carries the last error's text.</li>
-  <li>No accounts, and no server holding your habits.</li>
+    described in section 3, which carries the last error's text.</li>
+  <li>No account unless you choose one. Nothing in Nanbit asks you to sign
+    in.</li>
   <li>No selling, renting or sharing of personal data.</li>
   <li>No location, contacts, photos, microphone, camera or health data. Nanbit
     never asks for them because it never uses them.</li>
@@ -286,19 +380,18 @@ ask you for it. The other lets Nanbit <strong>start when the phone does</strong>
 (<code>RECEIVE_BOOT_COMPLETED</code>), so that reminders you have already
 scheduled are set again after a restart. Neither gives Nanbit access to anything
 else on your phone.</p>
-
 <h2>Your choices and controls</h2>
 <ul>
-  <li><strong>See what Nanbit holds</strong> — it is all visible in the app, and
-    <strong>You → Export data</strong> gives you a machine-readable copy of your
-    habits, completions and settings, described in section 3. It does not
-    include the records you have deleted, which the app has already stopped
-    showing you everywhere. Export stays free whether or not you subscribe, so
-    you are never locked away from your own records.</li>
+  <li><strong>See what Nanbit holds</strong> — your habits, completions and
+    settings are all visible in the app, and the backup is a copy of exactly
+    those. For a copy of what your account holds, write to us.</li>
   <li><strong>Hide individual records</strong> — deleting a habit removes it and
-    its completions from everywhere in the app. As described above, the
-    underlying rows remain in the database file on your device until you reset or
-    remove the app.</li>
+    its completions from everywhere in the app, and from the next backup if you
+    are signed in. As described above, the underlying rows remain in the database
+    file on your device until you reset, sign out, or remove the app.</li>
+  <li><strong>Delete your account</strong> — <strong>You → Delete
+    account</strong>, described in section 1. It is only shown while you are
+    signed in.</li>
   <!--
     Corrected 13 September 2026, with the same sentence on pages/support.html and
     the "clears the phone" half of section 5 above. "Returns the app to a fresh
@@ -309,14 +402,22 @@ else on your phone.</p>
     in the app can withdraw. Uninstall takes the container whole, so it is a
     strict superset rather than an equal. The erasure claim itself is true and
     is kept: the deletes are unfiltered, so tombstoned rows go too.
+
+    Scoped on 23 September 2026 to when you are not signed in: About only shows
+    the row then, because signing out already does everything it did.
   -->
-  <li><strong>Delete everything, properly</strong> — <strong>You → About Nanbit →
-    Reset all data</strong> erases the database, deleted records included. It
-    leaves behind a little of Nanbit's own diagnostic bookkeeping, and it does
-    not withdraw the notification permission you gave your phone, so it stops
-    just short of a fresh install. Removing the app clears more, because it takes
-    everything Nanbit ever wrote. Neither reaches a backup your phone has already
-    made (section 5).</li>
+  <li><strong>Delete everything on the phone</strong> — when you are not signed
+    in, <strong>You → About Nanbit → Reset all data</strong> erases the database,
+    deleted records included. It leaves behind a little of Nanbit's own
+    diagnostic bookkeeping, and it does not withdraw the notification permission
+    you gave your phone, so it stops just short of a fresh install. Removing the
+    app clears more, apart from a sign-in left in the Keychain, described
+    above. Neither reaches a backup your phone has already made (section
+    5).</li>
+  <li><strong>Stop using Sign in with Apple with Nanbit</strong> — <strong>open
+    the Settings app, tap your name, tap Sign in with Apple, choose Nanbit, then
+    tap Delete</strong>. Nanbit notices and signs out on this phone. Your habits
+    stay on the phone, and your account stays until you delete it.</li>
   <li><strong>Manage or cancel a subscription</strong> — on iPhone, open the
     Settings app, tap your name, then tap Subscriptions; on Android, go to
     subscriptions in Google Play. Cancelling never deletes anything you have
@@ -333,65 +434,52 @@ else on your phone.</p>
 <p>Write to <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>. That address
 reaches Denver Delorino, who makes Nanbit, and it is the only route — there is
 no support desk and no ticketing system behind it.</p>
-<p>Because Nanbit holds no account and no contact details for you, we usually
-cannot look you up. For anything except a purchase record there is nothing for
-us to find: your habits are on your phone and we have never had a copy. For a
-purchase record, tell us roughly what you bought and when. A reply normally
-takes a few days.</p>
+<p>If you have an account, tell us the email address Apple gave Nanbit so we can
+find it. If you chose Hide My Email, that is the forwarding address, which you
+can see under Sign in with Apple in your iPhone's Settings. If you have never
+signed in, Nanbit's server holds nothing of yours, so the only records we can
+look for are purchase records: tell us roughly what you bought and when. A reply
+normally takes a few days.</p>
 <p>If you are in the UK or the EU, you have rights of access, correction,
-erasure, restriction, objection and portability over personal data. In practice
-those rights bite only on the purchase records described above, since we hold
-nothing else about you — and your habits are already portable
-through <strong>Export data</strong>, without asking anyone.</p>
+erasure, restriction, objection and portability over personal data. They apply to
+your account and its backup, if you have one, and to the purchase records
+described above. You can delete your account yourself, in the app, at any time.
+For anything else, write to us.</p>
 
 <h2>How long data is kept</h2>
-<p>Data on your device is kept until you delete it or remove the app; a copy in
-your phone's own backup is kept under your backup settings (section 5). Records
-you delete inside the app are hidden immediately and stay in the database file
-until you use <strong>Reset all data</strong> or remove the app. Purchase
-records are kept by the store you bought through — Apple or Google — and by
-RevenueCat, for as long as needed to support restores, refunds and financial
-record-keeping.</p>
+<p>Data on your device is kept until you delete it, sign out, or remove the app;
+a copy in your phone's own backup is kept under your backup settings (section 5).
+Records you delete inside the app are hidden immediately and stay in the database
+file until you reset, sign out, or remove the app.</p>
+<p>Your account and its backup are kept until you delete the account. Each save
+replaces the last one, so there is only ever one backup, and no older versions.
+The sign-in records go when the account does. Supabase's own request logs are
+kept under Supabase's policy. Purchase records are kept by the store you bought
+through — Apple or Google — and by RevenueCat, for as long as needed to
+support restores, refunds and financial record-keeping.</p>
 
 <h2>Children</h2>
 <!--
-  Narrowed from asking to collecting on 13 September 2026. "It asks for no name"
-  was false on its face against a sheet titled "Your name" (app/sheet/name.tsx,
-  which writes settings.displayName), and this is the section a store reviewer
-  reads most literally. What is true is the collection claim: the name is typed
-  in, stays in the local database, and reaches nobody. Where it can travel --
-  the user's own export and the phone's own backup -- is named rather than
-  left out, since both are elsewhere in this policy already.
+  Rewritten 23 September 2026. It said Nanbit "collects no name, no email, no age
+  and no contact details from anyone", which stopped being true when the account
+  arrived: the account holds the email address Apple gives Nanbit, and the
+  display name goes into the backup. The earlier correction, of 13 September
+  2026, narrowed "asks for no name" to collection; this narrows collection to
+  what happens without an account, and says what signing in adds.
 -->
-<p>Nanbit is not directed at children under 13. It <strong>collects</strong> no
-name, no email, no age and no contact details from anyone. You can type a
-display name into the app if you want one — it is whatever you choose, Nanbit
-never asks for a real name, and it is not sent to us or to anybody else. The
-only information Nanbit sends off the device is described above: a random
-per-installation identifier, subscription status, and — after a crash — the text
-of the error. Nothing in that identifies a child. The display name travels only
-in an export you make yourself (section 3) and in a backup your phone makes
-(section 5), both of which are yours.</p>
-
-<h2>What changes if sync arrives</h2>
-<p>Nanbit may later add <strong>optional</strong> accounts so habits can sync
-between your devices. If that happens:</p>
-<ul>
-  <li>It will stay optional. Nothing in Nanbit will be gated behind an account,
-    and buying or restoring a subscription will never require one.</li>
-  <li>If, and only if, you choose to sign in, your habits and completions would
-    be stored on a server so they can reach your other devices, and your purchase
-    history would become linked to that account rather than to a random
-    identifier.</li>
-  <li>This policy will be updated, and the app will say what is happening, before
-    any of that ships. Nothing about the version you have today changes
-    retroactively.</li>
-</ul>
+<p>Nanbit is not directed at children under 13. It never asks for an age.
+Signing in is optional. Without it, Nanbit collects no name, no email and no
+contact details, and the only information it sends off the device is a random
+per-installation identifier, subscription status, and — after a crash — the
+text of the error. If you sign in, your account also holds the email address
+Apple gives Nanbit, and the backup holds the display name on the You tab
+(section 1).</p>
 
 <h2>Changes to this policy</h2>
 <p>If this policy changes, the date at the top changes with it. That date is
-the whole record — there is no notice, because there is no account to send one
-to, and promising one we could not deliver would be worse than saying so.</p>
+the whole record. There is no notice: Nanbit does not send email, even to people
+who have an account, and promising a notice we would not send would be worse
+than saying so.</p>
 
 <h2>Contact</h2>
 <p>Questions, or a request about your data:
