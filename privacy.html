@@ -162,12 +162,21 @@ Nanbit can read:</p>
   -->
   <li><strong>A summary cache</strong> — daily totals worked out from the above,
     kept so the charts are fast. It contains nothing new.</li>
-  <li><strong>Records you have deleted.</strong> When you delete a habit or clear
-    a day, Nanbit marks the record as deleted and hides it everywhere in the app,
-    but the row stays in the database file. Nanbit never sends it anywhere,
-    though a backup your phone makes copies the database whole, deleted records
-    included. <strong>Reset all data</strong> removes it along with everything
-    else.</li>
+  <!--
+    Corrected 24 September 2026, unpublished. This said deleting a habit hides
+    it everywhere in the app. Since the owner replaced Archive with a delete
+    that keeps the past, a deleted habit leaves Today and the widget and stays
+    in History and Stats (src/db/repo.ts, deleteHabit, which writes ended_on
+    and never deleted_at). Clearing a day still tombstones the completion.
+  -->
+  <li><strong>Records you have deleted.</strong> When you clear a day, Nanbit
+    marks that record as deleted and hides it everywhere in the app, but the row
+    stays in the database file. When you delete a habit, it comes off Today and
+    the widget and its past days stay in History and Stats, so the habit and its
+    completions stay in the database file too. Nanbit never sends any of it
+    anywhere, though a backup your phone makes copies the database whole,
+    deleted records included. <strong>Reset all data</strong> removes them along
+    with everything else.</li>
 </ul>
 <!--
   The widget's copy, from the code (checked 23 September 2026):
@@ -424,10 +433,13 @@ else on your phone.</p>
   <li><strong>See what Nanbit holds</strong> — your habits, completions and
     settings are all visible in the app. There is no other copy of them anywhere
     Nanbit can reach.</li>
-  <li><strong>Hide individual records</strong> — deleting a habit removes it and
-    its completions from everywhere in the app. As described above, the
-    underlying rows remain in the database file on your phone until you reset or
-    remove the app.</li>
+  <li><strong>Hide individual records</strong> — clearing a day hides that
+    record everywhere in the app. Deleting a habit takes it off Today and the
+    widget and stops its reminder, and keeps its past days in History and Stats.
+    As described above, the underlying rows remain in the database file on your
+    phone until you reset or remove the app. <!-- Corrected 24 September 2026,
+    unpublished: this said deleting a habit removes it and its completions from
+    everywhere in the app, which a delete that keeps the past made false. --></li>
   <!--
     Corrected 13 September 2026, with the same sentence on pages/support.html and
     the "clears the phone" half of section 4 above. "Returns the app to a fresh
@@ -477,8 +489,11 @@ can see, change and delete them yourself. For anything else, write to us.</p>
 <h2>How long data is kept</h2>
 <p>Data on your phone is kept until you delete it, reset, or remove the app; a
 copy in your phone's own backup is kept under your backup settings (section 4).
-Records you delete inside the app are hidden immediately and stay in the
-database file until you reset or remove the app.</p>
+Records you delete inside the app stay in the database file until you reset or
+remove the app: a cleared day is hidden at once, and a deleted habit's past days
+stay visible in History and Stats.<!-- Corrected 24 September 2026, unpublished:
+this said deleted records are hidden immediately, which a deleted habit's past
+no longer is. --></p>
 <p>Purchase records are kept by the store you bought through — Apple or Google —
 and by RevenueCat, for as long as needed to support restores, refunds and
 financial record-keeping.</p>

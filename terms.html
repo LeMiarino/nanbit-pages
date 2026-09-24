@@ -116,9 +116,14 @@ what you have done.</p>
 limits, and that is all it does — there is no separate Pro app, and no feature
 that behaves differently once you subscribe. It unlocks:</p>
 <ul>
-  <li><strong>Unlimited habits</strong>, instead of five. Archived habits count
-    toward the free limit, because archiving keeps a habit's history rather than
-    removing it.</li>
+  <!--
+    Corrected 24 September 2026, unpublished. This said archived habits count
+    toward the free limit. Archive was replaced by a delete that keeps a
+    habit's past days, and deleted habits do not count (countListedHabits,
+    src/db/repo.ts).
+  -->
+  <li><strong>Unlimited habits</strong>, instead of five. A habit you delete no
+    longer counts toward the five, and its past days stay.</li>
   <li><strong>Every range on the Stats tab</strong>, instead of the week.</li>
   <li><strong>The whole of History</strong> — opening any past day, and paging
     back through earlier months.</li>

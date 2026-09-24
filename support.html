@@ -257,10 +257,18 @@ notification it scheduled itself — nothing is sent anywhere. To keep names off
 the lock screen, use <strong>Settings → Notifications → Show Previews</strong> on
 iPhone, or your Android phone's lock-screen notification setting.</p>
 
-<h3>I archived a habit. Why does it still count toward the free limit?</h3>
-<p>The free limit is five habits held, archived ones included — archiving keeps
-a habit's history rather than removing it. <strong>You → Archived habits</strong>
-lets you restore one or delete it outright, and deleting frees the slot.</p>
+<!--
+  Corrected 24 September 2026, unpublished. This answered "I archived a habit.
+  Why does it still count toward the free limit?", and said You -> Archived
+  habits could restore one or delete it. The owner replaced Archive with a
+  delete that keeps a habit's past days: src/lib/habitDeletion.ts for the
+  words, countListedHabits in src/db/repo.ts for the limit.
+-->
+<h3>What happens when I delete a habit?</h3>
+<p>It comes off Today and the widget, and its reminder stops. Its past days stay
+in History and Stats, marked <strong>Deleted</strong>, and can no longer be
+ticked. A deleted habit does not count toward the free limit of five, so
+deleting one makes room for another. Deleting cannot be undone.</p>
 
 <h3>Can I edit a day I forgot to tick?</h3>
 <p>Yes, for the last week. Open the day on the History tab and tick the habits
