@@ -183,10 +183,16 @@ Nanbit can read:</p>
 
   - What it holds is `SmallFace` in src/widget/timeline.ts: a model version,
     the day, the date as Today writes it, the state, and for a list the two
-    totals, one true/false mark per due habit and a count of marks that did not
-    fit. Today and DAYS_AHEAD (7) days after it, then a face with no date or
-    marks. No ids, names, icons or colours. src/platform/pages.test.ts holds
-    "without the habits' names" to those fields, here and in About.
+    totals, one true/false mark per due habit, each mark's habit colour for the
+    light and the dark theme (`ticksLight`, `ticksDark`, the palette's hex
+    values), and a count of marks that did not fit. Today and DAYS_AHEAD (7)
+    days after it, then a face with no date or marks. No ids, names or icons.
+    src/platform/pages.test.ts holds "without the habits' names" to those
+    fields, here and in About, and the colours to the palette's own values.
+    *Until 24 September 2026 this said "No ids, names, icons or colours", true
+    until the widget's marks took each habit's tick colour that day (checked
+    against the code the same day). The sentence below is unchanged: a colour
+    is a mark's, not a name.*
   - Where: the App Group's UserDefaults, through expo-widgets'
     WidgetsStorage.swift, written from src/widgetHost/index.ts whenever the
     app's data or day changes, whether or not a widget has been added, and only
