@@ -238,15 +238,33 @@ free stays free.</p>
   rule rather than something Pro buys, and it can only ever bite a Pro user,
   since a free account's selected day is always today.
 -->
-<p>Unlimited habits instead of five, every range on the Stats tab instead of the
-week, and the whole of History — opening days more than a week back, and paging
-back through earlier months. None of that changes what Nanbit keeps: nothing you
-have tracked is deleted or hidden by not subscribing, and it all goes on counting
-toward your streaks and totals. What Pro buys is the view of it. Without Pro you
+<!--
+  Changed 24 September 2026, not yet published. It began "Unlimited habits
+  instead of five, every range on the Stats tab instead of the week, and the
+  whole of History", and said "What Pro buys is the view of it". That day the
+  owner put colour themes on the paywall in place of "Every stats range"
+  (src/purchases/limits.ts, accentThemeFor: the chosen theme while Pro is
+  active, orange otherwise, with the choice kept), renamed Stats to Progress,
+  and rebuilt it without its Week, Month and Year charts: a list of habits,
+  each with its own Month and Year calendars, whose earlier months and Year
+  view are Pro as part of the full history.
+-->
+<p>Unlimited habits instead of five, colour themes, and your full history: on
+History, opening days more than a week back and paging back through earlier
+months, and on Progress, each habit's earlier months and its Year view. None of
+that changes what Nanbit keeps: nothing you have tracked is deleted or hidden by
+not subscribing, and it all goes on counting toward your streaks and totals.
+What Pro buys is the view of it, and the colour it is drawn in. Without Pro you
 can open and change today and the week before it, on Today or on History, and
 see this month's shape, while opening an older day or an earlier month is what
 asks you to subscribe. Nothing you made is taken away if a
 subscription lapses: every habit stays, and only a new one is refused.</p>
+<p><strong>Colour themes</strong> change the app's colour from orange to Jade,
+Teal, Sky, Iris, Plum or Rose, under <strong>You → Appearance → Colour</strong>.
+Without Pro you can see them there, and choosing one opens Nanbit Pro. If a
+subscription ends, the app goes back to orange, and the colour you chose comes
+back if you subscribe again. The introduction and the app's icon stay orange
+whatever you choose.</p>
 
 <h3>My reminders are not arriving.</h3>
 <p>Three things to check, in order:</p>
@@ -277,8 +295,10 @@ iPhone, or your Android phone's lock-screen notification setting.</p>
   words, countListedHabits in src/db/repo.ts for the limit.
 -->
 <h3>What happens when I delete a habit?</h3>
+<!-- Changed 24 September 2026, not yet published: "History and Stats" became
+  "History and Progress" when the owner renamed the Stats tab. -->
 <p>It comes off Today and the widget, and its reminder stops if it has one. Its
-past days stay in History and Stats, marked <strong>Deleted</strong>, and can no
+past days stay in History and Progress, marked <strong>Deleted</strong>, and can no
 longer be ticked. A deleted habit does not count toward the free limit of five, so
 deleting one makes room for another. Deleting cannot be undone.</p>
 

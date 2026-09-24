@@ -112,9 +112,16 @@ what you have done.</p>
 -->
 
 <h2>Nanbit Pro</h2>
+<!--
+  Changed 24 September 2026, not yet published. It said Pro "removes the free
+  version's limits, and that is all it does", with "no feature that behaves
+  differently once you subscribe". Colour themes came that day: the Appearance
+  screen's swatches open the paywall without Pro and change the app's colour
+  with it (accentThemeFor, src/purchases/limits.ts), which is a feature that
+  behaves differently once you subscribe.
+-->
 <p>Nanbit Pro is an optional subscription. It removes the free version's
-limits, and that is all it does — there is no separate Pro app, and no feature
-that behaves differently once you subscribe. It unlocks:</p>
+limits and adds colour themes — there is no separate Pro app. It unlocks:</p>
 <ul>
   <!--
     Corrected 24 September 2026, unpublished. This said archived habits count
@@ -124,15 +131,30 @@ that behaves differently once you subscribe. It unlocks:</p>
   -->
   <li><strong>Unlimited habits</strong>, instead of five. A habit you delete no
     longer counts toward the five, and its past days stay.</li>
-  <li><strong>Every range on the Stats tab</strong>, instead of the week.</li>
+  <!--
+    Changed 24 September 2026, not yet published. This was "Every range on
+    the Stats tab, instead of the week". The owner replaced it on the paywall
+    with colour themes, and the Stats tab became Progress, without its ranges.
+    If Pro ends the app goes back to orange, and the choice is kept for a new
+    subscription (accentThemeFor, src/purchases/limits.ts).
+  -->
+  <li><strong>Colour themes</strong> — the app in Jade, Teal, Sky, Iris, Plum or
+    Rose instead of orange. If a subscription ends, the app goes back to
+    orange.</li>
   <!--
     Corrected 24 September 2026, unpublished: the last week opened to the free
     version that day (canSeeDay, src/purchases/limits.ts), so Pro's part of
     History is the days before it and earlier months. It said "opening any past
     day".
   -->
-  <li><strong>The whole of History</strong> — opening days more than a week back,
-    and paging back through earlier months.</li>
+  <!-- Changed 24 September 2026, not yet published. It was "The whole of
+    History", opening days more than a week back and paging back through
+    earlier months; the paywall calls it "Your full history", and since the
+    Stats tab was rebuilt as Progress that day it takes in each habit's
+    earlier months and Year view there too. -->
+  <li><strong>Your full history</strong> — on History, opening days more than a
+    week back and paging back through earlier months; on Progress, each habit's
+    earlier months and its Year view.</li>
 </ul>
 <p><strong>Nothing you have already made is ever taken away.</strong> If a
 subscription lapses, every habit and every completion stays, and stays visible

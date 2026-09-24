@@ -139,8 +139,11 @@ Nanbit can read:</p>
     reminder time you set.</li>
   <li><strong>Completions</strong> — which habit you marked done, on which day,
     and how many times.</li>
-  <li><strong>Settings</strong> — your display name, appearance choice, which day
-    your week starts on, your reminder preferences, and some bookkeeping such as
+  <!-- Changed 24 September 2026, not yet published: "appearance choice" became
+    "appearance choices", naming the colour theme stored beside light and dark
+    since that day (accentTheme, src/logic/types.ts). -->
+  <li><strong>Settings</strong> — your display name, appearance choices (light or
+    dark, and the app's colour), which day your week starts on, your reminder preferences, and some bookkeeping such as
     whether you have finished the introduction. The display name is whatever you
     type when the introduction asks your name, or later on the You tab. It is shown in two places, Today's greeting and the
     You tab. You can skip it.</li>
@@ -160,8 +163,12 @@ Nanbit can read:</p>
     same night it said the You tab was "the one place it is shown", which the
     greeting made false.
   -->
+  <!-- Changed 24 September 2026, not yet published: "kept so the charts are
+    fast". The Stats tab's charts went that day, when it was rebuilt as
+    Progress; the totals still feed History's calendar (app/(tabs)/history.tsx,
+    dayTotals). -->
   <li><strong>A summary cache</strong> — daily totals worked out from the above,
-    kept so the charts are fast. It contains nothing new.</li>
+    kept so the calendars and totals are fast. It contains nothing new.</li>
   <!--
     Corrected 24 September 2026, unpublished. This said deleting a habit hides
     it everywhere in the app. Since the owner replaced Archive with a delete
@@ -172,11 +179,13 @@ Nanbit can read:</p>
   <li><strong>Records you have deleted.</strong> When you clear a day, Nanbit
     marks that record as deleted and hides it everywhere in the app, but the row
     stays in the database file. When you delete a habit, it comes off Today and
-    the widget and its past days stay in History and Stats, so the habit and its
+    the widget and its past days stay in History and Progress, so the habit and its
     completions stay in the database file too. Nanbit never sends any of it
     anywhere, though a backup your phone makes copies the database whole,
     deleted records included. <strong>Reset all data</strong> removes them along
-    with everything else.</li>
+    with everything else.<!-- Changed 24 September 2026, not yet published:
+    "History and Stats" became "History and Progress" with the tab's new
+    name. --></li>
 </ul>
 <!--
   The widget's copy, from the code (checked 23 September 2026):
@@ -441,7 +450,9 @@ else on your phone.</p>
     Nanbit can reach.</li>
   <li><strong>Hide individual records</strong> — clearing a day hides that
     record everywhere in the app. Deleting a habit takes it off Today and the
-    widget and stops its reminder, and keeps its past days in History and Stats.
+    widget and stops its reminder, and keeps its past days in History and Progress.
+    <!-- Changed 24 September 2026, not yet published: "History and Stats",
+    before the tab was renamed Progress. -->
     As described above, the underlying rows remain in the database file on your
     phone until you reset or remove the app. <!-- Corrected 24 September 2026,
     unpublished: this said deleting a habit removes it and its completions from
@@ -497,7 +508,8 @@ can see, change and delete them yourself. For anything else, write to us.</p>
 copy in your phone's own backup is kept under your backup settings (section 4).
 Records you delete inside the app stay in the database file until you reset or
 remove the app: a cleared day is hidden at once, and a deleted habit's past days
-stay visible in History and Stats.<!-- Corrected 24 September 2026, unpublished:
+stay visible in History and Progress.<!-- Changed 24 September 2026, not yet
+published: "History and Stats", before the tab was renamed Progress. --><!-- Corrected 24 September 2026, unpublished:
 this said deleted records are hidden immediately, which a deleted habit's past
 no longer is. --></p>
 <p>Purchase records are kept by the store you bought through — Apple or Google —
