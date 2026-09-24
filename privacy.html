@@ -128,6 +128,14 @@ leave it, and how to delete everything.</p>
   <li>If Nanbit crashes while it is starting up, it may ask Expo's update service
     for a corrected version of its own code, and that request includes the
     error message. It does not check at any other time.</li>
+  <!--
+    Added 25 September 2026, with the Report a bug and Request a feature card;
+    not yet published. Section 5 has the detail and the reasoning.
+  -->
+  <li><strong>Report a bug</strong> and <strong>Request a feature</strong> open
+    an email to us in your own mail app, for you to send or not. A bug report
+    adds the Nanbit version, your phone's model and its system version, and
+    nothing about your habits — see section 5.</li>
   <li>Nanbit does not sell or share your data.</li>
 </ul>
 
@@ -250,8 +258,16 @@ included. It does not reach a backup the phone has already made — see section
 4.</p>
 
 <h2>What leaves your phone</h2>
-<p>Nanbit itself sends three things, and nothing else. A fourth is sent by your
-phone rather than by Nanbit: its own backup, described last.</p>
+<!--
+  Changed 25 September 2026, not yet published. It said "A fourth is sent by
+  your phone rather than by Nanbit: its own backup, described last." The Report
+  a bug and Request a feature card added a fifth that Nanbit does not send
+  either, an email the person sends from their own mail app, so the sentence
+  would have left it out and section 4 was no longer last.
+-->
+<p>Nanbit itself sends three things, and nothing else. Two more leave your
+phone without Nanbit sending them: its own backup, and an email you choose to
+send us, described last.</p>
 
 <h3>1. Subscriptions, and the app knowing whether you have one</h3>
 <!--
@@ -386,6 +402,46 @@ data</strong> clears the database inside it and replaces the widget's copy — b
 neither reaches a backup the phone has already made. What happens to that backup
 is up to your phone's backup settings, not to Nanbit.</p>
 
+<h3>5. An email you choose to send us, which Nanbit does not send</h3>
+<!--
+  Added 25 September 2026 with the Report a bug and Request a feature card, the
+  owner's request of that day; not yet published. Checked against the code that
+  day:
+
+  - src/feedback/compose.ts builds the email: the person's words, and for a bug
+    report only, three lines from `bugDetails` (the version and build as About
+    shows them, expo-device's `modelName`, and `Platform.Version`). Nothing that
+    builds or sends a report imports the database, the habits, the name or the
+    store (src/feedback/__tests__/reach.test.ts).
+  - src/platform/feedback.ts hands it to Apple's Mail sheet (expo-mail-composer
+    57.0.2, MFMailComposeViewController), or, with no Mail account, to
+    whichever app opens a mailto: link, or shows the address and two copy
+    buttons. Nanbit opens no connection for any of it
+    (src/platform/no-habit-data-leaves.test.ts), and nothing is sent unless the
+    person sends it from their mail app, where they see it whole first.
+  - The address is src/feedback/address.ts, held to this site's support page by
+    src/feedback/__tests__/address.test.ts. It is a Gmail address, so an email
+    sent to it is kept by Google's Gmail.
+
+  Why the App Store privacy answers do not change: ROADMAP, "Report a bug and
+  Request a feature", has the owner's decision and Apple's wording.
+-->
+<p><strong>Report a bug</strong> and <strong>Request a feature</strong> let you
+write to us from inside Nanbit. When you tap Submit, Nanbit opens an email to us
+in Apple's Mail, filled in with what you wrote, or, if Mail has no account set
+up, in the mail app your phone opens for email links. If neither can open, it
+shows our address with buttons to copy it and your message. <strong>Nanbit does
+not send the email.</strong> You see all of it in your mail app, you can change
+it, and it goes only if you send it.</p>
+<p>A bug report adds three lines under what you wrote: the Nanbit version and
+build, your phone's model, and its system version. It adds nothing about your
+habits, your name or your purchases. A feature request adds nothing.</p>
+<p>If you send it, it reaches us like any other email: from your email address,
+with whatever name your mail app sends, carried by your mail provider under its
+own privacy policy. It is kept in our inbox, which is Gmail, and read to answer
+you and to fix what you reported. The rights and the contact details below
+cover it as they cover purchase records.</p>
+
 <h2>Moving to a new iPhone</h2>
 <!--
   The owner asked for this on 23 September 2026: "set it up from the old phone
@@ -501,13 +557,23 @@ else on your phone.</p>
 <p>Write to <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>. That address
 reaches Denver Delorino, who makes Nanbit, and it is the only route — there is
 no support desk and no ticketing system behind it.</p>
+<!--
+  Changed 25 September 2026, not yet published. The two paragraphs below said
+  "The only records we can look for are purchase records: tell us roughly what
+  you bought and when." and "They apply to the purchase records described
+  above." An email somebody sends from the Report a bug and Request a feature
+  card (section 5) is a second kind of record we hold, with their address in
+  it, so both sentences would have left it out.
+-->
 <p>Nanbit has no server, so nothing of your habits is held anywhere we can look.
-The only records we can look for are purchase records: tell us roughly what you
-bought and when. A reply normally takes a few days.</p>
+The only records we can look for are purchase records, and any email you have
+sent us: tell us roughly what you bought and when, or the address you wrote
+from. A reply normally takes a few days.</p>
 <p>If you are in the UK or the EU, you have rights of access, correction,
 erasure, restriction, objection and portability over personal data. They apply to
-the purchase records described above. Your habits are on your phone, where you
-can see, change and delete them yourself. For anything else, write to us.</p>
+the purchase records described above and to any email you have sent us. Your
+habits are on your phone, where you can see, change and delete them yourself.
+For anything else, write to us.</p>
 
 <h2>How long data is kept</h2>
 <p>Data on your phone is kept until you delete it, reset, or remove the app; a
@@ -521,6 +587,9 @@ no longer is. --></p>
 <p>Purchase records are kept by the store you bought through — Apple or Google —
 and by RevenueCat, for as long as needed to support restores, refunds and
 financial record-keeping.</p>
+<!-- Added 25 September 2026, not yet published, with section 5. -->
+<p>An email you send us, a bug report, an idea or anything else, is kept in our
+inbox until we delete it, and you can ask us to.</p>
 
 <h2>Children</h2>
 <!--
