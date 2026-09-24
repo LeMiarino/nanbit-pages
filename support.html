@@ -215,10 +215,11 @@ free stays free.</p>
   tracked stays visible and editable whether or not you subscribe" -- directly
   after three bullets selling History as the thing Pro buys. The parity claim
   was false on both verbs for a free account: canSeeHistory(isPro) returns isPro
-  and nothing else, and all three routes to a past day are gated (the day tap,
-  the month chevron, and Today's deep link into /history?date=, all in
-  app/(tabs)/history.tsx). A free account can open and change today and nothing
-  else.
+  and nothing else, and all three routes to a past day are gated (the day tap
+  and the month chevron in app/(tabs)/history.tsx, and a past day on Today's
+  week strip in app/(tabs)/index.tsx; until 24 September 2026 that third route
+  was a deep link into /history?date=, gated in history.tsx). A free account
+  can open and change today and nothing else.
 
   The lapse half was true and is kept: the limits take a count and answer "can
   you add another", never "is this one allowed" (src/purchases/limits.ts), so a
@@ -265,9 +266,9 @@ iPhone, or your Android phone's lock-screen notification setting.</p>
   words, countListedHabits in src/db/repo.ts for the limit.
 -->
 <h3>What happens when I delete a habit?</h3>
-<p>It comes off Today and the widget, and its reminder stops. Its past days stay
-in History and Stats, marked <strong>Deleted</strong>, and can no longer be
-ticked. A deleted habit does not count toward the free limit of five, so
+<p>It comes off Today and the widget, and its reminder stops if it has one. Its
+past days stay in History and Stats, marked <strong>Deleted</strong>, and can no
+longer be ticked. A deleted habit does not count toward the free limit of five, so
 deleting one makes room for another. Deleting cannot be undone.</p>
 
 <h3>Can I edit a day I forgot to tick?</h3>
