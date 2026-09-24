@@ -219,7 +219,17 @@ free stays free.</p>
   and the month chevron in app/(tabs)/history.tsx, and a past day on Today's
   week strip in app/(tabs)/index.tsx; until 24 September 2026 that third route
   was a deep link into /history?date=, gated in history.tsx). A free account
-  can open and change today and nothing else.
+  could open and change today and nothing else.
+
+  Corrected again 24 September 2026, unpublished: the owner opened the last
+  week to the free version that day ("free users can open and tick any past
+  day that Pro users can (the last week), from Today and from History"). Both
+  day gates ask canSeeDay (src/purchases/limits.ts), which is isPro or
+  canEditDay, the same week that can still be ticked. Days further back and
+  earlier months still ask for Pro. So the paragraph below said "Without Pro you
+  can open and change today" and now says the last week, and the bullet "opening
+  any past day" now says days more than a week back. The note below about
+  EDITABLE_DAYS only ever biting a Pro user stopped being true the same day.
 
   The lapse half was true and is kept: the limits take a count and answer "can
   you add another", never "is this one allowed" (src/purchases/limits.ts), so a
@@ -229,12 +239,13 @@ free stays free.</p>
   since a free account's selected day is always today.
 -->
 <p>Unlimited habits instead of five, every range on the Stats tab instead of the
-week, and the whole of History — opening any past day, and paging back through
-earlier months. None of that changes what Nanbit keeps: nothing you have tracked
-is deleted or hidden by not subscribing, and it all goes on counting toward your
-streaks and totals. What Pro buys is the view of it. Without Pro you can open and
-change today and see this month's shape, while opening a past day or an earlier
-month is what asks you to subscribe. Nothing you made is taken away if a
+week, and the whole of History — opening days more than a week back, and paging
+back through earlier months. None of that changes what Nanbit keeps: nothing you
+have tracked is deleted or hidden by not subscribing, and it all goes on counting
+toward your streaks and totals. What Pro buys is the view of it. Without Pro you
+can open and change today and the week before it, on Today or on History, and
+see this month's shape, while opening an older day or an earlier month is what
+asks you to subscribe. Nothing you made is taken away if a
 subscription lapses: every habit stays, and only a new one is refused.</p>
 
 <h3>My reminders are not arriving.</h3>
