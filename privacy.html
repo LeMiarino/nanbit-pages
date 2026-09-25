@@ -429,8 +429,13 @@ is up to your phone's backup settings, not to Nanbit.</p>
 <p><strong>Report a bug</strong> and <strong>Request a feature</strong> let you
 write to us from inside Nanbit. When you tap Submit, Nanbit opens an email to us
 in Apple's Mail, filled in with what you wrote, or, if Mail has no account set
-up, in the mail app your phone opens for email links. If neither can open, it
-shows our address with buttons to copy it and your message. <strong>Nanbit does
+up, in the mail app your phone opens for email links. If neither can take it
+(no mail app opens, Mail cannot send it, or it is too long to hand to another
+mail app), it shows our address with buttons to copy it and your message.
+<!-- Changed 25 September 2026, the same day, not yet published: it said "If
+  neither can open, it shows our address", which left out a report too long
+  for an email link and Mail failing after its sheet opened; both show the
+  address too (src/feedback/send.ts, `CopyReason`). --> <strong>Nanbit does
 not send the email.</strong> You see all of it in your mail app, you can change
 it, and it goes only if you send it.</p>
 <p>A bug report adds three lines under what you wrote: the Nanbit version and
