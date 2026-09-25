@@ -73,8 +73,13 @@ page.</p>
 <ul>
   <li>Nanbit is <strong>free to use, permanently</strong>. The free version is
     not a trial and it does not expire.</li>
+  <!-- Corrected 25 September 2026, not yet published. This said Nanbit Pro
+    "removes the free limits. Everything else stays the same." That stopped
+    being true on 24 September 2026, when color themes came: Pro adds them, as
+    the Nanbit Pro section below already said. Found by the American spelling
+    sweep of 25 September. -->
   <li><strong>Nanbit Pro</strong> is an optional subscription that removes the
-    free limits. Everything else stays the same.</li>
+    free limits and adds color themes.</li>
   <li><strong>Google Play takes the payment</strong>, not us. We never see your
     card details.</li>
   <!-- Changed 25 September 2026, not yet published: "Cancelling" became
@@ -161,9 +166,13 @@ limits and adds color themes — there is no separate Pro app. It unlocks:</p>
     earlier months; the paywall calls it "Your full history", and since the
     Stats tab was rebuilt as Progress that day it takes in each habit's
     earlier months and Year view there too. -->
+  <!-- Changed 25 September 2026, not yet published: History's Year view added.
+    History gained a Month | Year switch that day, the owner's request after
+    build 7, and without Pro its Year opens the paywall as a habit's Year does
+    (canSeeHistory, src/purchases/limits.ts). This list did not name it. -->
   <li><strong>Your full history</strong> — on History, opening days more than a
-    week back and paging back through earlier months; on Progress, each habit's
-    earlier months and its Year view.</li>
+    week back, paging back through earlier months, and the Year view; on
+    Progress, each habit's earlier months and its Year view.</li>
 </ul>
 <p><strong>Nothing you have already made is ever taken away.</strong> If a
 subscription lapses, every habit and every completion stays, and stays visible
@@ -190,9 +199,14 @@ is on the screen is what the store will charge.</p>
     above became "canceling", and "Cancelling" in the trial paragraph, the
     heading and the paragraph under it below became "Canceling", the owner's
     American spelling. -->
+  <!-- Changed 25 September 2026, not yet published: "You → Nanbit Pro →
+    Restore purchases" became "You → See plans → Restore purchases". The
+    owner's redesign of You that day replaced the Nanbit Pro row with a Nanbit
+    Pro card whose button, "See plans", opens the paywall that holds Restore
+    purchases (src/purchases/proCard.ts). -->
   <li>Your subscription is attached to your Google Play account, because there
     is no Nanbit account. That is what lets
-    <strong>You → Nanbit Pro → Restore purchases</strong> work on a reinstall or
+    <strong>You → See plans → Restore purchases</strong> work on a reinstall or
     a new device without signing into anything.</li>
 </ul>
 
