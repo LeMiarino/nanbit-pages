@@ -145,8 +145,14 @@ Nanbit can read:</p>
 <ul>
   <!-- Changed 25 September 2026, not yet published: "colour" became "color",
     the owner's request that day for American spelling everywhere. -->
-  <li><strong>Habits</strong> — the name, icon, color, schedule, daily goal and
-    reminder time you set.</li>
+  <!-- Changed 26 September 2026, not yet published. It said "the name, icon,
+    color, schedule, daily goal and reminder time you set." Schema 6 (the
+    owner's round 5) added a habit's extra reminder times and its nudge, each
+    stored on the habit: reminder_more, nudge_enabled and nudge_time
+    (src/db/schema.ts), kept whether or not Nanbit Pro is active. -->
+  <li><strong>Habits</strong> — the name, icon, color, schedule and daily goal
+    you set, and its reminders: up to three times a day, and whether its nudge
+    is on and at what time.</li>
   <li><strong>Completions</strong> — which habit you marked done, on which day,
     and how many times.</li>
   <!-- Changed 24 September 2026, not yet published: "appearance choice" became
@@ -154,8 +160,12 @@ Nanbit can read:</p>
     since that day (accentTheme, src/logic/types.ts). Changed again 25
     September 2026, not yet published: "the app's colour" became "the app's
     color", the owner's American spelling. -->
+  <!-- Changed 26 September 2026, not yet published: the app icon added. The
+    setting is appIcon, { matchColor, icon } (src/logic/types.ts), since the
+    owner's round 5; the icon itself is asked of iOS, which shows it. -->
   <li><strong>Settings</strong> — your display name, appearance choices (light or
-    dark, and the app's color), which day your week starts on, your reminder preferences, and some bookkeeping such as
+    dark, and the app's color), the app icon you chose and whether Match my
+    color is on, which day your week starts on, your reminder preferences, and some bookkeeping such as
     whether you have finished the introduction. The display name is whatever you
     type when the introduction asks your name, or later on the You tab. It is shown in two places, Today's greeting and the
     You tab. You can skip it.</li>
@@ -187,11 +197,14 @@ Nanbit can read:</p>
     that keeps the past, a deleted habit leaves Today and the widget and stays
     in History and Stats (src/db/repo.ts, deleteHabit, which writes ended_on
     and never deleted_at). Clearing a day still tombstones the completion.
+
+    Changed 26 September 2026, not yet published: "the widget" became "the
+    widgets", with the Nanbit Pro widgets of that day.
   -->
   <li><strong>Records you have deleted.</strong> When you clear a day, Nanbit
     marks that record as deleted and hides it everywhere in the app, but the row
     stays in the database file. When you delete a habit, it comes off Today and
-    the widget and its past days stay in History and Progress, so the habit and its
+    the widgets and its past days stay in History and Progress, so the habit and its
     completions stay in the database file too. Nanbit never sends any of it
     anywhere, though a backup your phone makes copies the database whole,
     deleted records included. <strong>Reset all data</strong> removes them along
@@ -234,13 +247,65 @@ Nanbit can read:</p>
   - Earlier in the day this paragraph also said signing out and deleting your
     account replaced the copy; both went with sign-in.
 -->
-<p><strong>A copy for the widget, on iPhone.</strong> Nanbit also keeps a small
-copy for its home-screen widget, even if you never add the widget. It is outside
-the database, in storage that only Nanbit and its widget can read. It says which
-habits are due and which are done, today and for the next week, as marks and
-totals, without the habits' names. <strong>Reset all data</strong> replaces it
-with one that holds no habits. If that replacement fails, the widget can go on
-showing the last week it was given until Nanbit next updates it.</p>
+<!--
+  Changed 26 September 2026, not yet published: the Nanbit Pro widgets of the
+  owner's round 5. The paragraph said: "A copy for the widget, on iPhone.
+  Nanbit also keeps a small copy for its home-screen widget, even if you never
+  add the widget. It is outside the database, in storage that only Nanbit and
+  its widget can read. It says which habits are due and which are done, today
+  and for the next week, as marks and totals, without the habits' names.
+  Reset all data replaces it with one that holds no habits. If that
+  replacement fails, the widget can go on showing the last week it was given
+  until Nanbit next updates it." "Without the habits' names" is still true of
+  the free small widget's copy and false of the Pro widgets'. From the code
+  that day:
+
+  - What is pushed: widgetPayloadsFor (src/widget/faces.ts). The small
+    widget's copy is unchanged (the comment above). For a subscriber, the
+    list, one-habit, Lock Screen and streak kinds are given, today and for the
+    next 7 days, each listed habit's name, colors (hex), an SF Symbol's name
+    for its icon, its count and what a tap would write, its streaks, the
+    day's done count and overall streak, the app's theme colors, today's
+    reminder identifiers for each habit (reminderIdsForHabitDay: Nanbit's own,
+    made of the habit's id and the day) and the daily reminder's, and the ids
+    of tick files the app has handled. Deleted habits are never in it. On the
+    store's definite "not Pro" those kinds are given only the Nanbit Pro face
+    and none of the habits; with no definite answer they are not pushed at
+    all, so a lapsed subscriber's copy keeps what it held until the definite
+    answer (proWidgetFace, src/widget/pro.ts). The page says so. src/platform/pages.test.ts holds every field of every kind, and About
+    says the same (app/settings/about.tsx).
+  - The tick files: widget-ticks/<id>.json in the App Group, holding
+    {id, habitId, day, count, at}, written by NanbitTickIntent.swift; applied
+    by the app at launch and on return, and removed once a push carrying them
+    as handled has landed (src/widgetHost/ticks.ts). A tick dated after the
+    app's today waits, file kept, for its day (since the review of 26
+    September 2026).
+  - Reset: resetThisPhone (src/lib/wipe.ts) pushes a habit-free copy to every
+    kind and clears widget-ticks/.
+  - The habit a one-habit widget shows is its configuration intent's
+    parameter (NanbitHabitConfiguration in native/widgets/NanbitHabit.swift),
+    which WidgetKit keeps with the widget; the app writes nothing of it. Read
+    from the code, not observed on a phone.
+-->
+<p><strong>A copy for the widgets, on iPhone.</strong> Nanbit also keeps a small
+copy for its widgets, even if you never add one. It is outside the database,
+in storage that only Nanbit and its widgets can read. For the free Today widget it says which habits are due and which
+are done, today and for the next week, as marks and
+totals, without the habits' names. With Nanbit Pro it also holds, for the Pro
+widgets, each habit's name, color and icon, its count and its streaks, the
+app's color, and the identifiers of each day's reminders, for each habit and
+for the daily reminder, which Nanbit makes from a habit's internal identifier
+and the date, so that a tick on a widget can take them back. Once the store has
+told Nanbit that you do not have Nanbit Pro, the Pro widgets' copy holds
+only the Nanbit Pro face and nothing of your habits. Until the store has said
+so, a copy made while you had Nanbit Pro keeps what it last held. When you tick a habit on a
+widget, the widget writes a small note of it in the same storage (which habit,
+the day, the count and the time), which Nanbit reads when it next opens and then
+removes. The habit you choose for a one-habit widget is one of that widget's
+settings, which your iPhone keeps with the widget. <strong>Reset all data</strong>
+replaces the copy with one that holds no habits, and removes any tick note waiting
+there. If that replacement fails, the widgets can go on showing the last week they
+were given until Nanbit next updates them.</p>
 <!--
   Deleting the app. Apple, iPhone User Guide, "Remove or delete apps from
   iPhone", read 23 September 2026: "Deleting an app removes it and its data from
@@ -253,7 +318,9 @@ showing the last week it was given until Nanbit next updates it.</p>
   kept a sign-in there and cleared it on the next install; this build writes
   nothing to the Keychain, and no public build ever wrote to it.
 -->
-<p>Deleting Nanbit deletes all of this from the phone, the widget's copy
+<!-- Changed 26 September 2026, not yet published: "the widget's copy" became
+  "the widgets' copy"; the tick notes live in the same App Group. -->
+<p>Deleting Nanbit deletes all of this from the phone, the widgets' copy
 included. It does not reach a backup the phone has already made — see section
 4.</p>
 
@@ -387,8 +454,10 @@ it always does.</p>
 <p>If your phone backs itself up — <strong>iCloud Backup</strong> on iPhone,
 <strong>Google's backup</strong> on Android — that backup can contain Nanbit's
 database: your habits, completions and settings, and the deleted records
-described above. On iPhone it may also contain the widget's copy; whether iCloud
-Backup includes it has not been checked, so this policy assumes it can. Nanbit
+described above. On iPhone it may also contain the widgets' copy; whether iCloud
+Backup includes it has not been checked, so this policy assumes it can.<!--
+  Changed 26 September 2026, not yet published: "the widget's copy" became
+  "the widgets' copy", with the Pro widgets and their tick notes. --> Nanbit
 does not send any of it and cannot read it. It goes to your own Apple or Google
 account under your phone's backup settings, and Apple's or Google's privacy
 policy covers it rather than this one.</p>
@@ -398,7 +467,9 @@ nothing in Nanbit keeps its database out of it. <strong>On Android it is expecte
 rather than confirmed</strong>: Nanbit uses Android's standard backup settings,
 which include the app's own storage, but no restore has been tested yet.</p>
 <p>So deleting Nanbit clears it from the phone, and <strong>Reset all
-data</strong> clears the database inside it and replaces the widget's copy — but
+data</strong> clears the database inside it and replaces the widgets' copy<!--
+  Changed 26 September 2026, not yet published: "the widget's copy" became
+  "the widgets' copy", with the Nanbit Pro widgets. --> — but
 neither reaches a backup the phone has already made. What happens to that backup
 is up to your phone's backup settings, not to Nanbit.</p>
 
@@ -495,13 +566,46 @@ habits on the new phone before you erase the old one.</p>
 </ul>
 
 <h2>Notifications</h2>
+<!--
+  Changed 26 September 2026, not yet published. It said "Nanbit cannot send
+  you anything you did not schedule yourself." Since the owner's round 5 the
+  app schedules one notification a person did not set: the reminder before a
+  free trial of Nanbit Pro ends. From the code that day: trialReminderFor
+  (src/notifications/plan.ts), on the local day 2 days
+  (TRIAL_REMINDER_DAYS_BEFORE) before the trial's end, at the daily reminder's
+  time when that is on and 09:00 otherwise; only on the store's definite
+  answer that a trial of more than 2 days is running and will renew; taken
+  out by the next rebuild after the store's definite answer that it will not.
+  trialNotice (src/notifications/copy.ts) gives the title "Free trial ends in
+  2 days" and the body "Your free week of Nanbit Pro ends in 2 days. Keep it,
+  or cancel from You → Manage subscription.", "free trial" for any length but
+  7 days. Scheduled locally like every reminder (src/notifications/index.ts).
+  The nudge and the Lock Screen widget's names were added the same day: a
+  nudge is planned only on a day not done, and NanbitLock's rectangle names up
+  to two habits still to do (src/widget/faces.ts, lockTimeline).
+-->
 <p>Reminders are scheduled by your phone, locally, from the habits already on
 your device. There is no push server and no push token: nothing about a reminder
-leaves the phone, and Nanbit cannot send you anything you did not schedule
-yourself. Because a reminder names the habit it is for, a habit's name can
+leaves the phone, and Nanbit cannot send you anything but the reminders you set
+and, if you start a free trial of Nanbit Pro, one reminder before it ends
+(below). With Nanbit Pro a habit can have up to three reminder times and a
+nudge, one more reminder that comes only if the habit is still not done at its
+time. Because a reminder names the habit it is for, a habit's name can
 appear on your lock screen — that is your phone displaying it, not Nanbit
-sending it anywhere. You can turn notifications off at any time in the app or in
-your phone's settings.</p>
+sending it anywhere. A Nanbit Pro Lock Screen widget can show the names of habits
+still to do in the same way. You can turn notifications off at any time in the
+app or in your phone's settings.</p>
+<p><strong>The reminder before a free trial ends.</strong> If you start a free
+trial of Nanbit Pro, Nanbit schedules one notification on your phone for two
+days before the trial ends, at your daily reminder's time, or at 9 in the
+morning if that is off. It is titled "Free trial ends in 2 days" and says your
+free week (or free trial, if it is not seven days long) of Nanbit Pro ends in 2
+days, and that you can keep it or cancel from You → Manage subscription. There
+is none for a trial of two days or less, and none unless the store says the
+trial will go on into a subscription: once it says it will not, as after you
+cancel, Nanbit takes the reminder back the next time it opens and hears from
+the store. Like every
+reminder, it is scheduled on the phone and nothing about it leaves it.</p>
 <p>On Android, reminders rely on two permissions. One lets Nanbit <strong>post
 notifications</strong> (<code>POST_NOTIFICATIONS</code>); Android 13 and later
 ask you for it. The other lets Nanbit <strong>start when the phone does</strong>
@@ -515,7 +619,10 @@ else on your phone.</p>
     Nanbit can reach.</li>
   <li><strong>Hide individual records</strong> — clearing a day hides that
     record everywhere in the app. Deleting a habit takes it off Today and the
-    widget and stops its reminder, and keeps its past days in History and Progress.
+    widgets and stops its reminders, and keeps its past days in History and Progress.
+    <!-- Changed 26 September 2026, not yet published: "the widget and stops its
+    reminder" became "the widgets and stops its reminders", with the Pro
+    widgets and a habit's extra times and nudge. -->
     <!-- Changed 24 September 2026, not yet published: "History and Stats",
     before the tab was renamed Progress. -->
     As described above, the underlying rows remain in the database file on your
@@ -539,7 +646,10 @@ else on your phone.</p>
   -->
   <li><strong>Delete everything on the phone</strong> — <strong>You → About
     Nanbit → Reset all data</strong> erases the database, deleted records
-    included, and empties the widget's copy. It leaves behind a little of
+    included, and empties the widgets' copy and any tick note waiting in it.
+    <!-- Changed 26 September 2026, not yet published: it said "empties the
+    widget's copy"; the Pro widgets and their tick notes came that day. -->
+    It leaves behind a little of
     Nanbit's own diagnostic bookkeeping, and it does not withdraw the
     notification permission you gave your phone, so it stops just short of a
     fresh install. Removing the app clears more. Neither reaches a backup your

@@ -78,8 +78,12 @@ page.</p>
     being true on 24 September 2026, when color themes came: Pro adds them, as
     the Nanbit Pro section below already said. Found by the American spelling
     sweep of 25 September. -->
+  <!-- Changed 26 September 2026, not yet published: "and more reminders"
+    added, with the owner's round 5 (reminderTimesFor, src/purchases/limits.ts;
+    the reminders are the shared notification code, so they are Android's too).
+    It said "removes the free limits and adds color themes." -->
   <li><strong>Nanbit Pro</strong> is an optional subscription that removes the
-    free limits and adds color themes.</li>
+    free limits and adds color themes and more reminders.</li>
   <li><strong>Google Play takes the payment</strong>, not us. We never see your
     card details.</li>
   <!-- Changed 25 September 2026, not yet published: "Cancelling" became
@@ -111,9 +115,20 @@ does not replace them.</p>
 tier rather than a trial period: it does not run out, it does not become
 read-only, and there is no point at which you must pay to go on using what you
 have already put in.</p>
+<!--
+  Changed 26 September 2026, not yet published. It said "Free use includes the
+  whole of the daily loop — adding up to five habits, marking them done,
+  streaks, the Today screen, reminders, and the calendar of what you have
+  done." Since the owner's round 5 a habit's second and third reminder times
+  and its nudge are Pro's, and the free version keeps one time for each habit
+  and the daily reminder (reminderTimesFor); every past day and month on
+  History can be looked at free, and today and the 7 days before it changed
+  (canChangeDay).
+-->
 <p>Free use includes the whole of the daily loop — adding up to five habits,
-marking them done, streaks, the Today screen, reminders, and the calendar of
-what you have done.</p>
+marking them done, streaks, the Today screen, the daily reminder and one
+reminder time for each habit, and the calendar of what you have done: every
+past day and month to look at, and today and the week before it to change.</p>
 <!--
   Until 23 September 2026 this paragraph ended: "It also includes You → Export
   data, which writes a complete copy of your habits and completions, so you are
@@ -132,8 +147,17 @@ what you have done.</p>
 -->
 <!-- Changed 25 September 2026, not yet published: "colour themes" became
   "color themes", the owner's American spelling. -->
+<!--
+  Changed 26 September 2026, not yet published: "and more reminders" added,
+  and the list below gained them. The owner's round 5 also made widgets for
+  Nanbit Pro and the app's icon in twelve colors; both are iPhone's alone
+  (native/widgets, modules/nanbit-app-icon, which declares Apple only), and
+  this page is Android's, so neither is listed here. Name them only when an
+  Android build has them.
+-->
 <p>Nanbit Pro is an optional subscription. It removes the free version's
-limits and adds color themes — there is no separate Pro app. It unlocks:</p>
+limits and adds color themes and more reminders — there is no separate Pro app.
+It unlocks:</p>
 <ul>
   <!--
     Corrected 24 September 2026, unpublished. This said archived habits count
@@ -176,15 +200,47 @@ limits and adds color themes — there is no separate Pro app. It unlocks:</p>
     History gained a Month | Year switch that day, the owner's request after
     build 7, and without Pro its Year opens the paywall as a habit's Year does
     (canSeeHistory, src/purchases/limits.ts). This list did not name it. -->
-  <li><strong>Your full history</strong> — on History, opening days more than a
-    week back, paging back through earlier months, and the Year view; on
-    Progress, each habit's earlier months and its Year view.</li>
+  <!-- Changed 26 September 2026, not yet published: the more reminders
+    added. REMINDER_TIMES_MAX is 3 (src/logic/reminders.ts); the nudge is
+    planned only on a day not done (src/notifications/plan.ts); on a lapse the
+    extras are kept and not sent (reminderTimesFor). -->
+  <li><strong>More reminders</strong> — up to three times a day for each habit
+    instead of one, and a nudge: one more reminder at a time you choose, which
+    comes only if the habit is still not done.</li>
+  <!-- Changed 26 September 2026, not yet published. It said "Your full
+    history — on History, opening days more than a week back, paging back
+    through earlier months, and the Year view; on Progress, each habit's
+    earlier months and its Year view." The owner's round 5 opened every past
+    day and month on History to the free version to look at, and let Pro
+    change any past day (canChangeDay, canSeeYear, canSeeHabitPast,
+    src/purchases/limits.ts). -->
+  <li><strong>Your full history</strong> — changing any past day, where the
+    free version changes today and the week before it; the Year view on
+    History; and on Progress, each habit's earlier months and its Year
+    view.</li>
 </ul>
+<!--
+  Changed 26 September 2026, not yet published. It said "If a subscription
+  lapses, every habit and every completion stays, and stays visible and
+  editable. What the free limits control is making another one, never keeping
+  what is already there." "Editable" was true of the habits, and still is
+  (app/sheet/habit.tsx saves an existing habit with no limit check; only
+  createHabit is capped), but it did not say that a lapsed subscriber, on the
+  free version, changes only today and the week before it (canChangeDay). And
+  since the owner's round 5 a lapse also stops a habit's extra reminder times
+  and its nudge, which are kept (reminderTimesFor, src/purchases/limits.ts),
+  and locks the Pro views and colors again (canSeeYear, canSeeHabitPast,
+  accentThemeFor), so the free limits are named as what can be added or
+  changed from then on rather than as one thing.
+-->
 <p><strong>Nothing you have already made is ever taken away.</strong> If a
-subscription lapses, every habit and every completion stays, and stays visible
-and editable. What the free limits control is making <em>another</em> one, never
-keeping what is already there. A lapsed subscriber holding more than five habits
-keeps all of them.</p>
+subscription lapses, every habit and every completion stays, every habit can
+still be edited, and every day of it can still be looked at on History. What the
+free limits control is what you can add or change from then on (<em>another</em>
+habit, a day more than a week back, a reminder time after the first, and the
+views and colors Nanbit Pro unlocks), never what is already there. A lapsed subscriber holding more than five habits keeps
+all of them. Each habit's first reminder keeps going; its other reminder times
+and its nudge stop, and are kept for if you subscribe again.</p>
 
 <h2>Payment, and who takes it</h2>
 <p>Nanbit Pro is sold as a <strong>monthly</strong> or an <strong>annual</strong>
@@ -210,9 +266,12 @@ is on the screen is what the store will charge.</p>
     owner's redesign of You that day replaced the Nanbit Pro row with a Nanbit
     Pro card whose button, "See plans", opens the paywall that holds Restore
     purchases (src/purchases/proCard.ts). -->
+  <!-- Changed 26 September 2026, not yet published: "Restore purchases" became
+    "Restore", the word in the rebuilt paywall's top bar (app/paywall.tsx; its
+    VoiceOver name is still "Restore purchases"). -->
   <li>Your subscription is attached to your Google Play account, because there
     is no Nanbit account. That is what lets
-    <strong>You → See plans → Restore purchases</strong> work on a reinstall or
+    <strong>You → See plans → Restore</strong> work on a reinstall or
     a new device without signing into anything.</li>
 </ul>
 

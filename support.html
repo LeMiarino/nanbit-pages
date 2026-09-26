@@ -207,7 +207,16 @@ one.</p>
   anyone the app does not think is subscribed (src/purchases/proCard.ts). The
   same correction was made on terms.html.
 -->
-<p>Open <strong>You → See plans → Restore purchases</strong>. A subscription
+<!--
+  Changed 26 September 2026, not yet published: "You → See plans → Restore
+  purchases" became "You → See plans → Restore". The paywall rebuilt that day
+  (the owner's round 5) puts Restore in its top bar's right-hand corner, and the
+  word on screen is "Restore"; VoiceOver still calls it "Restore purchases"
+  (app/paywall.tsx, the top bar's accessibilityLabel). The same correction was
+  made on terms.html.
+-->
+<p>Open <strong>You → See plans → Restore</strong>, in the top corner of that
+screen. A subscription
 attaches to the Apple Account that bought it, so a restore is all that is needed
 on a reinstall or a new device. There is nothing to sign in to in Nanbit: a
 subscription belongs to your Apple Account. If that does not fix it, check you
@@ -272,30 +281,124 @@ free stays free.</p>
   So History's list gained "its Year view". It said "on History, opening days
   more than a week back and paging back through earlier months".
 -->
-<p>Unlimited habits instead of five, color themes, and your full history: on
-History, opening days more than a week back, paging back through earlier months
-and its Year view, and on Progress, each habit's earlier months and its Year
-view. None of
-that changes what Nanbit keeps: nothing you have tracked is deleted or hidden by
-not subscribing, and it all goes on counting toward your streaks and totals.
-What Pro buys is the view of it, and the color it is drawn in. Without Pro you
-can open and change today and the week before it, on Today or on History, and
-see this month's shape, while opening an older day or an earlier month is what
-asks you to subscribe. Nothing you made is taken away if a
-subscription lapses: every habit stays, and only a new one is refused.</p>
+<!--
+  Changed 26 September 2026, not yet published: the owner's round 5, "a
+  stronger Nanbit Pro". What the free version and Pro each get, as the code
+  has it that day (src/purchases/limits.ts unless named):
+
+  - History: every past day and month can be looked at on both plans;
+    canChangeDay lets the free version change today and the 7 days before it
+    (inLastWeek) and Pro any day up to today; an older day's tick opens the
+    paywall for the free version; Year is canSeeYear on History and a habit's
+    page; a habit's earlier months are canSeeHabitPast. Progress itself sells
+    nothing: its past is on each habit's page.
+  - Reminders: reminderTimesFor, the first time alone without Pro, up to
+    REMINDER_TIMES_MAX (3) times and the nudge with it; kept on a lapse.
+  - Widgets: the free NanbitToday (small); NanbitTodayList (medium, large),
+    NanbitHabit (one habit, iOS 17), NanbitLock and NanbitStreak (Lock Screen)
+    for Pro, ticking behind iOS 17 (native/widgets, app.json's widget lists).
+    A lapse shows as the Nanbit Pro face only on the store's definite answer
+    (proWidgetFace, src/widget/pro.ts), which needs Nanbit open and online.
+  - The icon: appIconFor and appIconTarget, back to orange only on the
+    store's definite "not Pro", while the app is open.
+  - On a lapse, the color theme (accentThemeFor), both Year views
+    (canSeeYear), a habit's earlier months (canSeeHabitPast) and older days
+    (canChangeDay) follow isPro alone, so they lock on any free answer,
+    stand-in included; only the extra reminders (Plan.untouched), the Pro
+    widgets (proWidgetFace) and the icon (appIconTarget) wait for the store's
+    definite answer. The lapse paragraph says which is which.
+
+  The paragraph said: "Unlimited habits instead of five, color themes, and
+  your full history: on History, opening days more than a week back, paging
+  back through earlier months and its Year view, and on Progress, each habit's
+  earlier months and its Year view. None of that changes what Nanbit keeps:
+  nothing you have tracked is deleted or hidden by not subscribing, and it all
+  goes on counting toward your streaks and totals. What Pro buys is the view of
+  it, and the color it is drawn in. Without Pro you can open and change today
+  and the week before it, on Today or on History, and see this month's shape,
+  while opening an older day or an earlier month is what asks you to
+  subscribe. Nothing you made is taken away if a subscription lapses: every
+  habit stays, and only a new one is refused." Paging back and opening older
+  days are free now, so "What Pro buys is the view of it" went with them, and
+  the lapse sentence did not say what stops.
+-->
+<p>Nanbit Pro adds:</p>
+<ul>
+  <li><strong>Unlimited habits</strong>, instead of five.</li>
+  <li><strong>More reminders.</strong> Up to three times a day for each habit,
+    and a <strong>nudge</strong>: one more reminder at a time you choose, which
+    comes only if the habit is still not done. Without Pro each habit has one
+    reminder time.</li>
+  <li><strong>Every widget, on iPhone.</strong> The medium and large widgets
+    that list today's habits, the Lock Screen widgets, and a widget for one habit you choose,
+    with its streak (iOS 17 or later). On iOS 17 or later you can tick habits
+    right from the Home Screen widgets. Without Pro you have the small Today
+    widget.</li>
+  <li><strong>Color themes</strong>, and on iPhone the app's icon in the same
+    colors (below).</li>
+  <li><strong>Your whole history.</strong> Changing any past day, the Year view
+    on History and on a habit's page, and each habit's earlier months on its
+    page, which Progress opens. Without Pro you can look back at every past day
+    and month on History, change today and the week before it, and see this
+    month on Progress with its comparisons.</li>
+</ul>
+<p>Without Pro these are shown where they would be, and tapping one opens
+Nanbit Pro. None of it changes what Nanbit keeps: nothing you have tracked is
+deleted by not subscribing, and it all goes on counting toward your streaks and
+totals.</p>
+<p><strong>If a subscription ends</strong>, nothing you made is taken away:
+every habit and every completion stays, and only a new habit is refused. Days
+more than a week back can still be looked at, but not changed, and the color
+themes, the Year views and a habit's earlier months are locked again. Each
+habit's first reminder keeps going while its other times and its nudge stop,
+and on iPhone the Pro widgets show a Nanbit Pro face instead of your habits and
+the app's icon goes back to orange; these three wait until Nanbit is open and
+the store has confirmed the subscription ended. All of it is kept for if you
+subscribe again.</p>
 <!--
   Changed 25 September 2026, not yet published: the themes were "Jade, Teal,
   Sky, Iris, Plum or Rose". The owner added five habit colors that day and made
   each a color theme too: "Each new color is also a Pro color theme, so
   Appearance has twelve (Orange plus eleven)". Listed in Appearance's order.
 -->
+<!--
+  Changed 26 September 2026, not yet published. It ended "The introduction and
+  the app's icon stay orange whatever you choose." The owner reversed the icon
+  half of that rule in round 5: "Colors: free Orange, Pro all 12 themes (as
+  now), plus the app icon in all 12 colors" and "You → Appearance → App icon:
+  the 12 colors, plus 'Match my color' (on by default)". The introduction
+  still stays orange (FixedAccent). From the code that day:
+  app/settings/appearance.tsx draws the App icon section, with "Match my
+  color", only where the phone can change its icon (useAppIconSupported); a
+  tap on an icon chooses it and turns the match off; turning the match off
+  keeps the icon shown (appIconWithMatch, the owner's answer of 26 September
+  2026: "keeps the icon they have now ... No icon change, no iOS alert"); the
+  paywall imports no icon code, so trying colors there asks nothing of iOS;
+  back to orange only on the store's definite "not Pro" while the app is open
+  (appIconTarget). The launch screen is a storyboard with the orange icon
+  (ROADMAP, "The app icon in twelve colors", accepted costs). iOS's own alert
+  on a change is iOS's own for every app that changes its icon, and the
+  owner's words call it normal ("iOS shows its own short message when an icon
+  changes; that's normal"); no change of Nanbit's has been seen on a phone
+  yet (README, device-only checks). The page publishes at submission, after
+  the build the owner checks it on.
+-->
 <p><strong>Color themes</strong> change the app's color from orange to Jade,
 Teal, Sky, Iris, Plum, Rose, Brick, Cocoa, Honey, Olive or Fern, under
 <strong>You → Appearance → Color</strong>.
 Without Pro you can see them there, and choosing one opens Nanbit Pro. If a
 subscription ends, the app goes back to orange, and the color you chose comes
-back if you subscribe again. The introduction and the app's icon stay orange
-whatever you choose.</p>
+back if you subscribe again. The introduction stays orange whatever you
+choose.</p>
+<p><strong>The app's icon</strong> comes in the same twelve colors on iPhone,
+under <strong>You → Appearance → App icon</strong>. With <strong>Match my
+color</strong> on, as it is to begin with, the icon follows the app's color.
+Choosing an icon yourself turns Match my color off and keeps the icon you chose,
+and turning Match my color off keeps the icon you have. When the icon changes,
+your iPhone shows its own short message saying so. Trying colors on the Nanbit
+Pro screen never changes it. If a subscription ends, the icon goes back to
+orange, and the one you chose comes back if you subscribe again. The screen
+Nanbit opens with keeps the orange icon.</p>
 
 <h3>My reminders are not arriving.</h3>
 <p>Three things to check, in order:</p>
@@ -306,19 +409,64 @@ whatever you choose.</p>
     Notifications</strong>, where the <strong>Reminders</strong> channel has a
     switch of its own and Do Not Disturb can silence it; the exact path varies by
     manufacturer.</li>
+  <!-- Changed 26 September 2026, not yet published: it ended "and each habit
+    has one of its own underneath." Nanbit Pro's extra times and nudge came
+    that day (reminderTimesFor, src/purchases/limits.ts); a habit's row on the
+    Reminders screen opens its sheet (app/settings/reminders.tsx). The queue's
+    cap (MAX_PENDING, 64, src/notifications/limits.ts) is filled first by the
+    trial's reminder, the daily reminder and each habit's first time; extra
+    times and nudges share what is left (tiered), so with eight or more habits
+    reminded and the daily reminder on they can get none. The screen's lines
+    under a habit say what has no room (notHeldLine, nudgeLine). -->
   <li><strong>You → Reminders</strong> in Nanbit — the daily reminder has its own
-    switch, and each habit has one of its own underneath.</li>
+    switch, and each habit has one of its own underneath; tap a habit there to
+    set its times and its nudge. If a Nanbit Pro subscription has ended, only
+    each habit's first time is sent, and its other times and its nudge come back
+    if you subscribe again. Nanbit keeps only so many reminders waiting at once,
+    because iPhone holds only so many for an app: with many habits, every
+    habit's first time and the daily reminder come first, and under a habit the
+    Reminders screen says which of its other times or its nudge had no
+    room.</li>
   <!-- Changed 25 September 2026, not yet published: "behaviour" became
     "behavior", the owner's American spelling. -->
-  <li>A reminder for a habit you have already ticked is skipped on purpose. That
-    is the intended behavior, not a fault.</li>
+  <!-- Changed 26 September 2026, not yet published: the nudge and the widget
+    tick added. A nudge is planned only on a day not done, like every habit
+    reminder (src/notifications/plan.ts). A tick on a widget that makes the
+    habit done asks iOS to take back that habit's requests for the day by name
+    (native/widgets, NanbitTickIntent.swift, with ids from
+    reminderIdsForHabitDay); an untick removes nothing. Since the review of 26
+    September 2026 (d3eaf1a) the daily reminder's id goes with it when every
+    other habit due is shown done, judged by the widget at the tap
+    (NanbitTodayList.swift, NanbitHabit.swift, DailyForTick). Whether a
+    widget extension can reach the app's pending requests is documented
+    nowhere read and has not been observed (README, device-only checks), so
+    the page says so rather than promising it. The owner asked to be told if
+    it cannot be guaranteed while the app is closed. -->
+  <li>A reminder for a habit you have already ticked is skipped on purpose, and
+    a nudge comes only if the habit is still not done at its time. That is the
+    intended behavior, not a fault. If a tick on a widget makes a habit done
+    while Nanbit is closed, the widget asks your iPhone to drop that habit's
+    reminders for the day, and the daily reminder too if every habit due that
+    day is then done. Unticking on a widget puts nothing back until you next
+    open Nanbit. Whether any of this works has not yet been checked on a phone,
+    so a reminder may still arrive until you next open Nanbit.</li>
 </ul>
 
 <h3>Why does a habit's name appear on my lock screen?</h3>
+<!-- Changed 26 September 2026, not yet published: the Lock Screen widget
+  added. NanbitLock's rectangle names up to two habits still to do
+  (lockTimeline, src/widget/faces.ts), marked privacySensitive
+  (src/widgetHost/LockWidgets.tsx), which iOS may redact while the phone is
+  locked; that has not been seen on a phone (README, device-only checks).
+  Show Previews governs notifications only. -->
 <p>Because a reminder names the habit it is for. That is your phone displaying a
 notification it scheduled itself — nothing is sent anywhere. To keep names off
 the lock screen, use <strong>Settings → Notifications → Show Previews</strong> on
 iPhone, or your Android phone's lock-screen notification setting.</p>
+<p>With Nanbit Pro, the rectangular Lock Screen widget also shows the names of
+up to two habits still to do today. Show Previews does not cover a widget:
+remove the widget to keep them off. Nanbit asks iPhone to hide those names
+while the phone is locked; whether it does has not been checked yet.</p>
 
 <!--
   Corrected 24 September 2026, unpublished. This answered "I archived a habit.
@@ -330,15 +478,33 @@ iPhone, or your Android phone's lock-screen notification setting.</p>
 <h3>What happens when I delete a habit?</h3>
 <!-- Changed 24 September 2026, not yet published: "History and Stats" became
   "History and Progress" when the owner renamed the Stats tab. -->
-<p>It comes off Today and the widget, and its reminder stops if it has one. Its
+<!-- Changed 26 September 2026, not yet published: "the widget" became "the
+  widgets", "its reminder stops" became "its reminders stop", and the one-habit
+  widget was added. The app pushes listed habits only, and NanbitHabit.swift
+  draws "Touch and hold to choose a habit." (WIDGET_COPY.choose) when the habit
+  chosen is no longer among them. It said "It comes off Today and the widget,
+  and its reminder stops if it has one." -->
+<p>It comes off Today and the widgets, and its reminders stop if it has any. A
+widget set to that one habit asks you to choose another. Its
 past days stay in History and Progress, marked <strong>Deleted</strong>, and can no
 longer be ticked. A deleted habit does not count toward the free limit of five, so
 deleting one makes room for another. Deleting cannot be undone.</p>
 
 <h3>Can I edit a day I forgot to tick?</h3>
-<p>Yes, for the last week. Open the day on the History tab and tick the habits
-there. Days older than a week are shown but cannot be changed, so a streak
-cannot be quietly rewritten months later.</p>
+<!--
+  Changed 26 September 2026, not yet published. It said "Yes, for the last
+  week. Open the day on the History tab and tick the habits there. Days older
+  than a week are shown but cannot be changed, so a streak cannot be quietly
+  rewritten months later." The owner's round 5 lets Pro change any past day
+  (canChangeDay, src/purchases/limits.ts), and an older day's tick opens the
+  paywall for the free version (app/(tabs)/history.tsx). The clause "so a
+  streak cannot be quietly rewritten months later" was recorded as false on 13
+  September 2026 (ROADMAP) and is false for Pro in a new way; it is deleted,
+  not softened.
+-->
+<p>Yes. Open the day on the History tab and tick the habits there. Without Nanbit
+Pro you can change today and the week before it; older days can be looked at,
+and ticking one opens Nanbit Pro, which can change any past day.</p>
 
 <h3>How do I delete everything?</h3>
 <!--
@@ -369,19 +535,40 @@ cannot be quietly rewritten months later.</p>
 -->
 <p><strong>You → About Nanbit → Reset all data</strong> erases Nanbit's
 database — every habit, every completion, your settings, and the records you had
-already deleted — and on iPhone empties the copy Nanbit keeps for its widget. It
+already deleted — and on iPhone empties the copy Nanbit keeps for its widgets,
+including any tick on a widget still waiting for Nanbit. It
 cannot be undone. It stops a little short of a fresh install: a couple of small
 diagnostic files Nanbit keeps for itself are left behind, and your phone does
 not forget that you once allowed notifications.</p>
-<p><strong>Removing the app</strong> clears more than that, the widget's copy
+<!-- Changed 26 September 2026, not yet published: "its widget" and "the
+  widget's copy" became "its widgets" and "the widgets' copy", with the tick
+  files the Pro widgets leave (widget-ticks/, which resetThisPhone clears,
+  src/lib/wipe.ts). -->
+<p><strong>Removing the app</strong> clears more than that, the widgets' copy
 included. Neither reaches a backup your phone has already made.</p>
 
 <h3>How do I cancel a subscription?</h3>
 <!-- Changed 25 September 2026, not yet published: "Cancelling" became
   "Canceling", the owner's American spelling. -->
+<!--
+  Changed 26 September 2026, not yet published: the You tab's row and the
+  trial's reminder added. The row is manageSubscription
+  (src/purchases/pricing.ts), shown while the store reports a subscription to
+  manage and linking RevenueCat's managementURL; no device has opened it yet
+  (README, device-only checks). The reminder is trialReminderFor and
+  trialNotice (src/notifications/plan.ts, copy.ts): two days before the trial
+  ends, only for a trial longer than two days that the store says will renew,
+  and taken back when Nanbit next hears from the store that it will not.
+-->
 <p>In the store that sold it. On iPhone, <strong>open the Settings app, tap your
-name, then tap Subscriptions</strong>. On Android, <strong>go to subscriptions in
+name, then tap Subscriptions</strong>; while you are subscribed, the You tab in
+Nanbit also has <strong>Manage subscription</strong>, a link to the App Store's
+page for it. On Android, <strong>go to subscriptions in
 Google Play</strong>. Canceling never deletes anything you have tracked.</p>
+<p>If you start a free trial and Nanbit may send you notifications, it reminds
+you two days before the trial ends. Once you have canceled, Nanbit takes that
+reminder back the next time it opens and hears from the store; if you cancel and
+do not open Nanbit, it still arrives.</p>
 
 <h2>Reporting a bug</h2>
 <p>Write to <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a> with what you did,
