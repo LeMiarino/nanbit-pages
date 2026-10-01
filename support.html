@@ -288,8 +288,10 @@ free stays free.</p>
 
   - History: every past day and month can be looked at on both plans;
     canChangeDay lets the free version change today and the 7 days before it
-    (inLastWeek) and Pro any day up to today; an older day's tick opens the
-    paywall for the free version; Year is canSeeYear on History and a habit's
+    (inLastWeek) and Pro any day up to today; for the free version an older
+    day's ticks are greyed, and a "See plans" row under them opens the paywall
+    (since 2 October 2026; each tick opened it until then); Year is canSeeYear
+    on History and a habit's
     page; a habit's earlier months are canSeeHabitPast. Progress itself sells
     nothing: its past is on each habit's page.
   - Reminders: reminderTimesFor, the first time alone without Pro, up to
@@ -512,14 +514,17 @@ deleting one makes room for another. Deleting cannot be undone.</p>
   than a week are shown but cannot be changed, so a streak cannot be quietly
   rewritten months later." The owner's round 5 lets Pro change any past day
   (canChangeDay, src/purchases/limits.ts), and an older day's tick opens the
-  paywall for the free version (app/(tabs)/history.tsx). The clause "so a
+  paywall for the free version (app/(tabs)/history.tsx). Changed again 2
+  October 2026, not yet published: since the owner's round 9 an older day's
+  ticks are greyed and do nothing, and a "See plans" row under them opens Nanbit
+  Pro, so "ticking one opens Nanbit Pro" became false. The clause "so a
   streak cannot be quietly rewritten months later" was recorded as false on 13
   September 2026 (ROADMAP) and is false for Pro in a new way; it is deleted,
   not softened.
 -->
 <p>Yes. Open the day on the History tab and tick the habits there. Without Nanbit
 Pro you can change today and the week before it; older days can be looked at,
-and ticking one opens Nanbit Pro, which can change any past day.</p>
+but not changed. Nanbit Pro can change any past day.</p>
 
 <h3>How do I delete everything?</h3>
 <!--
