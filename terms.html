@@ -4,53 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit — Terms of Use</title>
-<style>
-  :root {
-    color-scheme: light dark;
-    --ink: #1B1B1A;
-    --muted: #5C5A55;
-    --rule: #E2DFD8;
-    --bg: #FBFAF7;
-    --accent: #D85A30;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #F2F0EB;
-      --muted: #A8A49C;
-      --rule: #322F2B;
-      --bg: #1B1B1A;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 40px 20px 96px;
-    background: var(--bg);
-    color: var(--ink);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 44rem; margin: 0 auto; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
-  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.5rem 0 0.6rem; }
-  h3 { font-size: 1.05rem; margin: 1.8rem 0 0.4rem; }
-  p, li { margin: 0 0 1rem; }
-  ul { padding-left: 1.2rem; }
-  li { margin-bottom: 0.6rem; }
-  a { color: var(--accent); }
-  strong { font-weight: 600; }
-  .dateline { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
-  .lede { font-size: 1.1rem; }
-  hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
-  footer { color: var(--muted); font-size: 0.9rem; }
-  footer a { color: inherit; }
-</style>
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F1C19" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="stylesheet" href="nanbit.css">
+<script src="nanbit.js" defer></script>
 </head>
 <body>
+<!--
+  Redesigned and published 2 October 2026: the page is drawn with nanbit.css in
+  the app's own colors, and its sentences are unchanged by that. Every comment
+  below that says "not yet published" or "unpublished" went live that day.
+-->
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="index.html"><img src="icon.svg" alt="" width="30" height="30">Nanbit</a>
+    <nav class="seg" aria-label="Pages">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html" aria-current="page">Terms</a>
+    </nav>
+  </div>
+</header>
 <main>
-
+<div class="hero">
 <h1>Nanbit Terms of Use</h1>
-<p class="dateline">Effective 27 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
+<p class="dateline">Effective 2 October 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
 <!--
   The Android scoping in the first sentence is load-bearing, not throat-clearing.
@@ -68,8 +47,10 @@ is downloaded and any subscription is bought through Google Play. They cover
 what the free version gives you, what a subscription adds, and who handles the
 money. On iPhone, Apple's standard license agreement applies instead of this
 page.</p>
+</div>
 
-<h2>The short version</h2>
+<section class="card tint">
+<h2 data-short="Overview">The short version</h2>
 <ul>
   <li>Nanbit is <strong>free to use, permanently</strong>. The free version is
     not a trial and it does not expire.</li>
@@ -102,16 +83,20 @@ page.</p>
     to you.</li>
   <li>Nanbit is provided <strong>as it is</strong>, by one person.</li>
 </ul>
+</section>
 
-<h2>Who these terms are between</h2>
+<section class="card">
+<h2 data-short="Who">Who these terms are between</h2>
 <p>Nanbit is made and published by <strong>Denver Delorino</strong>, an
 individual developer. "We" and "us" below mean that one person. By installing
 or using Nanbit you are agreeing to what is on this page.</p>
 <p>Google Play has its own terms covering the store itself — downloading apps,
 paying for them, and refunds. Those are between you and Google, and this page
 does not replace them.</p>
+</section>
 
-<h2>The free version, and that it stays free</h2>
+<section class="card">
+<h2 data-short="Free version">The free version, and that it stays free</h2>
 <p>Nanbit is free to download and free to use. The free version is a permanent
 tier rather than a trial period: it does not run out, it does not become
 read-only, and there is no point at which you must pay to go on using what you
@@ -136,7 +121,9 @@ past day and month to look at, and today and the week before it to change.</p>
   never locked away from your own records by not subscribing." The export was
   removed from the app on 22 September 2026.
 -->
+</section>
 
+<section class="card">
 <h2>Nanbit Pro</h2>
 <!--
   Changed 24 September 2026, not yet published. It said Pro "removes the free
@@ -242,8 +229,10 @@ habit, a day more than a week back, a reminder time after the first, and the
 views and colors Nanbit Pro unlocks), never what is already there. A lapsed subscriber holding more than five habits keeps
 all of them. Each habit's first reminder keeps going; its other reminder times
 and its nudge stop, and are kept for if you subscribe again.</p>
+</section>
 
-<h2>Payment, and who takes it</h2>
+<section class="card">
+<h2 data-short="Payment">Payment, and who takes it</h2>
 <p>Nanbit Pro is sold as a <strong>monthly</strong> or an <strong>annual</strong>
 subscription. The price you see in the app is the price Google Play reports for
 your country and currency at that moment; it is not stored in the app, so what
@@ -312,8 +301,10 @@ own refund policy</strong>, through your Play account or Google's support. We
 have no way to issue a refund for a purchase we never processed. If something
 has gone wrong, write to us anyway — see below — and we will help where we
 can.</p>
+</section>
 
-<h2>Your habits, and your backups</h2>
+<section class="card">
+<h2 data-short="Your habits">Your habits, and your backups</h2>
 <!--
   Rewritten 23 September 2026. It offered "You → Export data" as the copy you
   control; the export was removed from the app on 22 September 2026, so on
@@ -333,8 +324,10 @@ recover what was on it. The phone's own Google backup may hold a copy —
 expected, not yet confirmed; the privacy policy says what is known — but that
 copy is between you and Google, and we cannot reach it. Signing in to back up is
 Nanbit's own way to keep one.</p>
+</section>
 
-<h2>Nanbit is provided as it is</h2>
+<section class="card">
+<h2 data-short="As it is">Nanbit is provided as it is</h2>
 <p>Nanbit is made by one person and is offered <strong>as it is</strong>,
 without any promise that it will be free of faults, that it will suit a
 particular purpose, or that it will always be available. Reminders are an
@@ -355,20 +348,24 @@ of any kind, and nothing in it should be treated as such.</p>
 <p>We may change, update or stop offering parts of Nanbit. If something you paid
 for stops being offered, the subscription terms above still apply: you can
 cancel renewal through Google Play at any time.</p>
+</section>
 
-<h2>Changes to these terms</h2>
+<section class="card">
+<h2 data-short="Changes">Changes to these terms</h2>
 <p>If these terms change, the date at the top changes with them. That date is
 the whole record. There is no notice: Nanbit does not send email, and promising a
 notice we would not send would be worse than saying so.</p>
+</section>
 
+<section class="card">
 <h2>Contact</h2>
 <p>Questions about these terms, about a subscription, or about anything else in
 Nanbit: <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>.
 That address reaches Denver Delorino, who makes Nanbit, and it is the only route
 — there is no support desk and no ticketing system behind it. A reply normally
 takes a few days.</p>
+</section>
 
-<hr>
 <footer>
   <p>Nanbit — <a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · Terms of Use</p>
 </footer>

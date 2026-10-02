@@ -4,62 +4,39 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit — Privacy Policy</title>
-<style>
-  :root {
-    color-scheme: light dark;
-    --ink: #1B1B1A;
-    --muted: #5C5A55;
-    --rule: #E2DFD8;
-    --bg: #FBFAF7;
-    --accent: #D85A30;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #F2F0EB;
-      --muted: #A8A49C;
-      --rule: #322F2B;
-      --bg: #1B1B1A;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 40px 20px 96px;
-    background: var(--bg);
-    color: var(--ink);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 44rem; margin: 0 auto; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
-  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.5rem 0 0.6rem; }
-  h3 { font-size: 1.05rem; margin: 1.8rem 0 0.4rem; }
-  p, li { margin: 0 0 1rem; }
-  ul { padding-left: 1.2rem; }
-  li { margin-bottom: 0.6rem; }
-  a { color: var(--accent); }
-  strong { font-weight: 600; }
-  .dateline { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
-  .lede { font-size: 1.1rem; }
-  hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
-  footer { color: var(--muted); font-size: 0.9rem; }
-  footer a { color: inherit; }
-</style>
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F1C19" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="stylesheet" href="nanbit.css">
+<script src="nanbit.js" defer></script>
 </head>
 <body>
+<!--
+  Redesigned and published 2 October 2026: the page is drawn with nanbit.css in
+  the app's own colors, and its sentences are unchanged by that. Every comment
+  below that says "not yet published" or "unpublished" went live that day.
+-->
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="index.html"><img src="icon.svg" alt="" width="30" height="30">Nanbit</a>
+    <nav class="seg" aria-label="Pages">
+      <a href="support.html">Support</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
 <main>
-
+<div class="hero">
 <h1>Nanbit Privacy Policy</h1>
 <!--
-  The date below is not moved in the commit that rewrote this page, on purpose.
-  This page's own rule is that its date is the whole record of a change, and the
-  project's rule is that the date names the day a version becomes the live one
-  (README, Rule B). This version goes live on the day 1.1 is submitted for
-  review, the owner's decision of 23 September 2026: App Review can open this
-  policy from inside the app while testing. The date moves to that submission
-  day in the commit that publishes this text.
+  This page's own rule is that its date is the whole record of a change, and
+  the project's rule is that the date names the day a version becomes the live
+  one. This version went live on 2 October 2026, when the owner asked for the
+  pages to be published, and the date was moved to that day in the commit that
+  published it.
 -->
-<p class="dateline">Effective 27 September 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
+<p class="dateline">Effective 2 October 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
 <!--
   What this rewrite replaced, recorded rather than silently deleted.
@@ -107,8 +84,10 @@
 you choose to sign in, Nanbit backs up your habits so you can get them back on
 a new phone. This policy explains what is kept on your phone, what leaves it,
 and how to delete everything.</p>
+</div>
 
-<h2>The short version</h2>
+<section class="card tint">
+<h2 data-short="Overview">The short version</h2>
 <ul>
   <li>Your habits, your completions and your settings are kept <strong>on your
     phone</strong>. Nanbit sends them nowhere unless you sign in to back them
@@ -142,8 +121,10 @@ and how to delete everything.</p>
     nothing about your habits — see section 5.</li>
   <li>Nanbit does not sell or share your data.</li>
 </ul>
+</section>
 
-<h2>What Nanbit stores on your phone</h2>
+<section class="card">
+<h2 data-short="On your phone">What Nanbit stores on your phone</h2>
 <p>All of this lives in a database inside the app's own storage, which only
 Nanbit can read:</p>
 <ul>
@@ -328,8 +309,10 @@ were given until Nanbit next updates them.</p>
 <p>Deleting Nanbit deletes all of this from the phone, the widgets' copy
 included. It does not reach a backup the phone has already made — see section
 4.</p>
+</section>
 
-<h2>What leaves your phone</h2>
+<section class="card">
+<h2 data-short="What leaves">What leaves your phone</h2>
 <!--
   Changed 25 September 2026, not yet published. It said "A fourth is sent by
   your phone rather than by Nanbit: its own backup, described last." The Report
@@ -533,12 +516,13 @@ cover it as they cover purchase records.</p>
   signed in at once, and the Apple credential revoked by Nanbit's server
   function when the account is deleted.
 
-  NOT RE-READ ON 2 OCTOBER: the Supabase facts below (log retention "up to 7
-  days" from supabase.com/pricing; what the logs hold from the log field
-  reference; daily backups and traffic flow logs from supabase.com/legal/dpa
-  "Version 1 — August 1, 2026") were read on 23 September 2026 and are carried
-  over, not checked again. Read them again before this page is published.
-  "Up to 7 days" holds on the Free and Pro plans only.
+  RE-READ ON 2 OCTOBER 2026, before publishing: supabase.com/pricing gives log
+  retention of 1 day on Free and 7 days on Pro, so "up to 7 days" holds on both;
+  supabase.com/legal/dpa ("Version 1 — August 1, 2026") says "Supabase takes
+  daily backups of Customer projects by default" and that "Traffic flow logs
+  are retained", and gives no length for either. What the logs hold (the log
+  field reference) was read on 23 September 2026 and not again. "Up to 7 days"
+  holds on the Free and Pro plans only.
 
   Checked against the code on 2 October 2026:
   - What the backup holds: toBackupJson(repo.loadEverything(db)), which is
@@ -634,8 +618,10 @@ settings yourself. Deleting cannot reach a backup your phone made earlier
 (section 4), or Supabase's logs, backup copies and security records, described
 above. You can also ask us to delete your account: write to the address under
 Contact, from the email address the account uses.</p>
+</section>
 
-<h2>Moving to a new iPhone</h2>
+<section class="card">
+<h2 data-short="New iPhone">Moving to a new iPhone</h2>
 <!--
   The owner asked for this on 23 September 2026: "set it up from the old phone
   or from its backup, and the habits come along", once the code had been checked
@@ -664,8 +650,10 @@ habits come along with your other apps' data. Apple's backup includes the data
 of apps you have downloaded, and Nanbit keeps nothing out of it or out of a
 direct transfer. We have not yet watched this happen with Nanbit, so check your
 habits on the new phone before you erase the old one.</p>
+</section>
 
-<h2>What Nanbit does not do</h2>
+<section class="card">
+<h2 data-short="What it does not do">What Nanbit does not do</h2>
 <ul>
   <li><strong>No analytics about how you use the app.</strong> Nothing measures
     which screens you open, which habits you keep, or how often you come back.
@@ -684,7 +672,9 @@ habits on the new phone before you erase the old one.</p>
   <li>No location, contacts, photos, microphone, camera or health data. Nanbit
     never asks for them because it never uses them.</li>
 </ul>
+</section>
 
+<section class="card">
 <h2>Notifications</h2>
 <!--
   Changed 26 September 2026, not yet published. It said "Nanbit cannot send
@@ -732,7 +722,10 @@ ask you for it. The other lets Nanbit <strong>start when the phone does</strong>
 (<code>RECEIVE_BOOT_COMPLETED</code>), so that reminders you have already
 scheduled are set again after a restart. Neither gives Nanbit access to anything
 else on your phone.</p>
-<h2>Your choices and controls</h2>
+</section>
+
+<section class="card">
+<h2 data-short="Your choices">Your choices and controls</h2>
 <ul>
   <li><strong>See what Nanbit holds</strong> — your habits, completions and
     settings are all visible in the app. If you sign in, the backup is a copy
@@ -790,8 +783,10 @@ else on your phone.</p>
     may need to tell us roughly when and what you purchased, since we have no
     other way to find you.</li>
 </ul>
+</section>
 
-<h2>How to reach us about your data</h2>
+<section class="card">
+<h2 data-short="Your data">How to reach us about your data</h2>
 <p>Write to <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>. That address
 reaches Denver Delorino, who makes Nanbit, and it is the only route — there is
 no support desk and no ticketing system behind it.</p>
@@ -817,8 +812,10 @@ your account and its backup if you have one, the purchase records described
 above, and any email you have sent us. Your habits are on your phone, where you
 can see, change and delete them yourself.
 For anything else, write to us.</p>
+</section>
 
-<h2>How long data is kept</h2>
+<section class="card">
+<h2 data-short="How long">How long data is kept</h2>
 <p>Data on your phone is kept until you delete it, reset, or remove the app; a
 copy in your phone's own backup is kept under your backup settings (section 4).
 Records you delete inside the app stay in the database file until you reset or
@@ -836,7 +833,9 @@ financial record-keeping.</p>
 <!-- Added 25 September 2026, not yet published, with section 5. -->
 <p>An email you send us, a bug report, an idea or anything else, is kept in our
 inbox until we delete it, and you can ask us to.</p>
+</section>
 
+<section class="card">
 <h2>Children</h2>
 <!--
   Rewritten 23 September 2026, three times. It said Nanbit "collects no name, no
@@ -855,17 +854,21 @@ the only information it sends off the phone is the identifiers and subscription
 status described in section 1 and — after a crash while it is starting up — the
 text of the error. Signing in, which is optional, shares an email address and a
 name with Nanbit's server and backs up the habits (section 6).</p>
+</section>
 
-<h2>Changes to this policy</h2>
+<section class="card">
+<h2 data-short="Changes">Changes to this policy</h2>
 <p>If this policy changes, the date at the top changes with it. That date is
 the whole record. There is no notice: Nanbit does not send email, and promising
 a notice we would not send would be worse than saying so.</p>
+</section>
 
+<section class="card">
 <h2>Contact</h2>
 <p>Questions, or a request about your data:
 <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>.</p>
+</section>
 
-<hr>
 <footer>
   <p>Nanbit — <a href="support.html">Support</a> · Privacy Policy · <a href="terms.html">Terms of Use</a></p>
 </footer>

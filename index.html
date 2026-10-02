@@ -4,43 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit</title>
-<style>
-  :root {
-    color-scheme: light dark;
-    --ink: #1B1B1A;
-    --muted: #5C5A55;
-    --rule: #E2DFD8;
-    --bg: #FBFAF7;
-    --accent: #D85A30;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #F2F0EB;
-      --muted: #A8A49C;
-      --rule: #322F2B;
-      --bg: #1B1B1A;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 40px 20px 96px;
-    background: var(--bg);
-    color: var(--ink);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 44rem; margin: 0 auto; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
-  p { margin: 0 0 1rem; }
-  ul { padding-left: 1.2rem; }
-  li { margin-bottom: 0.6rem; }
-  a { color: var(--accent); }
-  .dateline { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
-</style>
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F1C19" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Nanbit is a habit tracker for iPhone.">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="stylesheet" href="nanbit.css">
 </head>
 <body>
-<main>
+<!--
+  Redesigned and published 2 October 2026: drawn with nanbit.css in the app's
+  own colors. The two paragraphs are unchanged. The phone is CSS, hidden from
+  screen readers, and shows the Today screen with made-up habits.
+-->
+<header class="bar wide">
+  <div class="bar-in">
+    <a class="brand" href="index.html"><img src="icon.svg" alt="" width="30" height="30">Nanbit</a>
+    <nav class="seg" aria-label="Pages">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+<main class="home">
+<div class="stage">
+<div class="hero">
+  <img class="app-icon" src="icon.svg" alt="" width="88" height="88">
   <h1>Nanbit</h1>
   <p class="dateline">A habit tracker, made by Denver Delorino.</p>
   <!--
@@ -55,20 +44,54 @@
     phone, with no account and no analytics about how you use the app. It never
     sends them anywhere itself" until that morning, when it was rewritten for
     Sign in with Apple and a backup to the account. The owner removed sign-in
-    and accounts that evening, so it says again what the app does. Like the
-    other pages, it goes live on the day 1.1 is submitted for review (README,
-    the 1.1 checklist).
+    and accounts that evening, so it says again what the app does.
   -->
   <p>You add a few habits, pick which days each one is due, and tick them off.
-<!-- Changed 2 October 2026, not yet published: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
+<!-- Changed 2 October 2026: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
   Nanbit keeps your streaks and shows a calendar of what you have done. It keeps
   your habits on your phone, with no analytics about how you use the app. You
   can sign in to back them up for free; you never have to.</p>
-  <ul>
-    <li><a href="support.html">Support</a></li>
-    <li><a href="privacy.html">Privacy policy</a></li>
-    <li><a href="terms.html">Terms of use</a></li>
-  </ul>
+</div>
+
+<div class="phone" aria-hidden="true">
+  <div class="screen">
+    <div class="m-day">Friday, October 2</div>
+    <div class="m-greet">Good morning</div>
+    <div class="m-card m-progress">
+      <span>2 of 4 done</span>
+      <div class="m-track"><i style="width:50%"></i></div>
+    </div>
+    <div class="m-card">
+      <div class="m-row t-sky">
+        <div class="m-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H19v-5"/></svg></div>
+        <div class="m-name">Read</div>
+        <div class="m-tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      </div>
+      <div class="m-row t-teal">
+        <div class="m-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 8.5v6M8 21l4-6.5 4 6.5M7 11.5l5-3 5 3"/></svg></div>
+        <div class="m-name">Stretch</div>
+        <div class="m-tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      </div>
+      <div class="m-row t-orange done">
+        <div class="m-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></div>
+        <div class="m-name">Morning walk</div>
+        <div class="m-tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      </div>
+      <div class="m-row t-jade done">
+        <div class="m-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.2 4.2 6 7.2 6 11a6 6 0 0 1-12 0c0-3.8 2.8-6.8 6-11z"/></svg></div>
+        <div class="m-name">Water</div>
+        <div class="m-tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<nav class="links" aria-label="More">
+  <a href="support.html"><span><span class="t">Support</span><span class="d">Questions, and how to reach us</span></span></a>
+  <a href="privacy.html"><span><span class="t">Privacy policy</span><span class="d">What is kept, and what leaves your phone</span></span></a>
+  <a href="terms.html"><span><span class="t">Terms of use</span><span class="d">The terms for using Nanbit</span></span></a>
+</nav>
 </main>
 </body>
 </html>

@@ -4,58 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit — Support</title>
-<style>
-  :root {
-    color-scheme: light dark;
-    --ink: #1B1B1A;
-    --muted: #5C5A55;
-    --rule: #E2DFD8;
-    --bg: #FBFAF7;
-    --accent: #D85A30;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #F2F0EB;
-      --muted: #A8A49C;
-      --rule: #322F2B;
-      --bg: #1B1B1A;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 40px 20px 96px;
-    background: var(--bg);
-    color: var(--ink);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 44rem; margin: 0 auto; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
-  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.5rem 0 0.6rem; }
-  h3 { font-size: 1.05rem; margin: 1.8rem 0 0.4rem; }
-  p, li { margin: 0 0 1rem; }
-  ul { padding-left: 1.2rem; }
-  li { margin-bottom: 0.6rem; }
-  a { color: var(--accent); }
-  strong { font-weight: 600; }
-  .dateline { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
-  .lede { font-size: 1.1rem; }
-  .contact {
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin: 2rem 0;
-  }
-  .contact p:last-child { margin-bottom: 0; }
-  hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
-  footer { color: var(--muted); font-size: 0.9rem; }
-  footer a { color: inherit; }
-</style>
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F1C19" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="stylesheet" href="nanbit.css">
+<script src="nanbit.js" defer></script>
 </head>
 <body>
+<!--
+  Redesigned and published 2 October 2026: the page is drawn with nanbit.css in
+  the app's own colors, and its sentences are unchanged by that. Every comment
+  below that says "not yet published" or "unpublished" went live that day.
+-->
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="index.html"><img src="icon.svg" alt="" width="30" height="30">Nanbit</a>
+    <nav class="seg" aria-label="Pages">
+      <a href="support.html" aria-current="page">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
 <main>
-
+<div class="hero">
 <h1>Nanbit Support</h1>
 <!--
   This page carries no date, and that is a decision rather than an omission.
@@ -90,6 +62,7 @@ which days each one is due, and tick them off. It keeps your streaks, shows a
 calendar of what you have done, and reminds you if you ask it to. Your habits
 are kept on your phone. You can sign in with Apple or Google to back them up for
 free, and you never have to.</p>
+</div>
 
 <div class="contact">
   <p><strong>Need help?</strong> Write to
@@ -102,9 +75,12 @@ free, and you never have to.</p>
   cannot.</p>
 </div>
 
-<h2>Questions people ask first</h2>
+<section class="card faq">
+<h2 data-short="Questions">Questions people ask first</h2>
 
-<h3>Where is my data, and what happens if I lose my phone?</h3>
+<details>
+<summary><h3>Where is my data, and what happens if I lose my phone?</h3></summary>
+<div class="answer">
 <!-- Changed 2 October 2026, not yet published: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
 <p>Your habits are kept on the phone. If you have signed in, Nanbit also keeps
 a backup of them on its server, and signing in on the new phone brings them
@@ -113,8 +89,11 @@ hold a copy; the
 <a href="privacy.html">privacy policy</a> says what is known about that on each
 platform. If the phone is lost and there is no backup of it, the habits on it
 are gone.</p>
-
-<h3>Can I move my habits to a new phone?</h3>
+</div>
+</details>
+<details>
+<summary><h3>Can I move my habits to a new phone?</h3></summary>
+<div class="answer">
 <!--
   Scoped on 13 September 2026, and its provenance corrected the same day.
 
@@ -189,8 +168,11 @@ device", and Nanbit keeps its database in the app's own storage, with nothing
 keeping it out of a backup or a transfer. We have not yet watched this happen
 with Nanbit, so check your habits on the new phone before you erase the old
 one.</p>
-
-<h3>I subscribed, but Nanbit says I am on the free tier.</h3>
+</div>
+</details>
+<details>
+<summary><h3>I subscribed, but Nanbit says I am on the free tier.</h3></summary>
+<div class="answer">
 <!--
   Corrected 13 September 2026. The answer used to name Google Play alongside
   Apple and send an Android reader to check their store account -- describing a
@@ -233,8 +215,11 @@ are signed into the same Apple Account that made the purchase.</p>
 Nanbit Pro is not on sale yet, nothing can have been bought through Nanbit on
 that phone, so a restore has nothing to find and will tell you so. Everything
 free stays free.</p>
-
-<h3>What does Pro actually unlock?</h3>
+</div>
+</details>
+<details>
+<summary><h3>What does Pro actually unlock?</h3></summary>
+<div class="answer">
 <!--
   Corrected 13 September 2026. This used to end "Everything you have already
   tracked stays visible and editable whether or not you subscribe" -- directly
@@ -409,8 +394,11 @@ your iPhone shows its own short message saying so. Trying colors on the Nanbit
 Pro screen never changes it. If a subscription ends, the icon goes back to
 orange, and the one you chose comes back if you subscribe again. The screen
 Nanbit opens with keeps the orange icon.</p>
-
-<h3>My reminders are not arriving.</h3>
+</div>
+</details>
+<details>
+<summary><h3>My reminders are not arriving.</h3></summary>
+<div class="answer">
 <p>Three things to check, in order:</p>
 <ul>
   <li>Your phone's own notification settings — on iPhone, <strong>Settings →
@@ -461,8 +449,11 @@ Nanbit opens with keeps the orange icon.</p>
     open Nanbit. Whether any of this works has not yet been checked on a phone,
     so a reminder may still arrive until you next open Nanbit.</li>
 </ul>
-
-<h3>Why does a habit's name appear on my lock screen?</h3>
+</div>
+</details>
+<details>
+<summary><h3>Why does a habit's name appear on my lock screen?</h3></summary>
+<div class="answer">
 <!-- Changed 26 September 2026, not yet published: the Lock Screen widget
   added. NanbitLock's rectangle names up to two habits still to do
   (lockTimeline, src/widget/faces.ts), marked privacySensitive
@@ -500,7 +491,11 @@ Screen widgets, not only Nanbit's. Or remove the widget.</p>
   delete that keeps a habit's past days: src/lib/habitDeletion.ts for the
   words, countListedHabits in src/db/repo.ts for the limit.
 -->
-<h3>What happens when I delete a habit?</h3>
+</div>
+</details>
+<details>
+<summary><h3>What happens when I delete a habit?</h3></summary>
+<div class="answer">
 <!-- Changed 24 September 2026, not yet published: "History and Stats" became
   "History and Progress" when the owner renamed the Stats tab. -->
 <!-- Changed 26 September 2026, not yet published: "the widget" became "the
@@ -514,8 +509,11 @@ widget set to that one habit asks you to choose another. Its
 past days stay in History and Progress, marked <strong>Deleted</strong>, and can no
 longer be ticked. A deleted habit does not count toward the free limit of five, so
 deleting one makes room for another. Deleting cannot be undone.</p>
-
-<h3>Can I edit a day I forgot to tick?</h3>
+</div>
+</details>
+<details>
+<summary><h3>Can I edit a day I forgot to tick?</h3></summary>
+<div class="answer">
 <!--
   Changed 26 September 2026, not yet published. It said "Yes, for the last
   week. Open the day on the History tab and tick the habits there. Days older
@@ -533,8 +531,11 @@ deleting one makes room for another. Deleting cannot be undone.</p>
 <p>Yes. Open the day on the History tab and tick the habits there. Without Nanbit
 Pro you can change today and the week before it; older days can be looked at,
 but not changed. Nanbit Pro can change any past day.</p>
-
-<h3>How do I delete everything?</h3>
+</div>
+</details>
+<details>
+<summary><h3>How do I delete everything?</h3></summary>
+<div class="answer">
 <!--
   Corrected 13 September 2026. "Returns the app to a fresh install" was false,
   and "Removing the app does the same thing" was false in the other direction.
@@ -574,8 +575,11 @@ not forget that you once allowed notifications.</p>
   src/lib/wipe.ts). -->
 <p><strong>Removing the app</strong> clears more than that, the widgets' copy
 included. Neither reaches a backup your phone has already made.</p>
-
-<h3>How do I cancel a subscription?</h3>
+</div>
+</details>
+<details>
+<summary><h3>How do I cancel a subscription?</h3></summary>
+<div class="answer">
 <!-- Changed 25 September 2026, not yet published: "Cancelling" became
   "Canceling", the owner's American spelling. -->
 <!--
@@ -603,15 +607,21 @@ you two days before the trial ends; You → Reminders lists it under Free trial,
 with its day and time. Once you have canceled, Nanbit takes that
 reminder back the next time it opens and hears from the store; if you cancel and
 do not open Nanbit, it still arrives.</p>
+</div>
+</details>
+</section>
 
-<h2>Reporting a bug</h2>
+<section class="card">
+<h2 data-short="Report a bug">Reporting a bug</h2>
 <p>Write to <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a> with what you did,
 what you expected, and what happened instead. The commit shown under
 <strong>You → About Nanbit</strong> is the single most useful line to include:
 two different builds can carry the same version number, and the commit tells
 them apart.</p>
+</section>
 
-<h2>Deleting your account</h2>
+<section class="card">
+<h2 data-short="Delete account">Deleting your account</h2>
 <!-- Changed 2 October 2026, not yet published: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
 <p>If you signed in, you can delete your account and its backup in the app:
 <strong>You → Signed in with Apple</strong> (or Google) <strong>→ Delete
@@ -620,14 +630,16 @@ account</strong>. If you no longer have the app, write to
 email address your account uses, and we will delete the account and its backup.
 The <a href="privacy.html">privacy policy</a> says what deleting reaches and what
 it cannot.</p>
+</section>
 
+<section class="card">
 <h2>Privacy</h2>
 <p>Nanbit runs no analytics about how you use the app, and an account is
 optional. It keeps your habits on your phone, and sends them to its server only
 if you sign in to back them up. Everything that is stored, and everything that
 leaves the phone, is in the <a href="privacy.html">privacy policy</a>.</p>
+</section>
 
-<hr>
 <footer>
   <p>Nanbit — Support · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
 </footer>

@@ -1,0 +1,442 @@
+/*
+ * The hosted pages, drawn the way the app is drawn: the warm cream screen with
+ * white cards on it (a warm dark grey with lighter grey cards in dark), 20pt
+ * corners, three weights (heavy titles, semibold names and buttons, regular
+ * body), no shadow but the app icon's, and the orange used only for what is
+ * current and for the main button. The values are src/theme/tokens.ts's, the
+ * Orange theme's: change one there and change it here.
+ *
+ * Every text color reaches 4.5:1 on the surface it sits on, in both schemes.
+ */
+:root {
+  color-scheme: light dark;
+  --bg: #F6F1E9;
+  --card: #FFFFFF;
+  --raised: #FFFFFF;
+  --fill: #EFE9DF;
+  --fill-strong: #D6CDC0;
+  --track: #E5DDCF;
+  --hair: rgba(60, 45, 30, 0.16);
+  --ink: #2C2C2A;
+  --ink2: #55534E;
+  --ink3: #6A6862;
+  --accent: #D85A30;
+  --accent-deep: #C2512B;
+  --accent-text: #B4471F;
+  --accent-soft: #FAEEDA;
+  --on-accent-soft: #854F0B;
+  --on-solid: #FFFFFF;
+  --icon-shadow: rgba(0, 0, 0, 0.18);
+  --bar-h: 56px;
+  --r-surface: 20px;
+  --r-card: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1F1C19;
+    --card: #2E2A26;
+    --raised: #4A443D;
+    --fill: #3A352F;
+    --fill-strong: #4E473F;
+    --track: #35302A;
+    --hair: rgba(255, 240, 225, 0.11);
+    --ink: #F1EFE8;
+    --ink2: #BDB9AF;
+    --ink3: #A5A197;
+    --accent-text: #F2906A;
+    --accent-soft: #3A2A16;
+    --on-accent-soft: #E9B872;
+    --icon-shadow: rgba(0, 0, 0, 0.5);
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+strong { font-weight: 600; }
+em { font-style: italic; }
+code {
+  font: 0.86em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--fill);
+  padding: 0.12em 0.4em;
+  border-radius: 6px;
+}
+a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+a:hover { text-decoration-color: currentColor; }
+a:focus-visible, summary:focus-visible, .toc a:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ------------------------------------------------------------ the top bar */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--bar-h);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: saturate(1.5) blur(16px);
+  backdrop-filter: saturate(1.5) blur(16px);
+  border-bottom: 1px solid var(--hair);
+}
+.bar-in {
+  max-width: 46rem;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
+
+/* The three pages, as the app's segmented control: the current one raised. */
+.seg {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--track);
+  border-radius: 13px;
+}
+.seg a {
+  padding: 6px 13px;
+  border-radius: 10px;
+  color: var(--ink2);
+  font-size: 0.875rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.seg a:hover { color: var(--ink); }
+.seg a[aria-current="page"] {
+  background: var(--raised);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------- the layout */
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 28px 16px 72px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.dateline {
+  margin: 0 0 20px;
+  color: var(--ink3);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.lede {
+  margin: 0 0 8px;
+  color: var(--ink2);
+  font-size: 1.12rem;
+  line-height: 1.6;
+}
+.hero { margin-bottom: 20px; }
+
+/* "On this page": chips under the bar, the one in view solid orange. */
+.toc {
+  position: sticky;
+  top: var(--bar-h);
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  margin: 0 -16px 16px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--bg);
+}
+.toc::-webkit-scrollbar { display: none; }
+.toc a {
+  flex: none;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.toc a:hover { color: var(--ink); }
+.toc a.on { background: var(--accent-deep); color: var(--on-solid); }
+
+/* A section is a card, as a group of rows is on the You tab. */
+.card {
+  margin: 0 0 14px;
+  padding: 22px 22px 8px;
+  background: var(--card);
+  border-radius: var(--r-surface);
+  scroll-margin-top: calc(var(--bar-h) + 64px);
+}
+.card.tint { background: var(--accent-soft); }
+.card.tint a { color: var(--on-accent-soft); }
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.card h3 {
+  margin: 1.6rem 0 0.5rem;
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.card h2 + h3 { margin-top: 0.4rem; }
+.card p { margin: 0 0 1rem; }
+.card ul { margin: 0 0 1rem; padding: 0; list-style: none; }
+.card li { position: relative; margin: 0 0 0.7rem; padding-left: 1.2rem; }
+.card li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink3);
+  opacity: 0.7;
+}
+.card.tint li::before { background: var(--on-accent-soft); }
+
+/* The support page's questions: one row each, opening in place. */
+.card.faq { padding-bottom: 10px; }
+.faq details { border-top: 1px solid var(--hair); }
+.faq details:first-of-type { border-top: 0; }
+.faq summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary h3 { margin: 0; font-size: 1.04rem; font-weight: 600; }
+.faq summary::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid var(--ink3);
+  border-bottom: 2px solid var(--ink3);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s ease;
+}
+.faq details[open] > summary::after { transform: rotate(-135deg) translate(-2px, -1px); }
+@media (prefers-reduced-motion: reduce) { .faq summary::after { transition: none; } }
+.faq .answer { padding: 0 0 6px; }
+.faq .answer > :first-child { margin-top: 0; }
+
+/* Who to write to. */
+.contact {
+  margin: 0 0 14px;
+  padding: 22px;
+  background: var(--accent-soft);
+  border-radius: var(--r-surface);
+}
+.contact p { margin: 0 0 0.8rem; }
+.contact p:last-child { margin-bottom: 0; }
+.contact a { color: var(--on-accent-soft); font-weight: 600; white-space: nowrap; }
+.contact strong { color: var(--ink); }
+
+/* The foot. */
+footer {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 8px 16px 72px;
+  color: var(--ink3);
+  font-size: 0.9rem;
+}
+footer p { margin: 0; }
+footer a { color: var(--ink2); }
+
+/* ------------------------------------------------------------ the landing */
+
+.home { max-width: 60rem; }
+.home .hero {
+  position: relative;
+  margin: 0 0 8px;
+  padding: 24px 0 8px;
+}
+.home .hero h1 { font-size: clamp(2.4rem, 11vw, 3.6rem); }
+.home .hero .dateline {
+  margin-bottom: 14px;
+  font-size: 1.15rem;
+  color: var(--ink2);
+}
+.home .hero p { max-width: 34rem; }
+.app-icon {
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px var(--icon-shadow);
+}
+.stage { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 52rem) {
+  .stage { grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
+}
+
+/* The Today screen, drawn in CSS, as the app draws it. */
+.phone {
+  justify-self: center;
+  width: min(100%, 300px);
+  padding: 10px;
+  background: var(--ink);
+  border-radius: 44px;
+}
+.screen {
+  padding: 22px 14px 18px;
+  background: var(--bg);
+  border-radius: 34px;
+}
+.m-day { margin: 0 4px 2px; color: var(--ink3); font-size: 0.78rem; line-height: 1.3; }
+.m-greet {
+  margin: 0 4px 14px;
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.m-card { padding: 14px; background: var(--card); border-radius: var(--r-surface); }
+.m-progress { margin-bottom: 12px; }
+.m-progress span { display: block; margin-bottom: 8px; font-size: 0.82rem; font-weight: 600; }
+.m-track { height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; }
+.m-track i { display: block; height: 100%; border-radius: 4px; background: var(--accent-deep); }
+.m-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 0;
+  border-top: 1px solid var(--hair);
+}
+.m-row:first-child { border-top: 0; padding-top: 2px; }
+.m-row:last-child { padding-bottom: 2px; }
+.m-tile {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-card);
+  background: var(--tint);
+  color: var(--ink-c);
+}
+.m-tile svg { width: 20px; height: 20px; }
+.m-name { flex: 1; font-size: 0.95rem; font-weight: 600; line-height: 1.2; }
+.m-tick {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--fill-strong);
+  display: grid;
+  place-items: center;
+}
+.m-tick svg { width: 14px; height: 14px; display: none; }
+.m-row.done .m-tick { background: var(--tick); border-color: var(--tick); }
+.m-row.done .m-tick svg { display: block; }
+.m-row.done .m-name { color: var(--ink2); }
+.t-orange { --tint: #FAEEDA; --ink-c: #854F0B; --tick: #C2512B; }
+.t-jade { --tint: #E4F4EC; --ink-c: #306B53; --tick: #398466; }
+.t-sky { --tint: #E5F1FD; --ink-c: #376284; --tick: #457BA6; }
+.t-teal { --tint: #E1F4F6; --ink-c: #1A6A70; --tick: #1B828B; }
+@media (prefers-color-scheme: dark) {
+  .t-orange { --tint: #3A2A16; --ink-c: #E9B872; }
+  .t-jade { --tint: #183428; --ink-c: #8AD4B3; }
+  .t-sky { --tint: #1B3040; --ink-c: #91C8F6; }
+  .t-teal { --tint: #103336; --ink-c: #78D2DB; }
+  .phone { background: var(--fill-strong); }
+}
+
+/* Where to go: three rows in one card. */
+.links {
+  margin: 36px 0 0;
+  background: var(--card);
+  border-radius: var(--r-surface);
+  overflow: hidden;
+}
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  color: var(--ink);
+  text-decoration: none;
+  border-top: 1px solid var(--hair);
+}
+.links a:first-child { border-top: 0; }
+.links a:hover { background: var(--fill); }
+.links .t { display: block; font-weight: 600; line-height: 1.3; }
+.links .d { display: block; margin-top: 2px; color: var(--ink2); font-size: 0.9rem; line-height: 1.4; }
+.links a::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-right: 2px;
+  border-right: 2px solid var(--ink3);
+  border-top: 2px solid var(--ink3);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 400px) {
+  .seg a { padding: 6px 10px; font-size: 0.82rem; }
+  .brand { font-size: 1rem; }
+  .card, .contact { padding: 18px 18px 6px; }
+  .contact { padding-bottom: 18px; }
+}
+@media print {
+  .bar, .toc { display: none; }
+  body { background: #fff; color: #000; }
+  .card, .contact { background: none; border: 1px solid #ccc; break-inside: avoid-page; }
+  .faq details > .answer { display: block; }
+}
+
+.bar.wide .bar-in { max-width: 60rem; }
