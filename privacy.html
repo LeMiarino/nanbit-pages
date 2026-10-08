@@ -273,12 +273,24 @@ Nanbit can read:</p>
     which WidgetKit keeps with the widget; the app writes nothing of it. Read
     from the code, not observed on a phone.
 -->
+<!--
+  Changed 8 October 2026, for the redrawn widgets (version 1.1.1): the free
+  widget's copy also holds how far each habit is toward its goal, as a number
+  (`shares`, src/widget/timeline.ts), still without names; the Pro widgets'
+  holds each habit's longest streak and its last two weeks, how much of each
+  day of the week and of the month so far was done, and which days were
+  perfect (listTimeline, habitTimeline, streakTimeline and monthTimeline in
+  src/widget/faces.ts). Publish with the build that carries them.
+-->
 <p><strong>A copy for the widgets, on iPhone.</strong> Nanbit also keeps a small
 copy for its widgets, even if you never add one. It is outside the database,
 in storage that only Nanbit and its widgets can read. For the free Today widget it says which habits are due and which
 are done, today and for the next week, as marks and
-totals, without the habits' names. With Nanbit Pro it also holds, for the Pro
-widgets, each habit's name, color and icon, its count and its streaks, the
+totals, with how far each habit is toward its goal, without the habits' names. With Nanbit Pro it also holds, for the Pro
+widgets, each habit's name, color and icon, its count and its streaks, its
+longest streak and which of the last two weeks' days it was done on, how much
+of each day of this week and of this month so far was done and which days were
+perfect, the
 app's color, and the identifiers of each day's reminders, for each habit and
 for the daily reminder, which Nanbit makes from a habit's internal identifier
 and the date, so that a tick on a widget can take them back. Once the store has
