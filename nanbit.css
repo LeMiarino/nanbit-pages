@@ -1,32 +1,34 @@
 /*
- * The hosted pages, drawn the way the app is drawn: the warm cream screen with
- * white cards on it (a warm dark grey with lighter grey cards in dark), 20pt
- * corners, three weights (heavy titles, semibold names and buttons, regular
- * body), no shadow but the app icon's, and the orange used only for what is
- * current and for the main button. The values are src/theme/tokens.ts's, the
- * Orange theme's: change one there and change it here.
+ * The hosted pages, drawn the way the app is drawn: Cold Steel since 8 October
+ * 2026, a cool grey screen with white cards on it (near-black with graphite
+ * cards in dark), 20pt corners, three weights (heavy titles, semibold names and
+ * buttons, regular body), no shadow but the app icon's, and the steel used only
+ * for what is current and for the main button. The values are
+ * src/theme/tokens.ts's, the Steel theme's (the `orange` key): change one there
+ * and change it here. In dark, as in the app, the solid steel is lit and the
+ * words on it are near-black. *Until then the warm cream and the orange.*
  *
  * Every text color reaches 4.5:1 on the surface it sits on, in both schemes.
  */
 :root {
   color-scheme: light dark;
-  --bg: #F6F1E9;
+  --bg: #EFF0F2;
   --card: #FFFFFF;
   --raised: #FFFFFF;
-  --fill: #EFE9DF;
-  --fill-strong: #D6CDC0;
-  --track: #E5DDCF;
-  --hair: rgba(60, 45, 30, 0.16);
-  --ink: #2C2C2A;
-  --ink2: #55534E;
-  --ink3: #6A6862;
-  --accent: #D85A30;
-  --accent-deep: #C2512B;
-  --accent-text: #B4471F;
-  --accent-soft: #FAEEDA;
-  --on-accent-soft: #854F0B;
+  --fill: #E6E8EB;
+  --fill-strong: #C7CBD1;
+  --track: #DEE1E5;
+  --hair: rgba(20, 24, 30, 0.15);
+  --ink: #16181B;
+  --ink2: #474B52;
+  --ink3: #5C6169;
+  --accent: #546477;
+  --accent-deep: #475567;
+  --accent-text: #546477;
+  --accent-soft: #E1E8F0;
+  --on-accent-soft: #3D4B5B;
   --on-solid: #FFFFFF;
-  --icon-shadow: rgba(0, 0, 0, 0.18);
+  --icon-shadow: rgba(5, 12, 24, 0.2);
   --bar-h: 56px;
   --r-surface: 20px;
   --r-card: 12px;
@@ -34,20 +36,23 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1F1C19;
-    --card: #2E2A26;
-    --raised: #4A443D;
-    --fill: #3A352F;
-    --fill-strong: #4E473F;
-    --track: #35302A;
-    --hair: rgba(255, 240, 225, 0.11);
-    --ink: #F1EFE8;
-    --ink2: #BDB9AF;
-    --ink3: #A5A197;
-    --accent-text: #F2906A;
-    --accent-soft: #3A2A16;
-    --on-accent-soft: #E9B872;
-    --icon-shadow: rgba(0, 0, 0, 0.5);
+    --bg: #0F1113;
+    --card: #181B1F;
+    --raised: #2D3238;
+    --fill: #23272C;
+    --fill-strong: #383D44;
+    --track: #282C32;
+    --hair: rgba(220, 225, 232, 0.12);
+    --ink: #E9EBEE;
+    --ink2: #B8BCC3;
+    --ink3: #979CA4;
+    --accent: #A3B1C2;
+    --accent-deep: #A3B1C2;
+    --accent-text: #A3B1C2;
+    --accent-soft: #252E39;
+    --on-accent-soft: #BCC8D6;
+    --on-solid: #0F1113;
+    --icon-shadow: rgba(0, 0, 0, 0.55);
   }
 }
 
