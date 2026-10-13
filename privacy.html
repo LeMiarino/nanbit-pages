@@ -4,11 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit — Privacy Policy</title>
-<meta name="theme-color" content="#EFF0F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1113" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0F1113">
+<meta name="description" content="What Nanbit keeps on your iPhone, what leaves it, and how to delete everything.">
+<link rel="canonical" href="https://lemiarino.github.io/nanbit-pages/privacy.html">
+<link rel="apple-touch-icon" href="touch-icon.png?v=4d1a9c582b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nanbit">
+<meta property="og:title" content="Nanbit Privacy Policy">
+<meta property="og:description" content="What Nanbit keeps on your iPhone, what leaves it, and how to delete everything.">
+<meta property="og:url" content="https://lemiarino.github.io/nanbit-pages/privacy.html">
+<meta property="og:image" content="https://lemiarino.github.io/nanbit-pages/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="One bit a day. Small habits, kept.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="icon.svg?v=7e4065ee74">
-<link rel="stylesheet" href="nanbit.css?v=0df4eadc7d">
-<script src="nanbit.js?v=3246d5fe0a" defer></script>
+<link rel="stylesheet" href="nanbit.css?v=96a0023c73">
+<script src="nanbit.js?v=59819d7d9a" defer></script>
 </head>
 <body>
 <!--
@@ -36,7 +48,7 @@
   pages to be published, and the date was moved to that day in the commit that
   published it.
 -->
-<p class="dateline">Effective 2 October 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
+<p class="dateline">Effective 13 October 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
 <!--
   What this rewrite replaced, recorded rather than silently deleted.
@@ -93,7 +105,7 @@ and how to delete everything.</p>
     phone</strong>. Nanbit sends them nowhere unless you sign in to back them
     up. If your phone backs itself up, <strong>that backup can include
     them</strong> — see section 4 below.</li>
-  <li><strong>Signing in is optional</strong>, with Apple on iPhone or with
+  <li><strong>Signing in is optional</strong>, with Apple or with
     Google. If you sign in, your habits, completions and settings are backed up
     to Nanbit's server, run by <strong>Supabase in Singapore</strong>, and
     deleting your account deletes the backup — see section 6.</li>
@@ -105,9 +117,8 @@ and how to delete everything.</p>
     you ever subscribe. It identifies this installation and this phone, and
     carries nothing about your habits. A version that is not configured to sell
     subscriptions does not contact RevenueCat at all.</li>
-  <li>If you buy a Nanbit subscription, <strong>the store you buy it through
-    processes the payment</strong>: Apple on iPhone, Google Play on
-    Android.</li>
+  <li>If you buy a Nanbit subscription, <strong>Apple takes the
+    payment</strong>, through the App Store.</li>
   <li>If Nanbit crashes while it is starting up, it may ask Expo's update service
     for a corrected version of its own code, and that request includes the
     error message. It does not check at any other time.</li>
@@ -282,7 +293,7 @@ Nanbit can read:</p>
   perfect (listTimeline, habitTimeline, streakTimeline and monthTimeline in
   src/widget/faces.ts). Publish with the build that carries them.
 -->
-<p><strong>A copy for the widgets, on iPhone.</strong> Nanbit also keeps a small
+<p><strong>A copy for the widgets.</strong> Nanbit also keeps a small
 copy for its widgets, even if you never add one. It is outside the database,
 in storage that only Nanbit and its widgets can read. For the free Today widget it says which habits are due and which
 are done, today and for the next week, as marks and
@@ -343,16 +354,15 @@ its own backup, and an email you choose to send us.</p>
   actually tests. That condition is apiKey() in src/purchases/revenuecat.ts,
   which reads this build's own key out of the Expo config: configure() returns
   false without one, and every other call waits on it, so a build with no key
-  for its platform never contacts RevenueCat. Every Android build so far has
-  extra.revenueCatApiKeyAndroid null and has contacted it never.
+  never contacts RevenueCat.
 
   Until 13 September 2026 this said the request happens "wherever Nanbit sells
   subscriptions". That was true, and it was keyed to a condition that exists
   nowhere in the code -- nothing anywhere branches on whether anything is for
   sale -- so nothing in the repository could have caught it going wrong. How a
-  version is built is the condition that actually decides it, it is checkable,
-  and it stays true when Android sales start. src/platform/pages.test.ts pins
-  the wording here and on the About screen, which says the same thing in the app.
+  version is built is the condition that actually decides it, and it is
+  checkable. src/platform/pages.test.ts pins the wording here and on the About
+  screen, which says the same thing in the app.
 
   What the request identifies was corrected on 23 September 2026: the page
   named RevenueCat's random installation identifier only. RevenueCat iOS 5.87.1
@@ -379,26 +389,17 @@ any other time.</p>
     with any internet request, your device's IP address.
     <strong>Nothing about your habits is ever included.</strong> It cannot be:
     the app never gives RevenueCat any of your data.</li>
-  <li><strong>If you subscribe</strong>, the store handles the purchase and the
-    payment: Apple on iPhone, Google Play on Android. Buying never gives
-    Nanbit your card details, your Apple Account or Google account, your name or
-    your email address. Each store's handling of your data is covered by its own policy:
-    <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>
-    and <a href="https://policies.google.com/privacy">Google's Privacy
-    Policy</a>.</li>
-  <!--
-    The Google half of "not linked to your name or email" was checked rather
-    than mirrored from Apple's. Play Developer API, SubscriptionPurchase, read
-    11 September 2026: the buyer's email, given name, family name, profile name
-    and profile id are each "Only present for purchases made with 'Subscribe
-    with Google'", which Nanbit's purchases are not.
-  -->
-  <li><strong>RevenueCat</strong>, acting on our behalf, checks the purchase
-    with the store it was made in — Apple or Google Play — and tells the app
+  <li><strong>If you subscribe</strong>, Apple handles the purchase and the
+    payment, through the App Store. Buying never gives Nanbit your card
+    details, your Apple Account, your name or your email address. Apple's
+    handling of your data is covered by
+    <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
+    <li><strong>RevenueCat</strong>, acting on our behalf, checks the purchase
+    with Apple and tells the app
     whether the subscription is active. What is processed is your
     <strong>purchase history</strong> — which product was bought, when, and
     whether it is still active or in a trial — tied to those same identifiers.
-    It is not your Apple Account or Google account, and it is not linked to your
+    It is not your Apple Account, and it is not linked to your
     name or email. RevenueCat's handling of it is covered by
     <a href="https://www.revenuecat.com/privacy">RevenueCat's Privacy Policy</a>.</li>
 </ul>
@@ -425,7 +426,7 @@ rather say so than describe the request as carrying less than it does. Expo's
 handling of it is covered by <a href="https://expo.dev/privacy">Expo's Privacy
 Policy</a>.</p>
 <p>The random identifier here is generated by the app. It is not your Apple
-Account or Google account, and not an advertising identifier.</p>
+Account, and not an advertising identifier.</p>
 
 <h3>3. Links you tap</h3>
 <p>The support, privacy and terms links open your browser at an ordinary web
@@ -434,7 +435,7 @@ it always does.</p>
 
 <h3>4. Your phone's own backup, which Nanbit does not send</h3>
 <!--
-  Scoped to what is established on each platform. iPhone: Apple, "What does
+  What is established. Apple, "What does
   iCloud back up?", support.apple.com/en-us/108770, "Published Date: May 01,
   2025", read 23 September 2026: "iCloud Backup includes app data for the apps
   that you've downloaded on your device." The database is in the app's own
@@ -444,29 +445,23 @@ it always does.</p>
   Group's storage is not stated on any Apple page read, so the widget sentence
   assumes it can.
 
-  Android: expected rather than confirmed. ROADMAP's entry "Does an Android
-  backup carry Nanbit's habits to a new phone?" has the chain and the adb bmgr
-  test that settles it, and src/platform/pages.test.ts pins the scoping so that
-  changing it is deliberate. For a day, 22 to 23 September 2026, a build with
-  sign-in added backup rules through expo-secure-store that would have kept the
-  database out of Android's backup; the package went with sign-in, and no such
-  build was published.
+  Changed 13 October 2026: the page is for iPhone alone (the owner's decision
+  that day), so this section names iCloud Backup and nothing else.
 -->
-<p>If your phone backs itself up — <strong>iCloud Backup</strong> on iPhone,
-<strong>Google's backup</strong> on Android — that backup can contain Nanbit's
+<p>If your iPhone backs itself up with <strong>iCloud Backup</strong>, that
+backup can contain Nanbit's
 database: your habits, completions and settings, and the deleted records
-described above. On iPhone it may also contain the widgets' copy; whether iCloud
+described above. It may also contain the widgets' copy; whether iCloud
 Backup includes it has not been checked, so this policy assumes it can.<!--
   Changed 26 September 2026, not yet published: "the widget's copy" became
   "the widgets' copy", with the Pro widgets and their tick notes. --> Nanbit
-does not send any of it and cannot read it. It goes to your own Apple or Google
-account under your phone's backup settings, and Apple's or Google's privacy
+does not send any of it and cannot read it. It goes to your own Apple
+Account under your iPhone's backup settings, and Apple's privacy
 policy covers it rather than this one.</p>
-<p>What is known differs by platform. <strong>On iPhone</strong>, Apple
+<p>What is known: Apple
 documents that iCloud Backup includes the data of apps you have downloaded, and
-nothing in Nanbit keeps its database out of it. <strong>On Android it is expected
-rather than confirmed</strong>: Nanbit uses Android's standard backup settings,
-which include the app's own storage, but no restore has been tested yet.</p>
+nothing in Nanbit keeps its database out of it. We have not yet watched a
+restore bring Nanbit's habits back.</p>
 <p>So deleting Nanbit clears it from the phone, and <strong>Reset all
 data</strong> clears the database inside it and replaces the widgets' copy<!--
   Changed 26 September 2026, not yet published: "the widget's copy" became
@@ -524,7 +519,7 @@ cover it as they cover purchase records.</p>
   as an optional, free backup with Apple and Google (ROADMAP, "Sign-in
   returns"). Adapted from the account section written and checked on 23
   September 2026 (pages/privacy.html at 7b1b130^), with what changed:
-  Google as well as Apple, Android as well as iPhone, more than one phone
+  Google as well as Apple, more than one phone
   signed in at once, and the Apple credential revoked by Nanbit's server
   function when the account is deleted.
 
@@ -559,13 +554,15 @@ free. Nothing in Nanbit needs an account, and buying or restoring a
 subscription never needs one. If you never sign in, nothing in this section
 happens.</p>
 
-<p><strong>Signing in.</strong> On iPhone you can sign in with Apple or with
-Google, and on Android with Google. Apple asks you whether to share your name
+<p><strong>Signing in.</strong> You can sign in with Apple or with
+Google. Apple asks you whether to share your name
 and your email address; if you choose Hide My Email, Apple gives Nanbit a
 random address that forwards to yours. Google shares your name, your email
 address and your profile picture's address. The one you choose then gives
 Nanbit a sign-in token, and Nanbit sends that token to Supabase, which creates
-your account.</p>
+your account. What Apple and Google each do with a sign-in is covered by
+<a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a> and
+<a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
 
 <p><strong>What your account holds:</strong></p>
 <ul>
@@ -585,8 +582,8 @@ your account.</p>
 backup a couple of seconds after you change something, and again when you leave
 the app. If nothing has changed, nothing is sent. When you sign in, Nanbit
 fetches the backup your account already has. While Nanbit is open it keeps you
-signed in by renewing its sign-in with the server from time to time, and on
-iPhone, when you open it, your iPhone asks Apple whether you still allow Nanbit
+signed in by renewing its sign-in with the server from time to time, and
+when you open it, your iPhone asks Apple whether you still allow Nanbit
 to use Sign in with Apple.</p>
 
 <p><strong>Where it goes, and how.</strong> Everything travels over an encrypted
@@ -729,12 +726,6 @@ trial will go on into a subscription: once it says it will not, as after you
 cancel, Nanbit takes the reminder back the next time it opens and hears from
 the store. Like every
 reminder, it is scheduled on the phone and nothing about it leaves it.</p>
-<p>On Android, reminders rely on two permissions. One lets Nanbit <strong>post
-notifications</strong> (<code>POST_NOTIFICATIONS</code>); Android 13 and later
-ask you for it. The other lets Nanbit <strong>start when the phone does</strong>
-(<code>RECEIVE_BOOT_COMPLETED</code>), so that reminders you have already
-scheduled are set again after a restart. Neither gives Nanbit access to anything
-else on your phone.</p>
 </section>
 
 <section class="card">
@@ -785,10 +776,9 @@ else on your phone.</p>
     phone has already made (section 4).</li>
   <!-- Changed 25 September 2026, not yet published: "Cancelling" became
     "Canceling", the owner's American spelling. -->
-  <li><strong>Manage or cancel a subscription</strong> — on iPhone, open the
-    Settings app, tap your name, then tap Subscriptions; on Android, go to
-    subscriptions in Google Play. Canceling never deletes anything you have
-    tracked.</li>
+  <li><strong>Manage or cancel a subscription</strong> — open the
+    Settings app, tap your name, then tap Subscriptions. Canceling never
+    deletes anything you have tracked.</li>
   <li><strong>Ask us to delete purchase records</strong> — the subscription
     records held by RevenueCat are keyed to the identifiers described in section
     1. If you want them erased, write to
@@ -840,7 +830,7 @@ no longer is. --></p>
 <p>An account and its backup are kept until you delete the account, or until
 we delete it at your request. Supabase's logs and backup copies can outlast it,
 as section 6 describes.</p>
-<p>Purchase records are kept by the store you bought through — Apple or Google —
+<p>Purchase records are kept by Apple
 and by RevenueCat, for as long as needed to support restores, refunds and
 financial record-keeping.</p>
 <!-- Added 25 September 2026, not yet published, with section 5. -->

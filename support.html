@@ -4,11 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit — Support</title>
-<meta name="theme-color" content="#EFF0F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1113" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0F1113">
+<meta name="description" content="Questions about Nanbit, the habit tracker for iPhone, and how to reach the person who makes it.">
+<link rel="canonical" href="https://lemiarino.github.io/nanbit-pages/support.html">
+<link rel="apple-touch-icon" href="touch-icon.png?v=4d1a9c582b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nanbit">
+<meta property="og:title" content="Nanbit Support">
+<meta property="og:description" content="Questions about Nanbit, the habit tracker for iPhone, and how to reach the person who makes it.">
+<meta property="og:url" content="https://lemiarino.github.io/nanbit-pages/support.html">
+<meta property="og:image" content="https://lemiarino.github.io/nanbit-pages/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="One bit a day. Small habits, kept.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="icon.svg?v=7e4065ee74">
-<link rel="stylesheet" href="nanbit.css?v=0df4eadc7d">
-<script src="nanbit.js?v=3246d5fe0a" defer></script>
+<link rel="stylesheet" href="nanbit.css?v=96a0023c73">
+<script src="nanbit.js?v=59819d7d9a" defer></script>
 </head>
 <body>
 <!--
@@ -68,7 +80,7 @@ free, and you never have to.</p>
   <p><strong>Need help?</strong> Write to
   <a href="mailto:delorinodenver@gmail.com">delorinodenver@gmail.com</a>.</p>
   <p>It reaches one person, so a reply normally takes a few days. It helps to
-  include your phone model, its operating-system version, and the version and
+  include your iPhone's model, its iOS version, and the version and
   commit shown under <strong>You → About Nanbit</strong> — that last one
   identifies exactly
   which build you are running, which two identical-looking version numbers
@@ -86,8 +98,8 @@ free, and you never have to.</p>
 a backup of them on its server, and signing in on the new phone brings them
 back. Without signing in, Nanbit sends them nowhere. Your phone's own backup can
 hold a copy; the
-<a href="privacy.html">privacy policy</a> says what is known about that on each
-platform. If the phone is lost and there is no backup of it, the habits on it
+<a href="privacy.html">privacy policy</a> says what is known about that. If the
+phone is lost and there is no backup of it, the habits on it
 are gone.</p>
 </div>
 </details>
@@ -120,10 +132,8 @@ are gone.</p>
     The app opens nanbit.db through SQLiteProvider with no directory of its own,
     and nothing in expo-sqlite sets a backup-exclusion attribute on any file.
 
-  No restore is recorded on any platform. For Android, README's device-only table
-  and ROADMAP's backup entry both record that none has been run. For iPhone,
-  ROADMAP records only that nothing in this repository shows one, under "The
-  phones' own backups: disclosed, scoped by platform".
+  No restore is recorded. ROADMAP records only that nothing in this repository
+  shows one, under "The phones' own backups: disclosed, scoped by platform".
 
   Until this correction, this comment carried "(published 1 May 2025, read
   11 September 2026)", copied from pages/privacy.html without Apple's page being
@@ -133,11 +143,6 @@ are gone.</p>
   a different sentence on a different page, and a read date belongs to a reading,
   not to a quotation. ROADMAP records it with the other assertions nothing can
   check.
-
-  Deliberately silent about Android. README's device-only row says in so many
-  words that this is the answer "pages/support.html still does not give", and
-  the pointer two answers above already sends the reader to the policy, which
-  says what is known on each platform.
 -->
 <!--
   Rewritten twice on 23 September 2026. It sent readers to export and import
@@ -161,7 +166,7 @@ are gone.</p>
 phone, with Apple or Google, and choose <strong>Restore</strong>. Sign in the
 same way you did before: Apple and Google make separate accounts, even for the
 same person.</p>
-<p><strong>On iPhone, you can also set the new phone up from your old one, or
+<p><strong>You can also set the new iPhone up from your old one, or
 from its iCloud backup,</strong> and your habits come along with your other apps' data. Apple
 says iCloud Backup "includes app data for the apps that you've downloaded on your
 device", and Nanbit keeps its database in the app's own storage, with nothing
@@ -173,22 +178,6 @@ one.</p>
 <details>
 <summary><h3>I subscribed, but Nanbit says I am on the free tier.</h3></summary>
 <div class="answer">
-<!--
-  Corrected 13 September 2026. The answer used to name Google Play alongside
-  Apple and send an Android reader to check their store account -- describing a
-  purchase no Android build can make. extra.revenueCatApiKeyAndroid is null
-  (app.json), so apiKey() returns null, configure() returns false before the SDK
-  is touched, and restore() short-circuits to { status: 'nothing' } without
-  contacting any store (src/purchases/revenuecat.ts). The harm was in the last
-  clause: the paywall reports "Nothing to restore on this account." for that
-  short-circuit and for a genuine wrong-account failure alike, so the app's own
-  message appeared to confirm the page's wrong diagnosis.
-
-  The Android half is keyed to what the screen says rather than to the build,
-  so it stays true if Android sales are ever switched on -- the timing problem
-  pages/terms.html records in its own comment: this page is live the moment it
-  is pushed, while a build reaches anyone only when it ships.
--->
 <!--
   Changed 25 September 2026, not yet published: "You → Nanbit Pro → Restore
   purchases" became "You → See plans → Restore purchases". The owner's redesign
@@ -211,10 +200,6 @@ attaches to the Apple Account that bought it, so a restore is all that is needed
 on a reinstall or a new device. There is nothing to sign in to in Nanbit: a
 subscription belongs to your Apple Account. If that does not fix it, check you
 are signed into the same Apple Account that made the purchase.</p>
-<p><strong>On Android</strong>, open that screen and read it first. While it says
-Nanbit Pro is not on sale yet, nothing can have been bought through Nanbit on
-that phone, so a restore has nothing to find and will tell you so. Everything
-free stays free.</p>
 </div>
 </details>
 <details>
@@ -324,12 +309,12 @@ free stays free.</p>
     and a <strong>nudge</strong>: one more reminder at a time you choose, which
     comes only if the habit is still not done. Without Pro each habit has one
     reminder time.</li>
-  <li><strong>Every widget, on iPhone.</strong> The medium and large widgets
+  <li><strong>Every widget.</strong> The medium and large widgets
     that list today's habits, the Lock Screen widgets, and a widget for one habit you choose,
     with its streak (iOS 17 or later). On iOS 17 or later you can tick habits
     right from the Home Screen widgets. Without Pro you have the small Today
     widget.</li>
-  <li><strong>Color themes</strong>, and on iPhone the app's icon in the same
+  <li><strong>Color themes</strong>, and the app's icon in the same
     colors (below).</li>
   <li><strong>Your whole history.</strong> Changing any past day, the Year view
     on History and on a habit's page, and each habit's earlier months on its
@@ -346,7 +331,7 @@ every habit and every completion stays, and only a new habit is refused. Days
 more than a week back can still be looked at, but not changed, and the color
 themes, the Year views and a habit's earlier months are locked again. Each
 habit's first reminder keeps going while its other times and its nudge stop,
-and on iPhone the Pro widgets show a Nanbit Pro face instead of your habits and
+and the Pro widgets show a Nanbit Pro face instead of your habits and
 the app's icon goes back to steel; these three wait until Nanbit is open and
 the store has confirmed the subscription ended. All of it is kept for if you
 subscribe again.</p>
@@ -393,7 +378,7 @@ Pro. If a
 subscription ends, the app goes back to steel, and the color you chose comes
 back if you subscribe again. The introduction stays steel whatever you
 choose.</p>
-<p><strong>The app's icon</strong> comes in the same twelve colors on iPhone,
+<p><strong>The app's icon</strong> comes in the same twelve colors,
 under <strong>You → Make it yours → App icon</strong>. With <strong>Match my
 color</strong> on, as it is to begin with, the icon follows the app's color.
 Choosing an icon yourself turns Match my color off and keeps the icon you chose,
@@ -409,12 +394,9 @@ Nanbit opens with keeps the steel icon.</p>
 <div class="answer">
 <p>Three things to check, in order:</p>
 <ul>
-  <li>Your phone's own notification settings — on iPhone, <strong>Settings →
+  <li>Your iPhone's own notification settings — <strong>Settings →
     Notifications → Nanbit</strong>, where a Focus mode or Scheduled Summary can
-    also hold reminders back. On Android, <strong>Settings → Apps → Nanbit →
-    Notifications</strong>, where the <strong>Reminders</strong> channel has a
-    switch of its own and Do Not Disturb can silence it; the exact path varies by
-    manufacturer.</li>
+    also hold reminders back.</li>
   <!-- Changed 26 September 2026, not yet published: it ended "and each habit
     has one of its own underneath." Nanbit Pro's extra times and nudge came
     that day (reminderTimesFor, src/purchases/limits.ts); a habit's row on the
@@ -470,8 +452,8 @@ Nanbit opens with keeps the steel icon.</p>
   Show Previews governs notifications only. -->
 <p>Because a reminder names the habit it is for. That is your phone displaying a
 notification it scheduled itself — nothing is sent anywhere. To keep names off
-the lock screen, use <strong>Settings → Notifications → Show Previews</strong> on
-iPhone, or your Android phone's lock-screen notification setting.</p>
+the lock screen, use <strong>Settings → Notifications → Show
+Previews</strong>.</p>
 <!-- Changed 26 September 2026, not yet published, after the owner's "Hide
   habit names on the Lock Screen while the phone is locked". Apple's
   "Creating a widget extension" (Hide sensitive content, read that day):
@@ -572,7 +554,7 @@ but not changed. Nanbit Pro can change any past day.</p>
 -->
 <p><strong>You → About Nanbit → Reset all data</strong> erases Nanbit's
 database — every habit, every completion, your settings, and the records you had
-already deleted — and on iPhone empties the copy Nanbit keeps for its widgets,
+already deleted — and empties the copy Nanbit keeps for its widgets,
 including any tick on a widget still waiting for Nanbit. It
 cannot be undone. It stops a little short of a fresh install: a couple of small
 diagnostic files Nanbit keeps for itself are left behind, and your phone does
@@ -600,11 +582,10 @@ included. Neither reaches a backup your phone has already made.</p>
   ends, only for a trial longer than two days that the store says will renew,
   and taken back when Nanbit next hears from the store that it will not.
 -->
-<p>In the store that sold it. On iPhone, <strong>open the Settings app, tap your
-name, then tap Subscriptions</strong>; while you are subscribed, the You tab in
+<p>In your Apple Account: <strong>open the Settings app, tap your
+name, then tap Subscriptions</strong>. While you are subscribed, the You tab in
 Nanbit also has <strong>Manage subscription</strong>, a link to the App Store's
-page for it. On Android, <strong>go to subscriptions in
-Google Play</strong>. Canceling never deletes anything you have tracked.</p>
+page for it. Canceling never deletes anything you have tracked.</p>
 <!-- Changed 26 September 2026, not yet published: "You → Reminders lists it
   under Free trial" added, the owner's answer of that day ("Also list the
   trial's reminder on the Reminders screen"). The row is trialReminderRow

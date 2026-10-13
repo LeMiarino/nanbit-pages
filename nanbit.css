@@ -9,7 +9,17 @@
  * words on it are near-black. *Until then the warm cream and the orange.*
  *
  * Every text color reaches 4.5:1 on the surface it sits on, in both schemes.
+ *
+ * Set in Archivo, the app's own face, since 13 October 2026: four faces cut
+ * from the app's own files (assets/fonts) to the letters these pages use, and
+ * served from here, so reading a page asks no other site for anything. The
+ * license is beside them (fonts/OFL.txt). *Until then the reader's system
+ * font.* The landing page, below, was rebuilt the same day.
  */
+@font-face { font-family: "Archivo"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/archivo-400.v1.woff") format("woff"); }
+@font-face { font-family: "Archivo"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/archivo-600.v1.woff") format("woff"); }
+@font-face { font-family: "Archivo SemiExpanded"; font-weight: 800; font-style: normal; font-display: swap; src: url("fonts/archivo-semiexpanded-800.v1.woff") format("woff"); }
+@font-face { font-family: "Archivo Expanded"; font-weight: 900; font-style: normal; font-display: swap; src: url("fonts/archivo-expanded-900.v1.woff") format("woff"); }
 :root {
   color-scheme: light dark;
   --bg: #EFF0F2;
@@ -32,7 +42,11 @@
   --bar-h: 56px;
   --r-surface: 20px;
   --r-card: 12px;
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font: "Archivo", var(--system);
+  --font-title: "Archivo SemiExpanded", "Archivo", var(--system);
+  --font-display: "Archivo Expanded", "Archivo SemiExpanded", "Archivo", var(--system);
+  --signal: #FF8B55;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -117,9 +131,10 @@ a:focus-visible, summary:focus-visible, .toc a:focus-visible {
   align-items: center;
   gap: 10px;
   color: var(--ink);
+  font-family: var(--font-title);
   font-weight: 800;
   font-size: 1.1rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   text-decoration: none;
 }
 .brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
@@ -156,11 +171,12 @@ main {
 }
 
 .hero h1 {
-  margin: 0 0 8px;
-  font-size: clamp(2rem, 7vw, 2.6rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 6.6vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
 }
 .dateline {
   margin: 0 0 20px;
@@ -217,10 +233,11 @@ main {
 .card.tint a { color: var(--on-accent-soft); }
 .card h2 {
   margin: 0 0 14px;
-  font-size: 1.35rem;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
   font-weight: 800;
   line-height: 1.25;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 .card h3 {
   margin: 1.6rem 0 0.5rem;
@@ -299,33 +316,7 @@ footer {
 footer p { margin: 0; }
 footer a { color: var(--ink2); }
 
-/* ------------------------------------------------------------ the landing */
-
-.home { max-width: 60rem; }
-.home .hero {
-  position: relative;
-  margin: 0 0 8px;
-  padding: 24px 0 8px;
-}
-.home .hero h1 { font-size: clamp(2.4rem, 11vw, 3.6rem); }
-.home .hero .dateline {
-  margin-bottom: 14px;
-  font-size: 1.15rem;
-  color: var(--ink2);
-}
-.home .hero p { max-width: 34rem; }
-.app-icon {
-  display: block;
-  width: 88px;
-  height: 88px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 24px var(--icon-shadow);
-}
-.stage { display: grid; gap: 28px; align-items: center; }
-@media (min-width: 52rem) {
-  .stage { grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
-}
+/* -------------------------------------------------------------- the phone */
 
 /*
  * An iPhone holding the app's own Today screen. The screen is a picture of
@@ -341,6 +332,7 @@ footer a { color: var(--ink2); }
   position: relative;
   justify-self: center;
   width: min(100%, 300px);
+  font-family: var(--system);
   padding: 3px;
   border-radius: 49px;
   background: linear-gradient(135deg, #9A958F 0%, #4A4744 16%, #2B2927 50%, #4A4744 84%, #9A958F 100%);
@@ -404,7 +396,7 @@ footer a { color: var(--ink2); }
   line-height: 1;
   letter-spacing: -0.01em;
 }
-.status .icons { display: flex; align-items: center; gap: 4px; }
+.status .icons-bar { display: flex; align-items: center; gap: 4px; }
 .status svg { display: block; }
 .screen picture, .screen img { display: block; width: 100%; height: 100%; min-height: 0; }
 .home-bar { display: grid; place-items: center; padding-top: 1.5%; }
@@ -414,38 +406,6 @@ footer a { color: var(--ink2); }
   height: 4px;
   border-radius: 999px;
   background: var(--ink);
-}
-
-/* Where to go: three rows in one card. */
-.links {
-  margin: 36px 0 0;
-  background: var(--card);
-  border-radius: var(--r-surface);
-  overflow: hidden;
-}
-.links a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 20px;
-  color: var(--ink);
-  text-decoration: none;
-  border-top: 1px solid var(--hair);
-}
-.links a:first-child { border-top: 0; }
-.links a:hover { background: var(--fill); }
-.links .t { display: block; font-weight: 600; line-height: 1.3; }
-.links .d { display: block; margin-top: 2px; color: var(--ink2); font-size: 0.9rem; line-height: 1.4; }
-.links a::after {
-  content: "";
-  flex: none;
-  width: 9px;
-  height: 9px;
-  margin-right: 2px;
-  border-right: 2px solid var(--ink3);
-  border-top: 2px solid var(--ink3);
-  transform: rotate(45deg);
 }
 
 @media (max-width: 400px) {
@@ -461,4 +421,643 @@ footer a { color: var(--ink2); }
   .faq details > .answer { display: block; }
 }
 
-.bar.wide .bar-in { max-width: 60rem; }
+
+/* ------------------------------------------------------------ the landing */
+
+/*
+ * Rebuilt 13 October 2026. The top of the page is Midnight in both schemes, as
+ * the App Store's header is: ONE BIT A DAY, its full stop the icon's Signal
+ * dot, today's, at the end of a field of days (home.js draws the field: the
+ * past ticked in Steel's heat, the future as rings, as the app draws a day
+ * still to come). Below it the app's own screens sit on the grounds the App
+ * Store screenshots use, and the rest follows the reader's scheme.
+ */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.home { max-width: none; padding: 0; }
+.bar.night {
+  background: #0F1113;
+  border-bottom-color: rgba(220, 225, 232, 0.12);
+}
+.bar.night .bar-in, .wrap { max-width: 68rem; }
+.bar.night .brand { color: #E9EBEE; }
+.bar.night .seg { background: #23272C; }
+.bar.night .seg a { color: #B8BCC3; }
+.bar.night .seg a:hover { color: #E9EBEE; }
+.bar.night a:focus-visible { outline-color: #A3B1C2; }
+.wrap { margin: 0 auto; padding: 0 20px; }
+
+.top {
+  position: relative;
+  overflow: hidden;
+  background: #0F1113;
+  color: #E9EBEE;
+}
+.top::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  top: -70%;
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(84, 100, 119, 0.5), transparent);
+  pointer-events: none;
+}
+.field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.top-in {
+  position: relative;
+  display: grid;
+  gap: 44px;
+  align-items: center;
+  padding-top: clamp(40px, 8vw, 88px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+@media (min-width: 56rem) {
+  .top-in { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 56px; }
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 0.78rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.top .eyebrow { flex-wrap: wrap; row-gap: 10px; color: #A3B1C2; }
+/* Who makes it, beside the app's name: white, so it reads as a name and not as more of the label. */
+.top .eyebrow .by { padding-left: 12px; border-left: 1px solid rgba(220, 225, 232, 0.28); color: #FFFFFF; }
+.eyebrow svg { display: block; flex: none; }
+.shout {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3.1rem, 13.5vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.shout .line { display: block; white-space: nowrap; }
+.today {
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.02em;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0.35em rgba(255, 139, 85, 0.55);
+}
+.tag {
+  margin: 26px 0 0;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 4.4vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #E9EBEE;
+}
+.say {
+  max-width: 33rem;
+  margin: 16px 0 0;
+  color: #B8BCC3;
+  font-size: 1.06rem;
+  line-height: 1.6;
+}
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin: 30px 0 0; }
+.get {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: #A3B1C2;
+  color: #0F1113;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+.get:hover { background: #BCC8D6; }
+.get:active { transform: scale(0.97); }
+.get::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+.top .get:focus-visible, .last .get:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; border-radius: 999px; }
+.fine { margin: 0; color: #979CA4; font-size: 0.92rem; line-height: 1.4; }
+.top .phone { width: min(100%, 290px); box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), 0 12px 24px rgba(0, 0, 0, 0.35); }
+@media (min-width: 56rem) {
+  .top .phone { transform: rotate(3deg); }
+}
+
+/* A section's opening lines. */
+.part { padding: clamp(56px, 9vw, 104px) 0 0; }
+.part > .wrap > .eyebrow { color: var(--accent-text); }
+.part h2 {
+  max-width: 22ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 6.4vw, 3.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.part .intro { max-width: 36rem; margin: 18px 0 0; color: var(--ink2); font-size: 1.1rem; }
+
+/*
+ * The app's screens, each on the ground its App Store screenshot has: Steel,
+ * Fog, Cobalt, Carbon and Midnight. A tile keeps its ground in both schemes,
+ * as a screenshot does. The pictures are the app's own screens (shot-*.png,
+ * 440 points wide, from the captures the screenshots were made of).
+ */
+.tiles { display: grid; gap: 16px; margin: 36px 0 0; }
+@media (min-width: 52rem) {
+  .tiles { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+  .tile.w7 { grid-column: span 7; }
+  .tile.w5 { grid-column: span 5; }
+  .tile.w12 { grid-column: span 12; }
+}
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 30px 30px 0;
+  border-radius: 28px;
+  color: #FFFFFF;
+  isolation: isolate;
+}
+.tile.w12 { padding-bottom: 4px; }
+.tile::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -40%;
+  top: -55%;
+  width: 110%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--lit), transparent);
+}
+.tile.steel { background: #475567; --lit: rgba(163, 177, 194, 0.6); --soft: #C7D1DD; }
+.tile.fog { background: #E4E7EB; color: #16181B; --lit: rgba(255, 255, 255, 0.95); --soft: #546477; }
+.tile.cobalt { background: #2A55BD; --lit: rgba(126, 162, 255, 0.55); --soft: #B9CCFF; }
+.tile.carbon { background: #202429; --lit: rgba(84, 100, 119, 0.5); --soft: #A3B1C2; }
+.tile.night { background: #0F1113; --lit: rgba(84, 100, 119, 0.55); --soft: #A3B1C2; }
+.tile .eyebrow { margin-bottom: 16px; color: inherit; opacity: 0.92; }
+.pro {
+  padding: 6px 10px 5px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #16181B;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+}
+.tile.night .pro { background: #A3B1C2; color: #0F1113; }
+.tile h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 5.6vw, 2.7rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.tile h3 span { color: var(--soft); }
+.tile p { max-width: 24rem; margin: 14px 0 0; font-size: 1.08rem; line-height: 1.45; opacity: 0.86; }
+.tile.fog p { color: #474B52; opacity: 1; }
+.tile .shot {
+  display: block;
+  width: min(100%, 21rem);
+  height: auto;
+  margin: 0 auto;
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.32), 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+.tile.fog .shot { box-shadow: 0 30px 60px rgba(60, 72, 88, 0.26), 0 8px 18px rgba(60, 72, 88, 0.16); }
+/* A screen shows through a window of one height, so a row of tiles lines up;
+   the tile's own edge cuts it off, as the edge of a phone would. */
+.tile .hold { height: 21rem; margin-top: auto; padding-top: 30px; box-sizing: content-box; overflow: hidden; }
+.tile.carbon .shot, .tile.night .shot { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.09), 0 30px 60px rgba(0, 0, 0, 0.4); }
+
+/* The twelve colors, as the app's icon in each: its own gradient, and today's dot. */
+.icons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 14px;
+  margin: 30px 0 30px;
+  padding: 0;
+  list-style: none;
+}
+.icons i {
+  display: block;
+  width: min(100%, 4.6rem);
+  aspect-ratio: 1;
+  border-radius: 23%;
+  background:
+    radial-gradient(circle at 29.75% 29.75%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 43.25% 29.75%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 56.75% 29.75%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 29.75% 43.25%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 70.25% 43.25%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 29.75% 56.75%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 70.25% 56.75%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 29.75% 70.25%, #fff 5.7%, transparent 6.1%),
+    radial-gradient(circle at 70.25% 70.25%, var(--t, #FF8B55) 5.7%, transparent 6.1%),
+    linear-gradient(180deg, var(--a), var(--b));
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+.icons span { color: #B8BCC3; font-size: 0.8rem; font-weight: 600; line-height: 1; }
+
+/* Three small facts in a row. */
+.facts { display: grid; gap: 16px; margin: 20px 0 0; }
+@media (min-width: 52rem) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+.fact { padding: 24px 24px 22px; border-radius: 24px; background: var(--card); }
+.fact h3, .plan h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 1.16rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.fact p { margin: 0; color: var(--ink2); }
+.fact .dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 0 0 18px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.fact .dot.lit { background: var(--signal); }
+.fact .dot.ring { background: none; box-shadow: inset 0 0 0 2px var(--ink3); }
+.more { margin: 26px 0 0; font-weight: 600; }
+
+/* Free, and Nanbit Pro. */
+.plans { display: grid; gap: 16px; margin: 36px 0 0; }
+@media (min-width: 52rem) { .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
+.plan { padding: 28px 28px 18px; border-radius: 28px; background: var(--card); }
+.plan.pro-plan { background: var(--accent-soft); }
+.plan .eyebrow { margin-bottom: 14px; color: var(--accent-text); }
+.plan.pro-plan .eyebrow { color: var(--on-accent-soft); }
+.plan h3 { font-size: 1.5rem; margin-bottom: 4px; }
+.plan .sub { margin: 0 0 18px; color: var(--ink2); }
+.plan ul { margin: 0; padding: 0; list-style: none; }
+.plan li { position: relative; margin: 0; padding: 11px 0 11px 28px; border-top: 1px solid var(--hair); }
+.plan li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 1.15em;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.keep { max-width: 44rem; margin: 26px 0 0; color: var(--ink2); }
+
+/* The last word, on Midnight again. */
+.last {
+  position: relative;
+  overflow: hidden;
+  margin: clamp(56px, 9vw, 104px) 0 0;
+  padding: clamp(56px, 9vw, 96px) 0;
+  background: #0F1113;
+  color: #E9EBEE;
+  text-align: center;
+}
+.last .shout { font-size: clamp(2.4rem, 9vw, 4.6rem); }
+.last .cta { justify-content: center; }
+.last .fine { margin-top: 14px; }
+.foot {
+  max-width: none;
+  margin: 0;
+  padding: 26px 0 40px;
+  background: #0F1113;
+  color: #979CA4;
+  border-top: 1px solid rgba(220, 225, 232, 0.12);
+}
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.foot a { color: #B8BCC3; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+
+/* Things rise into place as they come into view, when home.js is running and motion is welcome. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-rise] { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .js [data-rise].in { opacity: 1; transform: none; }
+}
+@media (max-width: 400px) {
+  .tile { padding: 24px 22px 0; border-radius: 24px; }
+  .plan { padding: 22px 22px 12px; }
+}
+@media print {
+  .field, .cta { display: none; }
+  .top, .last, .foot { background: none; color: #000; }
+  .shout, .tag, .say { color: #000; }
+}
+
+/* ------------------------------------------------- the three written pages */
+
+/*
+ * Support, the privacy policy and the terms, drawn as the landing page is
+ * (13 October 2026): the top bar is Midnight on every page, each page opens on
+ * a Midnight band with its title set as the landing's headline is and a corner
+ * of the field of days, and from 72rem the list of sections stands beside the
+ * text and follows it down. Nothing here changes a page's words or its markup:
+ * `main` is a grid whose middle column is the text, and the band and the foot
+ * span it.
+ */
+.bar {
+  background: #0F1113;
+  border-bottom-color: rgba(220, 225, 232, 0.12);
+}
+.bar .brand { color: #E9EBEE; }
+.bar .seg { background: #23272C; }
+.bar .seg a { color: #B8BCC3; }
+.bar .seg a:hover { color: #E9EBEE; }
+.bar .seg a[aria-current="page"] { background: #3A4048; color: #FFFFFF; }
+.bar a:focus-visible { outline-color: #A3B1C2; }
+
+main:not(.home) {
+  --text: 46rem;
+  --page: var(--text);
+  --edge: max(16px, calc((100% - var(--page)) / 2));
+  display: grid;
+  grid-template-columns: minmax(16px, 1fr) minmax(0, var(--text)) minmax(16px, 1fr);
+  max-width: none;
+  padding: 0;
+}
+main:not(.home) > * { grid-column: 2; }
+
+main:not(.home) > .hero {
+  position: relative;
+  grid-column: 1 / -1;
+  overflow: hidden;
+  margin: 0 0 22px;
+  padding: clamp(40px, 8vw, 84px) var(--edge) clamp(30px, 5vw, 52px);
+  background: #0F1113;
+  color: #E9EBEE;
+  isolation: isolate;
+}
+/* Steel's light from the top left, as on the landing. */
+main:not(.home) > .hero::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: -20%;
+  top: -120%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(84, 100, 119, 0.5), transparent);
+}
+/* A corner of the field of days: rings, for days still to come, and today's dot among them. */
+main:not(.home) > .hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(circle at calc(100% - 137px) 71px, #FF8B55 0 5.5px, rgba(255, 139, 85, 0.3) 6px, transparent 46px),
+    radial-gradient(circle at 11px 11px, transparent 0 3.1px, rgba(184, 196, 210, 0.42) 3.5px 4.6px, transparent 5px) right 16px top 16px / 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 62% 120% at 100% 0%, #000 12%, transparent 72%);
+  mask-image: radial-gradient(ellipse 62% 120% at 100% 0%, #000 12%, transparent 72%);
+  pointer-events: none;
+}
+main:not(.home) > .hero h1 {
+  max-width: 16ch;
+  margin: 0 0 18px;
+  font-size: clamp(2.3rem, 9vw, 4.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+main:not(.home) > .hero .dateline { margin: 0 0 22px; color: #979CA4; }
+main:not(.home) > .hero .lede { max-width: 40rem; margin: 0; color: #C3C8CF; font-size: 1.14rem; }
+main:not(.home) > .hero a { color: #BCC8D6; }
+main:not(.home) > .hero a:focus-visible { outline-color: #FFFFFF; }
+
+.card {
+  margin: 0 0 16px;
+  padding: 28px 28px 12px;
+  border-radius: 24px;
+}
+.card h2 { font-size: 1.4rem; margin-bottom: 16px; }
+.card h3 { margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); font-family: var(--font-title); font-weight: 800; font-size: 1.08rem; letter-spacing: -0.015em; }
+.card h2 + h3 { margin-top: 0.4rem; padding-top: 0; border-top: 0; }
+.faq summary h3 { margin: 0; padding: 0; border: 0; font-family: var(--font); font-weight: 600; font-size: 1.06rem; letter-spacing: 0; }
+.faq summary { padding: 17px 0; }
+.faq summary:hover h3 { color: var(--accent-text); }
+.card.tint li::before, .card li::before { top: 0.68em; }
+
+/* Who to write to: the page's one call, on Midnight. */
+.contact {
+  margin: 0 0 16px;
+  padding: 28px;
+  border-radius: 24px;
+  background: #181B1F;
+  color: #C3C8CF;
+}
+.contact strong { color: #FFFFFF; }
+.contact p:first-child { font-size: 1.14rem; color: #E9EBEE; }
+.contact a { color: #FFFFFF; text-decoration-color: rgba(255, 255, 255, 0.45); }
+.contact a:focus-visible { outline-color: #FFFFFF; }
+
+main:not(.home) > footer {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin: 44px 0 0;
+  padding: 26px var(--edge) 44px;
+  background: #0F1113;
+  color: #979CA4;
+  border-top: 1px solid rgba(220, 225, 232, 0.12);
+}
+main:not(.home) > footer a { color: #C3C8CF; }
+
+/* From 72rem the sections' list stands beside the text. */
+@media (min-width: 72rem) {
+  main:not(.home) {
+    --side: 13rem;
+    --gap: 3rem;
+    --page: calc(var(--side) + var(--gap) + var(--text));
+    grid-template-columns: minmax(16px, 1fr) var(--side) var(--gap) minmax(0, var(--text)) minmax(16px, 1fr);
+  }
+  main:not(.home) > * { grid-column: 4; }
+  .bar:not(.night) .bar-in { max-width: 62rem; }
+  main:not(.home) > .toc {
+    grid-column: 2;
+    grid-row: 2 / span 60;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--bar-h) + 28px);
+    flex-direction: column;
+    gap: 2px;
+    margin: 6px 0 0;
+    padding: 0;
+    overflow: visible;
+    background: none;
+  }
+  main:not(.home) > .toc::before {
+    content: "On this page";
+    margin: 0 0 12px 14px;
+    color: var(--ink3);
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  main:not(.home) > .toc a {
+    position: relative;
+    padding: 8px 12px 8px 30px;
+    border-radius: 10px;
+    background: none;
+    font-size: 0.92rem;
+    white-space: normal;
+  }
+  main:not(.home) > .toc a::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.5px var(--fill-strong);
+  }
+  main:not(.home) > .toc a:hover { background: var(--fill); }
+  main:not(.home) > .toc a.on { background: none; color: var(--ink); }
+  main:not(.home) > .toc a.on::before { background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 22%, transparent); }
+  .card { scroll-margin-top: calc(var(--bar-h) + 24px); }
+}
+/* On a narrow screen the title runs the full width, so the field keeps to the corner above it. */
+@media (max-width: 40rem) {
+  main:not(.home) > .hero { padding-top: 64px; }
+  main:not(.home) > .hero::after {
+    background:
+      radial-gradient(circle at calc(100% - 47px) 41px, #FF8B55 0 4.5px, rgba(255, 139, 85, 0.3) 5px, transparent 34px),
+      radial-gradient(circle at 11px 11px, transparent 0 3.1px, rgba(184, 196, 210, 0.42) 3.5px 4.6px, transparent 5px) right 16px top 15px / 30px 30px;
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 46px, transparent 62px), radial-gradient(ellipse 70% 100% at 100% 0%, #000 20%, transparent 80%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(180deg, #000 0, #000 46px, transparent 62px), radial-gradient(ellipse 70% 100% at 100% 0%, #000 20%, transparent 80%);
+    mask-composite: intersect;
+  }
+}
+@media (max-width: 400px) {
+  .card, .contact { padding: 22px 20px 8px; border-radius: 20px; }
+  .contact { padding-bottom: 22px; }
+}
+@media print {
+  main:not(.home) { display: block; }
+  main:not(.home) > .hero, main:not(.home) > footer { background: none; color: #000; padding-left: 0; padding-right: 0; }
+  main:not(.home) > .hero h1, main:not(.home) > .hero .lede, main:not(.home) > .hero .dateline { color: #000; }
+  main:not(.home) > .hero::before, main:not(.home) > .hero::after { display: none; }
+}
+
+/* ------------------------------------------------------- what moves, and how */
+
+/*
+ * Added 13 October 2026, each of them the page working without it:
+ *
+ * - The landing's iPhone plays three of the app's own screens in turn (3 of 5,
+ *   4 of 5, all 5 done), in step with the field's sweep (home.js).
+ * - A color chosen under "Make it yours" is shown on a screen beside it and on
+ *   that iPhone: the app's own Today in that color (today-<scheme>-<color>.png).
+ * - A tile's screen slides up into it as the tile comes into view.
+ * - Moving between the four pages cross-fades, the top bar holding still.
+ * - Support's questions can be searched (nanbit.js adds the field).
+ * - The written pages' corner of the field is drawn live (nanbit.js), over the
+ *   still one in CSS, which stays for Reduce Motion and for no script.
+ */
+.screen [hidden] { display: none; }
+.screen .frame.over {
+  position: absolute;
+  left: 0;
+  top: calc(54 / 874 * 100%);
+  width: 100%;
+  height: calc(786 / 874 * 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.phone[data-frame="2"] .f2, .phone[data-frame="3"] .f2, .phone[data-frame="3"] .f3, .phone.wearing .worn { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .screen .frame.over { transition: none; } }
+
+.icons li { display: block; }
+.swatch {
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.swatch i { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.swatch:hover i { transform: translateY(-3px); }
+.swatch:active i { transform: scale(0.95); }
+.swatch[aria-pressed="true"] i { box-shadow: 0 0 0 3px #0F1113, 0 0 0 5px #FFFFFF, 0 10px 22px rgba(0, 0, 0, 0.45); }
+.swatch[aria-pressed="true"] span { color: #FFFFFF; }
+.swatch:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 5px; border-radius: 12px; }
+@media (min-width: 40rem) { .icons { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.hint { display: none; }
+.js .hint { display: block; max-width: none; margin: -6px 0 28px; color: #979CA4; font-size: 0.92rem; opacity: 1; }
+.try { transition: opacity 0.22s ease; }
+.try.swap { opacity: 0; }
+.pick .hold picture { display: block; }
+@media (min-width: 52rem) {
+  .tile.pick { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: 56px; padding-bottom: 0; }
+  .pick .hold { height: auto; min-height: 27rem; margin: 0; padding-top: 6px; align-self: stretch; }
+  .pick .shot { width: 100%; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .tile[data-rise] .shot { transform: translateY(64px); transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.12s, opacity 0.22s ease; }
+  .js .tile[data-rise].in .shot { transform: none; }
+  @view-transition { navigation: auto; }
+}
+.bar { view-transition-name: site-bar; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.28s; }
+
+/* Support: a field to search the questions with. */
+.find { margin: 0 0 8px; }
+.find input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0 16px 0 46px;
+  border: 1px solid var(--hair);
+  border-radius: 14px;
+  background: var(--fill) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%237E838B' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='8.5' cy='8.5' r='5.5'/%3E%3Cpath d='M13 13l4.5 4.5'/%3E%3C/svg%3E") 16px 50% / 18px no-repeat;
+  color: var(--ink);
+  font: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.find input::placeholder { color: var(--ink3); opacity: 1; }
+.find input:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.find .none { margin: 18px 0 12px; color: var(--ink2); }
+.faq details[hidden] { display: none; }
+
+/* The live corner of the field, over the still one. */
+main:not(.home) > .hero canvas.corner { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+main:not(.home) > .hero.live::after { display: none; }
+@media print { .find, canvas.corner { display: none; } }

@@ -3,21 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nanbit</title>
-<meta name="theme-color" content="#EFF0F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1113" media="(prefers-color-scheme: dark)">
-<meta name="description" content="Nanbit is a habit tracker for iPhone.">
+<title>Nanbit: Habit Tracker for iPhone</title>
+<meta name="theme-color" content="#0F1113">
+<meta name="description" content="Nanbit is a habit tracker for iPhone. Small habits, kept: tick one off and watch the day fill in.">
+<link rel="canonical" href="https://lemiarino.github.io/nanbit-pages/">
+<link rel="apple-touch-icon" href="touch-icon.png?v=4d1a9c582b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nanbit">
+<meta property="og:title" content="Nanbit: Habit Tracker for iPhone">
+<meta property="og:description" content="Small habits, kept. Tick one off and watch the day fill in. A habit tracker for iPhone.">
+<meta property="og:url" content="https://lemiarino.github.io/nanbit-pages/">
+<meta property="og:image" content="https://lemiarino.github.io/nanbit-pages/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="One bit a day. Small habits, kept.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="icon.svg?v=7e4065ee74">
-<link rel="stylesheet" href="nanbit.css?v=0df4eadc7d">
+<link rel="stylesheet" href="nanbit.css?v=96a0023c73">
+<script src="home.js?v=1b75cd1953" defer></script>
 </head>
 <body>
 <!--
-  Redesigned and published 2 October 2026: drawn with nanbit.css in the app's
-  own colors. The two paragraphs are unchanged. The iPhone's frame is CSS; its
-  screen is a picture of the app's Today screen with the showcase sample
-  habits (nanbit.css says how it was taken).
+  Rebuilt 13 October 2026, with the pages made iPhone's alone that day. The
+  paragraph under the headline is the one this page has carried since 2 October
+  2026, unchanged, and src/platform/pages.test.ts holds its last sentence.
+  Every other line is something the app does, in the words the App Store
+  screenshots, the support page or the terms page already use for it:
+
+  - The five tiles: the screenshots' own headlines and sentences
+    (.claude/reel/shots4.html), over the app's own screens (shot-*.png).
+    Nanbit Pro is marked where the screenshots mark it: the Year view and the
+    colors.
+  - The three facts and the two plans: the support page's "What does Pro
+    actually unlock?" and the terms page's free version. The timer is in the
+    free list because nothing asks for Nanbit Pro before it
+    (src/purchases/limits.ts has no rule for it; app/sheet/timer.tsx has none).
+  - The link is the app's App Store page by its Apple ID (6809155289).
+
+  The iPhone's frame is CSS; its screen is a picture of the app's Today screen
+  with the showcase sample habits (`npm run pages:today`).
 -->
-<header class="bar wide">
+<header class="bar night">
   <div class="bar-in">
     <a class="brand" href="index.html"><img src="icon.svg?v=7e4065ee74" alt="" width="30" height="30">Nanbit</a>
     <nav class="seg" aria-label="Pages">
@@ -28,61 +54,265 @@
   </div>
 </header>
 <main class="home">
-<div class="stage">
-<div class="hero">
-  <img class="app-icon" src="icon.svg?v=7e4065ee74" alt="" width="88" height="88">
-  <h1>Nanbit</h1>
-  <p class="dateline">A habit tracker, made by Denver Delorino.</p>
-  <!--
-    Until 13 September 2026 the last sentence said "Everything stays on your
-    phone: no account, no server, no analytics." That is the support page's
-    sentence retired on 11 September 2026, false for the same reason: the
-    phone's own backup can carry the database. Corrected to the terms About
-    uses; see ROADMAP, "Your habits stay on your phone".
-  -->
-  <!--
-    Rewritten twice on 23 September 2026. It said "It keeps your habits on your
-    phone, with no account and no analytics about how you use the app. It never
-    sends them anywhere itself" until that morning, when it was rewritten for
-    Sign in with Apple and a backup to the account. The owner removed sign-in
-    and accounts that evening, so it says again what the app does.
-  -->
-  <p>You add a few habits, pick which days each one is due, and tick them off.
-<!-- Changed 2 October 2026: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
-  Nanbit keeps your streaks and shows a calendar of what you have done. It keeps
-  your habits on your phone, with no analytics about how you use the app. You
-  can sign in to back them up for free; you never have to.</p>
-</div>
 
-<div class="phone">
-  <i class="btn l action"></i><i class="btn l vol-up"></i><i class="btn l vol-down"></i>
-  <i class="btn r power"></i><i class="btn r camera"></i>
-  <div class="bezel">
-  <div class="screen">
-    <div class="island" aria-hidden="true"></div>
-    <div class="status" aria-hidden="true">
-      <span>9:41</span>
-      <span class="icons">
-        <svg width="15" height="10" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
-        <svg width="14" height="10" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.2 0 4.2.85 5.7 2.25l1.1-1.15A9.6 9.6 0 0 0 7.5.6 9.6 9.6 0 0 0 .7 3.3l1.1 1.15A8 8 0 0 1 7.5 2.2zm0 3.2c1.3 0 2.5.5 3.4 1.3l1.1-1.15A6.4 6.4 0 0 0 7.5 3.8 6.4 6.4 0 0 0 3 5.55L4.1 6.7c.9-.8 2.1-1.3 3.4-1.3zm0 3.2c-.5 0-1 .2-1.3.5l1.3 1.4 1.3-1.4c-.3-.3-.8-.5-1.3-.5z"/></svg>
-        <svg width="22" height="11" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor"/><path d="M23 4v4c.8-.3 1.3-1.1 1.3-2S23.8 4.3 23 4z" fill="currentColor" opacity="0.4"/></svg>
-      </span>
+<section class="top">
+  <canvas class="field" aria-hidden="true"></canvas>
+  <div class="wrap top-in">
+    <div class="pitch">
+      <p class="eyebrow" data-quiet>
+        <svg width="18" height="18" viewBox="18 18 64 64" aria-hidden="true"><g fill="#FFFFFF"><circle cx="29.75" cy="29.75" r="5.7"/><circle cx="43.25" cy="29.75" r="5.7"/><circle cx="56.75" cy="29.75" r="5.7"/><circle cx="29.75" cy="43.25" r="5.7"/><circle cx="70.25" cy="43.25" r="5.7"/><circle cx="29.75" cy="56.75" r="5.7"/><circle cx="70.25" cy="56.75" r="5.7"/><circle cx="29.75" cy="70.25" r="5.7"/></g><circle cx="70.25" cy="70.25" r="5.7" fill="#FF8B55"/></svg>
+        <span>Nanbit for iPhone</span>
+        <span class="by">by Denver Delorino</span>
+      </p>
+      <h1 class="shout"><span class="line" data-quiet>One bit</span> <span class="line" data-quiet>a day<span class="today" aria-hidden="true"></span><span class="sr">.</span></span></h1>
+      <p class="tag" data-quiet>Small habits, kept.</p>
+      <p class="say" data-quiet>You add a few habits, pick which days each one is due, and tick them off.
+      Nanbit keeps your streaks and shows a calendar of what you have done. It keeps
+      your habits on your phone, with no analytics about how you use the app. You
+      can sign in to back them up for free; you never have to.</p>
+      <div class="cta">
+        <a class="get" href="https://apps.apple.com/app/id6809155289" data-quiet="box">Download on the App Store</a>
+        <p class="fine" data-quiet>For iPhone.</p>
+      </div>
     </div>
-    <picture>
-      <source srcset="today-dark.png?v=bad4b9c546" media="(prefers-color-scheme: dark)">
-      <img src="today-light.png?v=85c3469e1d" width="402" height="786" alt="Nanbit's Today screen, with sample habits: 3 of 5 habits done, a 9-day streak, two habits to do and three done.">
-    </picture>
-    <div class="home-bar" aria-hidden="true"></div>
-  </div>
-  </div>
-</div>
-</div>
 
-<nav class="links" aria-label="More">
-  <a href="support.html"><span><span class="t">Support</span><span class="d">Questions, and how to reach us</span></span></a>
-  <a href="privacy.html"><span><span class="t">Privacy policy</span><span class="d">What is kept, and what leaves your phone</span></span></a>
-  <a href="terms.html"><span><span class="t">Terms of use</span><span class="d">The terms for using Nanbit</span></span></a>
-</nav>
+    <div class="phone" data-quiet="box">
+      <i class="btn l action"></i><i class="btn l vol-up"></i><i class="btn l vol-down"></i>
+      <i class="btn r power"></i><i class="btn r camera"></i>
+      <div class="bezel">
+      <div class="screen">
+        <div class="island" aria-hidden="true"></div>
+        <div class="status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="icons-bar">
+            <svg width="15" height="10" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+            <svg width="14" height="10" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.2 0 4.2.85 5.7 2.25l1.1-1.15A9.6 9.6 0 0 0 7.5.6 9.6 9.6 0 0 0 .7 3.3l1.1 1.15A8 8 0 0 1 7.5 2.2zm0 3.2c1.3 0 2.5.5 3.4 1.3l1.1-1.15A6.4 6.4 0 0 0 7.5 3.8 6.4 6.4 0 0 0 3 5.55L4.1 6.7c.9-.8 2.1-1.3 3.4-1.3zm0 3.2c-.5 0-1 .2-1.3.5l1.3 1.4 1.3-1.4c-.3-.3-.8-.5-1.3-.5z"/></svg>
+            <svg width="22" height="11" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor"/><path d="M23 4v4c.8-.3 1.3-1.1 1.3-2S23.8 4.3 23 4z" fill="currentColor" opacity="0.4"/></svg>
+          </span>
+        </div>
+        <picture class="frame f1">
+          <source srcset="today-dark.png?v=bad4b9c546" media="(prefers-color-scheme: dark)">
+          <img src="today-light.png?v=85c3469e1d" width="402" height="786" alt="Nanbit's Today screen, with sample habits: 3 of 5 habits done, two habits to do and three done.">
+        </picture>
+        <picture class="frame over f2" aria-hidden="true">
+          <source srcset="today-dark-2.png?v=47c93fbaaf" media="(prefers-color-scheme: dark)">
+          <img src="today-light-2.png?v=cfe17d512c" width="402" height="786" alt="">
+        </picture>
+        <picture class="frame over f3" aria-hidden="true">
+          <source srcset="today-dark-3.png?v=d36e64dbd1" media="(prefers-color-scheme: dark)">
+          <img src="today-light-3.png?v=3d107eec53" width="402" height="786" alt="">
+        </picture>
+        <img class="frame over worn" width="402" height="786" alt="" aria-hidden="true" hidden>
+        <div class="home-bar" aria-hidden="true"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <p class="eyebrow" data-rise>The app</p>
+    <h2 data-rise>Built around one tap.</h2>
+    <p class="intro" data-rise>Everything in Nanbit starts with ticking a habit off. The rest
+    is what those ticks add up to.</p>
+
+    <div class="tiles">
+      <article class="tile steel w7" data-rise>
+        <div class="words">
+          <p class="eyebrow">Today</p>
+          <h3>Tick it. <span>All</span> done.</h3>
+          <p>One tap a habit. Watch today fill up, bar by bar.</p>
+        </div>
+        <div class="hold"><img class="shot" src="shot-today.png?v=24ca8397a3" width="440" height="600" loading="lazy" alt="The Today screen with all five habits ticked: All 5 done, see you tomorrow."></div>
+      </article>
+
+      <article class="tile fog w5" data-rise>
+        <p class="eyebrow">Progress</p>
+        <h3>Every figure <span>shows its</span> work.</h3>
+        <p>Your month, your streaks, and why.</p>
+        <div class="hold"><img class="shot" src="shot-progress.png?v=36d483af6d" width="440" height="600" loading="lazy" alt="The Progress screen: 71% done so far in October, down from 80% in September, with 10 perfect days and 9 in a row."></div>
+      </article>
+
+      <article class="tile cobalt w5" data-rise>
+        <p class="eyebrow">History <span class="pro">Nanbit Pro</span></p>
+        <h3>Your year, <span>bit by</span> bit.</h3>
+        <p>Every day of the year, a dot each.</p>
+        <div class="hold"><img class="shot" src="shot-year.png?v=c018d918f5" width="440" height="600" loading="lazy" alt="History's Year view: twelve months of dots, each day shaded by how much of it was done."></div>
+      </article>
+
+      <article class="tile carbon w7" data-rise>
+        <div class="words">
+          <p class="eyebrow">Timer</p>
+          <h3>Time it.</h3>
+          <p>Give a habit a timer. When it ends, the tick is counted for you.</p>
+        </div>
+        <div class="hold"><img class="shot" src="shot-timer.png?v=9bfee1f9bd" width="440" height="600" loading="lazy" alt="A habit's timer running: 6 minutes 33 seconds left of 10, with pause and one-minute buttons."></div>
+      </article>
+
+      <article class="tile night w12 pick" data-rise>
+        <div class="words">
+          <p class="eyebrow">Colors <span class="pro">Nanbit Pro</span></p>
+          <h3>Make it <span>yours.</span></h3>
+          <p>Twelve colors, light or dark, and an app icon to match.</p>
+          <ul class="icons" aria-label="The twelve colors">
+            <li><button type="button" class="swatch" data-color="steel" aria-pressed="true" style="--a:#6C7A8A;--b:#475464"><i></i><span>Steel</span></button></li>
+            <li><button type="button" class="swatch" data-color="pine" aria-pressed="false" style="--a:#4B8F72;--b:#27694C"><i></i><span>Pine</span></button></li>
+            <li><button type="button" class="swatch" data-color="arctic" aria-pressed="false" style="--a:#4998B4;--b:#24718D"><i></i><span>Arctic</span></button></li>
+            <li><button type="button" class="swatch" data-color="cobalt" aria-pressed="false" style="--a:#4C75D7;--b:#2750AF"><i></i><span>Cobalt</span></button></li>
+            <li><button type="button" class="swatch" data-color="indigo" aria-pressed="false" style="--a:#6468C2;--b:#3F429B"><i></i><span>Indigo</span></button></li>
+            <li><button type="button" class="swatch" data-color="violet" aria-pressed="false" style="--a:#9068B4;--b:#6A428D"><i></i><span>Violet</span></button></li>
+            <li><button type="button" class="swatch" data-color="garnet" aria-pressed="false" style="--a:#C2566D;--b:#9B3147;--t:#16181B"><i></i><span>Garnet</span></button></li>
+            <li><button type="button" class="swatch" data-color="signal" aria-pressed="false" style="--a:#D16C3E;--b:#A9471A;--t:#16181B"><i></i><span>Signal</span></button></li>
+            <li><button type="button" class="swatch" data-color="carbon" aria-pressed="false" style="--a:#565B62;--b:#31363C"><i></i><span>Carbon</span></button></li>
+            <li><button type="button" class="swatch" data-color="brass" aria-pressed="false" style="--a:#9C7F3E;--b:#76591A;--t:#16181B"><i></i><span>Brass</span></button></li>
+            <li><button type="button" class="swatch" data-color="moss" aria-pressed="false" style="--a:#7D8D50;--b:#57662B"><i></i><span>Moss</span></button></li>
+            <li><button type="button" class="swatch" data-color="spruce" aria-pressed="false" style="--a:#488D89;--b:#236663"><i></i><span>Spruce</span></button></li>
+          </ul>
+          <p class="hint">Tap a color to try it on.</p>
+        </div>
+        <div class="hold">
+          <picture>
+            <source srcset="today-dark.png?v=bad4b9c546" media="(prefers-color-scheme: dark)">
+            <img class="shot try" src="today-light.png?v=85c3469e1d" width="402" height="786" loading="lazy" alt="Nanbit's Today screen in Steel.">
+          </picture>
+        </div>
+      </article>
+      <!-- The app's Today screen in each color and each scheme, for home.js to
+           show when a color is chosen. In a template, so a browser fetches one
+           only when it is asked for, and stamped like every other picture. -->
+      <template id="colors">
+        <img data-color="steel" data-scheme="light" src="today-light.png?v=85c3469e1d" alt="">
+        <img data-color="pine" data-scheme="light" src="today-light-pine.png?v=1ca86f8f33" alt="">
+        <img data-color="arctic" data-scheme="light" src="today-light-arctic.png?v=3068538846" alt="">
+        <img data-color="cobalt" data-scheme="light" src="today-light-cobalt.png?v=183cd6d655" alt="">
+        <img data-color="indigo" data-scheme="light" src="today-light-indigo.png?v=d5e85e38f5" alt="">
+        <img data-color="violet" data-scheme="light" src="today-light-violet.png?v=cf47433a33" alt="">
+        <img data-color="garnet" data-scheme="light" src="today-light-garnet.png?v=ff579f3cd7" alt="">
+        <img data-color="signal" data-scheme="light" src="today-light-signal.png?v=7266838d43" alt="">
+        <img data-color="carbon" data-scheme="light" src="today-light-carbon.png?v=69cc593033" alt="">
+        <img data-color="brass" data-scheme="light" src="today-light-brass.png?v=489cf15a94" alt="">
+        <img data-color="moss" data-scheme="light" src="today-light-moss.png?v=1ac5926991" alt="">
+        <img data-color="spruce" data-scheme="light" src="today-light-spruce.png?v=a9aa5ee32a" alt="">
+        <img data-color="steel" data-scheme="dark" src="today-dark.png?v=bad4b9c546" alt="">
+        <img data-color="pine" data-scheme="dark" src="today-dark-pine.png?v=2ddb6a4bf9" alt="">
+        <img data-color="arctic" data-scheme="dark" src="today-dark-arctic.png?v=5cfd8255e0" alt="">
+        <img data-color="cobalt" data-scheme="dark" src="today-dark-cobalt.png?v=3970764bae" alt="">
+        <img data-color="indigo" data-scheme="dark" src="today-dark-indigo.png?v=e555148ae9" alt="">
+        <img data-color="violet" data-scheme="dark" src="today-dark-violet.png?v=84a1a61bab" alt="">
+        <img data-color="garnet" data-scheme="dark" src="today-dark-garnet.png?v=75aaed2187" alt="">
+        <img data-color="signal" data-scheme="dark" src="today-dark-signal.png?v=d5941cdec1" alt="">
+        <img data-color="carbon" data-scheme="dark" src="today-dark-carbon.png?v=169dc828da" alt="">
+        <img data-color="brass" data-scheme="dark" src="today-dark-brass.png?v=b4fcd623f0" alt="">
+        <img data-color="moss" data-scheme="dark" src="today-dark-moss.png?v=d16274e1bf" alt="">
+        <img data-color="spruce" data-scheme="dark" src="today-dark-spruce.png?v=4cc858584a" alt="">
+      </template>
+    </div>
+
+    <div class="facts">
+      <div class="fact" data-rise>
+        <i class="dot"></i>
+        <h3>Reminders that know</h3>
+        <p>A reminder for a habit you have already ticked is skipped.</p>
+      </div>
+      <div class="fact" data-rise>
+        <i class="dot lit"></i>
+        <h3>On your Home Screen</h3>
+        <p>The small Today widget shows how many of the day's habits are done.</p>
+      </div>
+      <div class="fact" data-rise>
+        <i class="dot ring"></i>
+        <h3>A week to catch up</h3>
+        <p>Forgot to tick a day? You can change today and the week before it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <p class="eyebrow" data-rise>Privacy</p>
+    <h2 data-rise>Yours, on your phone.</h2>
+    <div class="facts">
+      <div class="fact" data-rise>
+        <h3>Kept on your iPhone</h3>
+        <p>Your habits are kept on your phone. Nanbit sends them nowhere unless you
+        sign in to back them up.</p>
+      </div>
+      <div class="fact" data-rise>
+        <h3>No analytics, no ads</h3>
+        <p>No analytics about how you use the app, no advertising and no
+        tracking.</p>
+      </div>
+      <div class="fact" data-rise>
+        <h3>Signing in is optional</h3>
+        <p>Sign in with Apple or Google to back your habits up for free. You never
+        have to.</p>
+      </div>
+    </div>
+    <p class="more" data-rise><a href="privacy.html">Read the privacy policy</a></p>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <p class="eyebrow" data-rise>Price</p>
+    <h2 data-rise>Free, and it stays free.</h2>
+    <p class="intro" data-rise>The free version is not a trial and it does not expire.
+    Nanbit Pro is there if you want more.</p>
+    <div class="plans">
+      <div class="plan" data-rise>
+        <p class="eyebrow">Nanbit</p>
+        <h3>Free</h3>
+        <p class="sub">The whole daily loop, permanently.</p>
+        <ul>
+          <li>Up to five habits</li>
+          <li>Streaks, and the Today screen</li>
+          <li>A timer for any habit</li>
+          <li>The daily reminder, and one reminder time for each habit</li>
+          <li>Every past day and month to look back on</li>
+          <li>The small Today widget</li>
+        </ul>
+      </div>
+      <div class="plan pro-plan" data-rise>
+        <p class="eyebrow">Nanbit Pro</p>
+        <h3>Yearly or monthly</h3>
+        <p class="sub">An optional subscription.</p>
+        <ul>
+          <li>Unlimited habits</li>
+          <li>Up to three reminder times for each habit, and a nudge</li>
+          <li>Every widget, on the Home Screen and the Lock Screen</li>
+          <li>Twelve color themes, and the app's icon to match</li>
+          <li>Your full history: change any past day, and see the Year view</li>
+        </ul>
+      </div>
+    </div>
+    <p class="keep" data-rise>Nothing you have already made is ever taken away. If a
+    subscription ends, every habit and every completion stays. The
+    <a href="terms.html">terms</a> have the detail.</p>
+  </div>
+</section>
+
+<section class="last">
+  <div class="wrap">
+    <p class="shout" data-rise><span class="line">One bit</span> <span class="line">a day<span class="today" aria-hidden="true"></span><span class="sr">.</span></span></p>
+    <div class="cta" data-rise>
+      <a class="get" href="https://apps.apple.com/app/id6809155289">Download on the App Store</a>
+    </div>
+    <p class="fine" data-rise>For iPhone.</p>
+  </div>
+</section>
 </main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Nanbit is made by Denver Delorino.</p>
+    <nav aria-label="More">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>

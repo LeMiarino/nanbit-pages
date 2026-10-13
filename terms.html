@@ -4,17 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanbit — Terms of Use</title>
-<meta name="theme-color" content="#EFF0F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1113" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0F1113">
+<meta name="description" content="What the free version of Nanbit gives you, what Nanbit Pro adds, and who handles the money.">
+<link rel="canonical" href="https://lemiarino.github.io/nanbit-pages/terms.html">
+<link rel="apple-touch-icon" href="touch-icon.png?v=4d1a9c582b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nanbit">
+<meta property="og:title" content="Nanbit Terms of Use">
+<meta property="og:description" content="What the free version of Nanbit gives you, what Nanbit Pro adds, and who handles the money.">
+<meta property="og:url" content="https://lemiarino.github.io/nanbit-pages/terms.html">
+<meta property="og:image" content="https://lemiarino.github.io/nanbit-pages/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="One bit a day. Small habits, kept.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="icon.svg?v=7e4065ee74">
-<link rel="stylesheet" href="nanbit.css?v=0df4eadc7d">
-<script src="nanbit.js?v=3246d5fe0a" defer></script>
+<link rel="stylesheet" href="nanbit.css?v=96a0023c73">
+<script src="nanbit.js?v=59819d7d9a" defer></script>
 </head>
 <body>
 <!--
-  Redesigned and published 2 October 2026: the page is drawn with nanbit.css in
-  the app's own colors, and its sentences are unchanged by that. Every comment
-  below that says "not yet published" or "unpublished" went live that day.
+  Rewritten 13 October 2026 for iPhone alone, the owner's decision that day:
+  Nanbit is on the App Store and nowhere else. Until then this page was the
+  terms for a second store's build, and sent iPhone readers to Apple's
+  agreement in its first paragraph; `git log -- pages/terms.html` has it.
+
+  What this page is, and is not. On iPhone the agreement is Apple's standard
+  license agreement, which is what the app's own Terms link opens
+  (extra.termsUrlIos, app.json) and what the App Store listing names. This page
+  does not add terms to it. It says in plain words how the free version and the
+  subscription work, from the same facts the app prints:
+
+  - Who takes the payment, the account it is charged to, the 24-hour cutoff and
+    where to cancel: APPLE_STORE in src/platform/stores.ts, whose comment gives
+    Apple's pages and the days they were read. src/platform/terms.test.ts holds
+    this page to it.
+  - What Nanbit Pro adds, and what a lapse changes: the support page's answer
+    "What does Pro actually unlock?", checked against src/purchases/limits.ts.
+  - What happens to Nanbit Pro itself when a trial is canceled is not stated,
+    because nothing read says it for Apple: only that canceling in time means no
+    charge.
+  - The page sets no liability terms of its own. Apple's agreement has them.
 -->
 <header class="bar">
   <div class="bar-in">
@@ -29,24 +59,14 @@
 <main>
 <div class="hero">
 <h1>Nanbit Terms of Use</h1>
-<p class="dateline">Effective 2 October 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
+<p class="dateline">Effective 13 October 2026. Nanbit is made by Denver Delorino, an individual developer.</p>
 
-<!--
-  The Android scoping in the first sentence is load-bearing, not throat-clearing.
-  support.html and privacy.html both footer back to this page, so an iOS reader
-  can arrive here from either one — and everything below about Google Play
-  taking the payment is wrong for them. On iPhone the terms are Apple's standard
-  EULA, which is what app.json points extra.termsUrl at there. Do not tidy the
-  scoping away.
--->
-<!-- Changed 25 September 2026, not yet published: "licence" became "license",
-  the owner's request that day for American spelling everywhere, which is also
-  how Apple spells its agreement. -->
-<p class="lede">These are the terms for using Nanbit on Android, where the app
-is downloaded and any subscription is bought through Google Play. They cover
+<p class="lede">Nanbit is an app for iPhone. You download it from the App Store,
+and any subscription is bought through Apple. This page says, in plain words,
 what the free version gives you, what a subscription adds, and who handles the
-money. On iPhone, Apple's standard license agreement applies instead of this
-page.</p>
+money. The agreement itself is
+<a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's
+standard license agreement</a>.</p>
 </div>
 
 <section class="card tint">
@@ -54,30 +74,13 @@ page.</p>
 <ul>
   <li>Nanbit is <strong>free to use, permanently</strong>. The free version is
     not a trial and it does not expire.</li>
-  <!-- Corrected 25 September 2026, not yet published. This said Nanbit Pro
-    "removes the free limits. Everything else stays the same." That stopped
-    being true on 24 September 2026, when color themes came: Pro adds them, as
-    the Nanbit Pro section below already said. Found by the American spelling
-    sweep of 25 September. -->
-  <!-- Changed 26 September 2026, not yet published: "and more reminders"
-    added, with the owner's round 5 (reminderTimesFor, src/purchases/limits.ts;
-    the reminders are the shared notification code, so they are Android's too).
-    It said "removes the free limits and adds color themes." -->
   <li><strong>Nanbit Pro</strong> is an optional subscription that removes the
-    free limits and adds color themes and more reminders.</li>
-  <li><strong>Google Play takes the payment</strong>, not us. We never see your
+    free limits and adds color themes, more reminders and more widgets.</li>
+  <li><strong>Apple takes the payment</strong>, not us. We never see your
     card details.</li>
-  <!-- Changed 25 September 2026, not yet published: "Cancelling" became
-    "Canceling", the owner's American spelling. -->
-  <li>To cancel, <strong>go to subscriptions in Google Play</strong>.
-    Canceling never deletes anything you have tracked.</li>
-  <!--
-    Scoped to Android in words on 23 September 2026, while Nanbit 1.1 had an
-    account on iPhone through Sign in with Apple. The owner removed sign-in and
-    accounts that evening, so there is no Nanbit account on any platform and the
-    Android qualifier had nothing left to separate; the sentence is plain again.
-  -->
-<!-- Changed 2 October 2026, not yet published: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
+  <li>To cancel, <strong>open the Settings app, tap your name, then tap
+    Subscriptions</strong>. Canceling never deletes anything you have
+    tracked.</li>
   <li>Your habits and history are <strong>on your phone</strong>. If you sign
     in, Nanbit also keeps a backup of them; if you do not, keeping a backup is up
     to you.</li>
@@ -88,11 +91,14 @@ page.</p>
 <section class="card">
 <h2 data-short="Who">Who these terms are between</h2>
 <p>Nanbit is made and published by <strong>Denver Delorino</strong>, an
-individual developer. "We" and "us" below mean that one person. By installing
-or using Nanbit you are agreeing to what is on this page.</p>
-<p>Google Play has its own terms covering the store itself — downloading apps,
-paying for them, and refunds. Those are between you and Google, and this page
-does not replace them.</p>
+individual developer. "We" and "us" below mean that one person.</p>
+<p>The agreement between you and us for using Nanbit is
+<a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's
+standard license agreement</a> for apps on the App Store. This page does not
+replace it and adds nothing to it: it describes how Nanbit works. If the two ever
+differ, Apple's agreement is the one that applies.</p>
+<p>Apple has its own terms covering the App Store itself — downloading apps,
+paying for them, and refunds. Those are between you and Apple.</p>
 </section>
 
 <section class="card">
@@ -101,207 +107,95 @@ does not replace them.</p>
 tier rather than a trial period: it does not run out, it does not become
 read-only, and there is no point at which you must pay to go on using what you
 have already put in.</p>
-<!--
-  Changed 26 September 2026, not yet published. It said "Free use includes the
-  whole of the daily loop — adding up to five habits, marking them done,
-  streaks, the Today screen, reminders, and the calendar of what you have
-  done." Since the owner's round 5 a habit's second and third reminder times
-  and its nudge are Pro's, and the free version keeps one time for each habit
-  and the daily reminder (reminderTimesFor); every past day and month on
-  History can be looked at free, and today and the 7 days before it changed
-  (canChangeDay).
--->
 <p>Free use includes the whole of the daily loop — adding up to five habits,
-marking them done, streaks, the Today screen, the daily reminder and one
-reminder time for each habit, and the calendar of what you have done: every
-past day and month to look at, and today and the week before it to change.</p>
-<!--
-  Until 23 September 2026 this paragraph ended: "It also includes You → Export
-  data, which writes a complete copy of your habits and completions, so you are
-  never locked away from your own records by not subscribing." The export was
-  removed from the app on 22 September 2026.
--->
+marking them done, streaks, the Today screen, the small Today widget, the daily
+reminder and one reminder time for each habit, and the calendar of what you have
+done: every past day and month to look at, and today and the week before it to
+change.</p>
 </section>
 
 <section class="card">
 <h2>Nanbit Pro</h2>
-<!--
-  Changed 24 September 2026, not yet published. It said Pro "removes the free
-  version's limits, and that is all it does", with "no feature that behaves
-  differently once you subscribe". Colour themes came that day: the Appearance
-  screen's swatches open the paywall without Pro and change the app's colour
-  with it (accentThemeFor, src/purchases/limits.ts), which is a feature that
-  behaves differently once you subscribe.
--->
-<!-- Changed 25 September 2026, not yet published: "colour themes" became
-  "color themes", the owner's American spelling. -->
-<!--
-  Changed 26 September 2026, not yet published: "and more reminders" added,
-  and the list below gained them. The owner's round 5 also made widgets for
-  Nanbit Pro and the app's icon in twelve colors; both are iPhone's alone
-  (native/widgets, modules/nanbit-app-icon, which declares Apple only), and
-  this page is Android's, so neither is listed here. Name them only when an
-  Android build has them.
--->
 <p>Nanbit Pro is an optional subscription. It removes the free version's
-limits and adds color themes and more reminders — there is no separate Pro app.
-It unlocks:</p>
+limits and adds color themes, more reminders and more widgets — there is no
+separate Pro app. It unlocks:</p>
 <ul>
-  <!--
-    Corrected 24 September 2026, unpublished. This said archived habits count
-    toward the free limit. Archive was replaced by a delete that keeps a
-    habit's past days, and deleted habits do not count (countListedHabits,
-    src/db/repo.ts).
-  -->
   <li><strong>Unlimited habits</strong>, instead of five. A habit you delete no
     longer counts toward the five, and its past days stay.</li>
-  <!--
-    Changed 24 September 2026, not yet published. This was "Every range on
-    the Stats tab, instead of the week". The owner replaced it on the paywall
-    with colour themes, and the Stats tab became Progress, without its ranges.
-    If Pro ends the app goes back to orange, and the choice is kept for a new
-    subscription (accentThemeFor, src/purchases/limits.ts). Changed again 25
-    September 2026, not yet published: "Colour themes" became "Color themes",
-    as the paywall now says it.
-  -->
-  <!--
-    Changed 25 September 2026, not yet published: the themes were "Jade, Teal,
-    Sky, Iris, Plum or Rose". The owner added five habit colors that day and
-    made each a color theme too: "Each new color is also a Pro color theme, so
-    Appearance has twelve (Orange plus eleven)". Listed in Appearance's order.
-  -->
-  <!--
-    Changed 8 October 2026, not yet published: the app was recoloured cool (Cold
-    Steel); the default is steel and the eleven took new names by the same keys.
-  -->
-  <li><strong>Color themes</strong> — the app in Pine, Arctic, Cobalt, Indigo,
-    Violet, Garnet, Signal, Carbon, Brass, Moss or Spruce instead of steel. If a
-    subscription ends, the app goes back to steel.</li>
-  <!--
-    Corrected 24 September 2026, unpublished: the last week opened to the free
-    version that day (canSeeDay, src/purchases/limits.ts), so Pro's part of
-    History is the days before it and earlier months. It said "opening any past
-    day".
-  -->
-  <!-- Changed 24 September 2026, not yet published. It was "The whole of
-    History", opening days more than a week back and paging back through
-    earlier months; the paywall calls it "Your full history", and since the
-    Stats tab was rebuilt as Progress that day it takes in each habit's
-    earlier months and Year view there too. -->
-  <!-- Changed 25 September 2026, not yet published: History's Year view added.
-    History gained a Month | Year switch that day, the owner's request after
-    build 7, and without Pro its Year opens the paywall as a habit's Year does
-    (canSeeHistory, src/purchases/limits.ts). This list did not name it. -->
-  <!-- Changed 26 September 2026, not yet published: the more reminders
-    added. REMINDER_TIMES_MAX is 3 (src/logic/reminders.ts); the nudge is
-    planned only on a day not done (src/notifications/plan.ts); on a lapse the
-    extras are kept and not sent (reminderTimesFor). -->
   <li><strong>More reminders</strong> — up to three times a day for each habit
     instead of one, and a nudge: one more reminder at a time you choose, which
     comes only if the habit is still not done.</li>
-  <!-- Changed 26 September 2026, not yet published. It said "Your full
-    history — on History, opening days more than a week back, paging back
-    through earlier months, and the Year view; on Progress, each habit's
-    earlier months and its Year view." The owner's round 5 opened every past
-    day and month on History to the free version to look at, and let Pro
-    change any past day (canChangeDay, canSeeYear, canSeeHabitPast,
-    src/purchases/limits.ts). -->
+  <li><strong>Every widget</strong> — the medium and large widgets that list
+    today's habits, the Lock Screen widgets, and a widget for one habit you
+    choose, with its streak (iOS 17 or later). On iOS 17 or later you can tick
+    habits right from the Home Screen widgets.</li>
+  <li><strong>Color themes</strong> — the app in Pine, Arctic, Cobalt, Indigo,
+    Violet, Garnet, Signal, Carbon, Brass, Moss or Spruce instead of steel, and
+    the app's icon in the same colors. If a subscription ends, the app and its
+    icon go back to steel.</li>
   <li><strong>Your full history</strong> — changing any past day, where the
     free version changes today and the week before it; the Year view on
     History; and on Progress, each habit's earlier months and its Year
     view.</li>
 </ul>
-<!--
-  Changed 26 September 2026, not yet published. It said "If a subscription
-  lapses, every habit and every completion stays, and stays visible and
-  editable. What the free limits control is making another one, never keeping
-  what is already there." "Editable" was true of the habits, and still is
-  (app/sheet/habit.tsx saves an existing habit with no limit check; only
-  createHabit is capped), but it did not say that a lapsed subscriber, on the
-  free version, changes only today and the week before it (canChangeDay). And
-  since the owner's round 5 a lapse also stops a habit's extra reminder times
-  and its nudge, which are kept (reminderTimesFor, src/purchases/limits.ts),
-  and locks the Pro views and colors again (canSeeYear, canSeeHabitPast,
-  accentThemeFor), so the free limits are named as what can be added or
-  changed from then on rather than as one thing.
--->
 <p><strong>Nothing you have already made is ever taken away.</strong> If a
 subscription lapses, every habit and every completion stays, every habit can
 still be edited, and every day of it can still be looked at on History. What the
 free limits control is what you can add or change from then on (<em>another</em>
 habit, a day more than a week back, a reminder time after the first, and the
-views and colors Nanbit Pro unlocks), never what is already there. A lapsed subscriber holding more than five habits keeps
-all of them. Each habit's first reminder keeps going; its other reminder times
-and its nudge stop, and are kept for if you subscribe again.</p>
+views, colors and widgets Nanbit Pro unlocks), never what is already there. A
+lapsed subscriber holding more than five habits keeps all of them. Each habit's
+first reminder keeps going; its other reminder times and its nudge stop, and are
+kept for if you subscribe again.</p>
 </section>
 
 <section class="card">
 <h2 data-short="Payment">Payment, and who takes it</h2>
-<p>Nanbit Pro is sold as a <strong>monthly</strong> or an <strong>annual</strong>
-subscription. The price you see in the app is the price Google Play reports for
-your country and currency at that moment; it is not stored in the app, so what
-is on the screen is what the store will charge.</p>
+<p>Nanbit Pro is sold as a <strong>yearly</strong> or a <strong>monthly</strong>
+subscription. The price you see in the app is the price the App Store reports
+for your country and currency at that moment; it is not stored in the app, so
+what is on the screen is what Apple will charge.</p>
 <ul>
-  <li><strong>Google Play processes the payment.</strong> Nanbit does not take
+  <li><strong>Apple processes the payment.</strong> Nanbit does not take
     payments and never receives your card or bank details.</li>
-  <li><strong>Payment is charged to your Google Play account</strong> when you
+  <li><strong>Payment is charged to your Apple Account</strong> when you
     confirm the purchase — or, if you started a free trial, when that trial
     ends.</li>
   <li><strong>A subscription renews automatically</strong> at the end of each
-    period unless you cancel before that period ends. Google Play takes the next
-    payment when the new period starts, so canceling any time before then is
-    enough.</li>
-  <!-- Changed 25 September 2026, not yet published: "cancelling" in the item
-    above became "canceling", and "Cancelling" in the trial paragraph, the
-    heading and the paragraph under it below became "Canceling", the owner's
-    American spelling. -->
-  <!-- Changed 25 September 2026, not yet published: "You → Nanbit Pro →
-    Restore purchases" became "You → See plans → Restore purchases". The
-    owner's redesign of You that day replaced the Nanbit Pro row with a Nanbit
-    Pro card whose button, "See plans", opens the paywall that holds Restore
-    purchases (src/purchases/proCard.ts). -->
-  <!-- Changed 26 September 2026, not yet published: "Restore purchases" became
-    "Restore", the word in the rebuilt paywall's top bar (app/paywall.tsx; its
-    VoiceOver name is still "Restore purchases"). -->
-  <li>Your subscription is attached to your Google Play account, because there
-    is no Nanbit account. That is what lets
+    period unless you turn it off at least 24 hours before the period
+    ends.</li>
+  <li>Your subscription is attached to your Apple Account, and buying or
+    restoring one never needs a Nanbit account. That is what lets
     <strong>You → See plans → Restore</strong> work on a reinstall or
-    a new device without signing into anything.</li>
+    a new iPhone.</li>
 </ul>
 
 <h3>Free trials, where they are offered</h3>
 <p>A free trial is sometimes offered on a plan. Whether you can have one is
-Google Play's decision, not ours — an account that has used the trial before is
+Apple's decision, not ours — an Apple Account that has used the trial before is
 shown the same plan without it, and in that case the purchase is charged
-straight away. Nanbit only advertises a trial when the store confirms you are
-eligible for it.</p>
+straight away. Nanbit only advertises a trial when the App Store confirms you
+are eligible for it.</p>
 <p>If you do start a trial, it is free for its stated length and then
 <strong>converts into a paid subscription at the normal price unless you cancel
-before it ends</strong>. Canceling during the trial means you are not charged
-when it ends: Nanbit Pro stays on until the trial ends, and then you are back on
-the free version with everything you tracked intact.</p>
+at least 24 hours before it ends</strong>. Canceling in time means you are not
+charged when it ends, and everything you tracked stays as it is.</p>
 
 <h3>Canceling</h3>
-<!--
-  Deliberately silent about the app's own Manage subscription row. On Android
-  the row cannot appear at all yet: it shows only when the store reports a
-  subscription to manage, and no Android build can sell one while
-  extra.revenueCatApiKeyAndroid is null (README, phase 2). Once sales are on,
-  this page is still live the moment it is pushed while a build reaches people
-  only when it ships, so a sentence naming the row would be true of some builds
-  in circulation and not others. Written this way it is true of all of them.
-  Name the row only once every Android build on a track both sells and has it.
--->
-<p>To cancel, <strong>go to subscriptions in Google Play</strong>, select the
-subscription and tap <strong>Cancel subscription</strong>. The subscription lives
-with the store rather than with us, so we cannot cancel it on your behalf.</p>
+<p>To cancel, <strong>open the Settings app, tap your name, then tap
+Subscriptions</strong>, tap the subscription and tap <strong>Cancel
+Subscription</strong>. While you are subscribed, the You tab in Nanbit also has
+<strong>Manage subscription</strong>, a link to the App Store's page for it. The
+subscription lives with Apple rather than with us, so we cannot cancel it on
+your behalf.</p>
 <p>Canceling stops the renewal. It does not delete anything: your habits, your
 completions and your history are on your phone and are untouched by the state of
 a subscription.</p>
 
 <h3>Refunds</h3>
-<p>Refunds for a Play purchase are handled by <strong>Google Play under Google's
-own refund policy</strong>, through your Play account or Google's support. We
+<p>Refunds for an App Store purchase are handled by <strong>Apple under Apple's
+own refund policy</strong>, at
+<a href="https://reportaproblem.apple.com/">reportaproblem.apple.com</a>. We
 have no way to issue a refund for a purchase we never processed. If something
 has gone wrong, write to us anyway — see below — and we will help where we
 can.</p>
@@ -309,54 +203,41 @@ can.</p>
 
 <section class="card">
 <h2 data-short="Your habits">Your habits, and your backups</h2>
-<!--
-  Rewritten 23 September 2026. It offered "You → Export data" as the copy you
-  control; the export was removed from the app on 22 September 2026, so on
-  Android the phone's own backup is now the only copy there is. The page says
-  so rather than leaving the reader to infer it from the export's absence.
--->
-<p>Nanbit stores your habits, completions and settings on your device, in the
-<!-- Changed 2 October 2026, not yet published: sign-in came back as an optional, free backup (ROADMAP, "Sign-in returns"). -->
-app's own storage. Signing in, with Apple on iPhone or Google, is optional;
+<p>Nanbit stores your habits, completions and settings on your iPhone, in the
+app's own storage. Signing in, with Apple or Google, is optional;
 if you do, Nanbit backs your habits up to its server so you can restore them,
 and if you do not, there is no server copy and nothing for us to restore from.
 Everything that is stored, and everything that leaves the phone, is in the
 <a href="privacy.html">privacy policy</a>.</p>
 <p>The practical consequence is worth stating plainly: <strong>without signing
-in, keeping a copy is up to you</strong>. If a phone is lost, reset, or has Nanbit removed, we cannot
-recover what was on it. The phone's own Google backup may hold a copy —
-expected, not yet confirmed; the privacy policy says what is known — but that
-copy is between you and Google, and we cannot reach it. Signing in to back up is
+in, keeping a copy is up to you</strong>. If a phone is lost, reset, or has
+Nanbit removed, we cannot recover what was on it. Your iPhone's own iCloud
+backup can hold a copy — the privacy policy says what is known — but that copy
+is between you and Apple, and we cannot reach it. Signing in to back up is
 Nanbit's own way to keep one.</p>
 </section>
 
 <section class="card">
 <h2 data-short="As it is">Nanbit is provided as it is</h2>
-<p>Nanbit is made by one person and is offered <strong>as it is</strong>,
-without any promise that it will be free of faults, that it will suit a
-particular purpose, or that it will always be available. Reminders are an
-example worth naming: they are scheduled by your phone's own operating system,
-and whether one arrives on time depends on your device's settings, battery
-saving, and the manufacturer's own power management — none of which Nanbit
-controls or can see.</p>
-<p><strong>What we are liable for.</strong> To the extent the law allows, we are
-not liable for indirect or consequential loss — lost data, a broken streak, or
-anything that follows from a reminder that did not arrive. Where we are liable,
-our total liability to you is limited to <strong>what you paid for Nanbit in the
-twelve months before the claim</strong>. If you have never paid for Nanbit, that
-figure is nothing, and the free version is offered on that basis. Nothing here
-takes away rights your local consumer law gives you and does not let us
-exclude.</p>
+<p>Nanbit is made by one person and is offered <strong>as it is</strong>.
+Reminders are an example worth naming: they are scheduled by your iPhone, and
+whether one arrives on time depends on your iPhone's settings — a Focus or a
+Scheduled Summary can hold one back — none of which Nanbit controls or can
+see.</p>
+<p>What is promised about the app, and what we are liable for, is set out in
+<a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's
+standard license agreement</a>, and this page sets no terms of its own on
+either. Nothing here takes away rights your local consumer law gives you.</p>
 <p>Nanbit is a habit tracker. It is not medical, clinical or professional advice
 of any kind, and nothing in it should be treated as such.</p>
 <p>We may change, update or stop offering parts of Nanbit. If something you paid
 for stops being offered, the subscription terms above still apply: you can
-cancel renewal through Google Play at any time.</p>
+turn off renewal in the Settings app at any time.</p>
 </section>
 
 <section class="card">
-<h2 data-short="Changes">Changes to these terms</h2>
-<p>If these terms change, the date at the top changes with them. That date is
+<h2 data-short="Changes">Changes to this page</h2>
+<p>If this page changes, the date at the top changes with it. That date is
 the whole record. There is no notice: Nanbit does not send email, and promising a
 notice we would not send would be worse than saying so.</p>
 </section>
